@@ -22,7 +22,7 @@
         "styles.css"
       ],
       "scripts": [
-          ".src/assets/plugins/iCheck/icheck.js"
+         "./assets/plugins/iCheck/icheck.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
