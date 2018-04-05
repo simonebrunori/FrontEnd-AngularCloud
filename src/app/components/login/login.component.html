@@ -1,51 +1,79 @@
 <body class="sign-in-page">
-<div class="signin-form-area" style="width:100%;padding-top: 200px;">
-  <h1><b>angularCloud</b> - development</h1>
-  <div class="signin-top-info">Sign in to start your session</div>
-  <div class="row padding-15">
-    <div class="col-sm-2 col-md-2 col-lg-5"></div>
-    <div class="col-sm-8 col-md-8 col-lg-2">
-      <form id="frmSignin" method="post">
-        <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email" name="Email" id="Email" required />
-          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password" name="Password" id="Password" required />
-          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <div class="row">
-          <div class="col-xs-4 col-xs-offset-4">
-            <button type="submit" class="btn btn-success btn-block btn-flat">Sign In</button>
+  <div class="signin-form-area" style="width:100%;padding-top: 200px;">
+    <h1><b>angularCloud</b> - development</h1>
+    <div class="signin-top-info">Sign in to start your session</div>
+    <div class="row padding-15">
+      <div class="col-md-5"></div>
+      <div class="col-md-2">
+
+
+        <!-- Custom Success/Error message -->
+        <div class="row show-hide-message">
+          <div [ngClass]="messageClass">
+            {{message}}
           </div>
         </div>
-      </form>
-      <div class="social-media-area">
-        <span>OR</span>
-        <ul>
-          <li>
-            <a href="javascript:void(0);" class="facebook" data-toggle="tooltip" data-title="Facebook">
+
+
+
+
+        <!-- Login Form -->
+        <form [formGroup]="form" (submit)="onLoginSubmit()">
+          <!-- Username Field -->
+          <div class="form-group has-feedback">
+            <div [ngClass]="{'has-error': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
+              <input type="text" class="form-control" placeholder="Username" name="username" formControlName="username" required />
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required.</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Password Field -->
+          <div class="form-group has-feedback">
+            <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }">
+              <input type="password" class="form-control" placeholder="Password" name="password" formControlName="password" required />
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+              <!-- Submit button -->
+              <button [disabled]="!form.valid || processing" type="submit" class="btn btn-success btn-block btn-flat">Login</button>
+            </div>
+          </div>
+        </form>
+        <div class="social-media-area">
+          <span>OR</span>
+          <ul>
+            <li>
+              <a href="javascript:void(0);" class="facebook" data-toggle="tooltip" data-title="Facebook">
     <i class="fa fa-facebook"></i>
     </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" class="twitter" data-toggle="tooltip" data-title="Twitter">
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="twitter" data-toggle="tooltip" data-title="Twitter">
     <i class="fa fa-twitter"></i>
     </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" class="google-plus" data-toggle="tooltip" data-title="Google Plus">
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="google-plus" data-toggle="tooltip" data-title="Google Plus">
     <i class="fa fa-google-plus"></i>
     </a>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
+      <div class="col-sm-2 col-md-2 col-lg-4"></div>
     </div>
-    <div class="col-sm-2 col-md-2 col-lg-4"></div>
   </div>
-</div>
 
-<div class="signin-bottom-info" style="width:100%;">
- 
-</div>
+  <div class="signin-bottom-info" style="width:100%;">
+
+  </div>
 </body>
