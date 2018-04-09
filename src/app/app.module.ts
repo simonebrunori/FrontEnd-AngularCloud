@@ -14,12 +14,15 @@ import {AuthGuard} from './guard/auth.guard';
 import {NotAuthGuard} from './guard/notAuth.guard';
 
 import { FlashMessagesModule} from 'angular2-flash-messages';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

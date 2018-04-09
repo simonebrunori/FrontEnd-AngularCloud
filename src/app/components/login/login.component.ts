@@ -91,6 +91,9 @@ export class LoginComponent implements OnInit {
       this.previousUrl = this.authGuard.redirectUrl; // Set the previous URL user was redirected from
       this.authGuard.redirectUrl = undefined; // Erase previous URL
     }
+    if(this.authService.loggedIn()){
+      this.router.navigate(['/dashboard']);
+    }
   }
 
 }
