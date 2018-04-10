@@ -15,6 +15,8 @@ import {NotAuthGuard} from './guard/notAuth.guard';
 
 import { FlashMessagesModule} from 'angular2-flash-messages';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    SidebarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

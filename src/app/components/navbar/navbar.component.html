@@ -54,7 +54,7 @@
             <li class="body">
               <ul>
                 <li>
-                  <a href="">
+                  <a routerLink="/profile">
                     <i class="material-icons">account_circle</i> Profile
                   </a>
                 </li>
@@ -63,7 +63,7 @@
             <li class="footer">
               <div class="row clearfix">
                 <div class="col-xs-5">
-                  <a href="" class="btn btn-default btn-sm btn-block">Log Out</a>
+                  <button (click)="logout()" class="btn btn-default btn-sm btn-block">Log Out</button>
                 </div>
               </div>
             </li>
@@ -76,25 +76,18 @@
   </div>
 </nav>
 
-
-<aside class="sidebar">
-  <nav class="sidebar-nav">
-    <ul class="metismenu">
-      <li class="title">
-        MAIN NAVIGATION
-      </li>
-      
-      <!-- LINK -->
-      
-    </ul>
-  </nav>
-</aside>
-
+<app-sidebar></app-sidebar>
   
 </header>
 
-<section class="content dashboard">
+
+
+
+<section class="content dashboard" *ngIf="this.router.url!='/login'">
   <router-outlet></router-outlet>
 </section>
 
+<div *ngIf="this.router.url=='/login'">
+<router-outlet></router-outlet>
+</div>
 
