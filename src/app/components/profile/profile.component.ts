@@ -17,9 +17,7 @@ export class ProfileComponent implements OnInit {
     this.authService.getProfile().subscribe(profile=>{
       this.username=profile.user.username;
       this.email=profile.user.email;
-    })
-
-    }
+    });
   }
 
 }
