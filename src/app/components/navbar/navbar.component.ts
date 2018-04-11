@@ -9,6 +9,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  username="";
+
+
   constructor(private router:Router,
               private authService:AuthService) { }
 
@@ -18,7 +21,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']); 
   }
 
+
   ngOnInit() {
+    // Once component loads, get username to display on navbar
+    this.authService.getProfile().subscribe(profile => {
+      this.username = profile.user.username; // Set username
+    });
   }
 
 }

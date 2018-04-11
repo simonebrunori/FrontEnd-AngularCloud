@@ -58,12 +58,6 @@ export class AuthService {
   }
 
 
-  //Function to get public profile data
-  getPublicProfile(username){
-    this.createAuthenticationHeaders(); //create token before sending to API
-    return this.http.get(this.domain+'users/publicProfile/'+username, this.options).map(res=>res.json());
-  }
-
   //Function to check if user is logged in
   loggedIn(){
     return tokenNotExpired();
