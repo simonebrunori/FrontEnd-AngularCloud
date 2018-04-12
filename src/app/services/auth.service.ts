@@ -41,6 +41,7 @@ export class AuthService {
     this.authToken=null;  //set token to null
     this.user=null;   //set user to null
     localStorage.clear();   //clear local storage
+    sessionStorage.clear();
   }
 
   //Function to store user's data to client local storage

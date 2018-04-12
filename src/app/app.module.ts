@@ -17,6 +17,7 @@ import { FlashMessagesModule} from 'angular2-flash-messages';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

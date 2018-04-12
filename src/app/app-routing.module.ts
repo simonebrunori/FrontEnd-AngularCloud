@@ -5,18 +5,33 @@ import { NotAuthGuard} from './guard/notAuth.guard';
 import { LoginComponent} from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent} from './components/profile/profile.component';
+import { DashboardComponent} from './components/dashboard/dashboard.component'
 
 
 
 
-const appRoutes: Routes = [{
+const appRoutes: Routes = [
+  {
     path: '',
-    component: HomeComponent
+    redirectTo:'dashboard/home',
+    pathMatch: 'full'
   },
   {
     path: 'dashboard',      //dashboard route
-    component: HomeComponent,
-    canActivate: [AuthGuard]    // User must be logged in to view this route
+    component: DashboardComponent,
+    canActivate: [AuthGuard],    // User must be logged in to view this route
+    children:[
+      {
+        path: 'profile',        //user profile route
+        component: ProfileComponent,
+        canActivate: [AuthGuard]    // User must be logged in to view this route
+      }, 
+      {
+        path: 'home',          //home route
+        component: HomeComponent,
+        canActivate: [AuthGuard] // User must be logged in to view this route
+      }, 
+    ]
   }, 
   {
     path: 'login',          //login route
@@ -24,13 +39,8 @@ const appRoutes: Routes = [{
     canActivate: [NotAuthGuard] // User must NOT be logged in to view this route
   }, 
   {
-    path: 'profile',        //user profile route
-    component: ProfileComponent,
-    canActivate: [AuthGuard]    // User must be logged in to view this route
-  }, 
-  {
     path: '**',             // "Catch-All" Route
-    component: HomeComponent
+    component: DashboardComponent
   } 
 
 ];

@@ -1,4 +1,4 @@
-<header  *ngIf="this.router.url!='/login'">
+
 <nav class="navbar navbar-default">
 
 
@@ -11,7 +11,7 @@
   <i class="material-icons">menu</i>
   </a>
 
-      <a class="navbar-brand" routerLink="/dashboard">
+      <a class="navbar-brand" routerLink="/dashboard/home">
   <span class="logo-minimized">AD</span>
   <span class="logo">angularCloud - Development</span>
   </a>
@@ -54,7 +54,7 @@
             <li class="body">
               <ul>
                 <li>
-                  <a routerLink="/profile">
+                  <a routerLink="/dashboard/profile">
                     <i class="material-icons">account_circle</i> Profile
                   </a>
                 </li>
@@ -76,18 +76,6 @@
   </div>
 </nav>
 
-<app-sidebar></app-sidebar>
-  
-</header>
 
 
-
-
-<section class="content dashboard" *ngIf="this.router.url!='/login'">
-  <router-outlet></router-outlet>
-</section>
-
-<div *ngIf="this.router.url=='/login'">
-<router-outlet></router-outlet>
-</div>
 

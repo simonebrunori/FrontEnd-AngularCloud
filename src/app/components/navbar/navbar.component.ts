@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,18 +9,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  username="";
+  username = "";
 
 
-  constructor(private router:Router,
-              private authService:AuthService) { }
+  constructor(private router: Router,
+    private authService: AuthService) { }
 
   //Logout function
-  logout(){
-    this.authService.logout();  //call authService logout function 
-    this.router.navigate(['/login']); 
+  logout() {
+    this.authService.logout(); //call authService logout function 
+    this.router.navigate(['/login']);
   }
-
 
   ngOnInit() {
     // Once component loads, get username to display on navbar
