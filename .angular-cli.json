@@ -39,8 +39,9 @@
         "assets/plugins/jquery-slimscroll/jquery.slimscroll.js",
         "assets/plugins/switchery/dist/switchery.js",
         "assets/plugins/iCheck/icheck.js",
-      
         "assets/js/admin.js"
+      
+        
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

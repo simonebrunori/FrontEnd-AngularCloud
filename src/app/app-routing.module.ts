@@ -5,7 +5,8 @@ import { NotAuthGuard} from './guard/notAuth.guard';
 import { LoginComponent} from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent} from './components/profile/profile.component';
-import { DashboardComponent} from './components/dashboard/dashboard.component'
+import { DashboardComponent} from './components/dashboard/dashboard.component';
+import { ClassesComponent} from './components/classes/classes.component';
 
 
 
@@ -29,6 +30,11 @@ const appRoutes: Routes = [
       {
         path: 'home',          //home route
         component: HomeComponent,
+        canActivate: [AuthGuard] // User must be logged in to view this route
+      }, 
+      {
+        path: 'classes',          //classes route
+        component: ClassesComponent,
         canActivate: [AuthGuard] // User must be logged in to view this route
       }, 
     ]

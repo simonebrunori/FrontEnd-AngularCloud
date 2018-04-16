@@ -18,6 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClassesComponent } from './components/classes/classes.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NavbarComponent,
     SidebarComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    ClassesComponent
   ],
   imports: [
     BrowserModule,
