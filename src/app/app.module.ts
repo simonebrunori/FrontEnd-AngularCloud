@@ -9,11 +9,12 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { AuthService} from './services/auth.service';
-import {AuthGuard} from './guard/auth.guard';
-import {NotAuthGuard} from './guard/notAuth.guard';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guard/auth.guard';
+import { NotAuthGuard } from './guard/notAuth.guard';
+import {  ClassService } from './services/class.service';
 
-import { FlashMessagesModule} from 'angular2-flash-messages';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -41,7 +42,7 @@ import { ClassesComponent } from './components/classes/classes.component';
     ReactiveFormsModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard],
+  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

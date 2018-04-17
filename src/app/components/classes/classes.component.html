@@ -15,7 +15,7 @@
       </div>
       <div class="content" style="min-height: 1474px;">
         <div class="text">Classes</div>
-        <div class="number">11</div>
+        <div class="number">{{classCount}}</div>
       </div>
     </div>
 
@@ -24,17 +24,19 @@
     
     <div class="panel panel-default">
         <div class="panel-body">
-            <h3 class="panel-inside-title">Panel Primary</h3>
+            <h3 class="panel-inside-title">Classes detail:</h3>
             <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-primary">
-                    <div class="panel-heading" role="tab" id="accordion_1-heading-one">
+                <div *ngFor="let class of classes; let i=index;">
+                    <br>
+                <div class="panel" [ngClass]="{'panel-danger': class.year==1, 'panel-success': class.year==2, 'panel-primary': class.year==3, 'panel-default': class.year==4, 'panel-warning': class.year==5 }">        <!--class="panel panel-primary"-->
+                    <div class="panel-heading" role="tab" [attr.id]="'accordione_1-heading-'+i">             <!--id="accordion_1-heading-{{i}}"-->
                         <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#accordion_1-one" aria-expanded="true" aria-controls="accordion_1-one">
-Accordion Heading #1
-</a>
+                            <a role="button" data-toggle="collapse"  [attr.data-parent]="'#accordion_1-'+i"  [attr.href]="'#accordion_1-'+i" aria-expanded="true" [attr.aria-controls]="'#accordion_1-'+i">      <!--accordion_1-{{i}}-->
+                                    {{class.year}} {{class.section}}
+                            </a>
                         </h4>
                     </div>
-                    <div id="accordion_1-one" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordion_1-heading-one">
+                    <div [attr.id]="'accordion_1-'+i" class="panel-collapse collapse in" role="tabpanel" [attr.aria-labelledby]="'accordion_1-heading-'+i">
                         <ul class="list-group">
                             <li class="list-group-item">List First Item</li>
                             <li class="list-group-item">List Second Item</li>
@@ -44,271 +46,11 @@ Accordion Heading #1
                             </ul>
                     </div>
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading" role="tab" id="accordion_1-heading-two">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#accordion_1-two" aria-expanded="false"
-                                aria-controls="accordion_1-two">
-Accordion Heading #2
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_1-two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_1-heading-two">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading" role="tab" id="accordion_1-heading-three">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#accordion_1-three" aria-expanded="false"
-                                aria-controls="accordion_1-three">
-Accordion Heading #3
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_1-three" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_1-heading-three">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
+               
+           
                 </div>
             </div>
-            <br />
-            <h3 class="panel-inside-title">Panel Success</h3>
-            <div class="panel-group" id="accordion_2" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-success">
-                    <div class="panel-heading" role="tab" id="accordion_2-heading-one">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion_2" href="#accordion_2-one" aria-expanded="true" aria-controls="accordion_2-one">
-Accordion Heading #1
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_2-one" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordion_2-heading-one">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-success">
-                    <div class="panel-heading" role="tab" id="accordion_2-heading-two">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_2" href="#accordion_2-two" aria-expanded="false"
-                                aria-controls="accordion_2-two">
-Accordion Heading #2
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_2-two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_2-heading-two">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-success">
-                    <div class="panel-heading" role="tab" id="accordion_2-heading-three">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_2" href="#accordion_2-three" aria-expanded="false"
-                                aria-controls="accordion_2-three">
-Accordion Heading #3
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_2-three" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_2-heading-three">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <h3 class="panel-inside-title">Panel Warning</h3>
-            <div class="panel-group" id="accordion_3" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-warning">
-                    <div class="panel-heading" role="tab" id="accordion_3-heading-one">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion_3" href="#accordion_3-one" aria-expanded="true" aria-controls="accordion_3-one">
-Accordion Heading #1
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_3-one" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordion_3-heading-one">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-warning">
-                    <div class="panel-heading" role="tab" id="accordion_3-heading-two">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_3" href="#accordion_3-two" aria-expanded="false"
-                                aria-controls="accordion_3-two">
-Accordion Heading #2
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_3-two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_3-heading-two">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-warning">
-                    <div class="panel-heading" role="tab" id="accordion_3-heading-three">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_3" href="#accordion_3-three" aria-expanded="false"
-                                aria-controls="accordion_3-three">
-Accordion Heading #3
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_3-three" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_3-heading-three">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <h3 class="panel-inside-title">Panel Danger</h3>
-            <div class="panel-group" id="accordion_4" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-danger">
-                    <div class="panel-heading" role="tab" id="accordion_4-heading-one">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion_4" href="#accordion_4-one" aria-expanded="true" aria-controls="accordion_4-one">
-Accordion Heading #1
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_4-one" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordion_4-heading-one">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-danger">
-                    <div class="panel-heading" role="tab" id="accordion_4-heading-two">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_4" href="#accordion_4-two" aria-expanded="false"
-                                aria-controls="accordion_4-two">
-Accordion Heading #2
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_4-two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_4-heading-two">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-danger">
-                    <div class="panel-heading" role="tab" id="accordion_4-heading-three">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_4" href="#accordion_4-three" aria-expanded="false"
-                                aria-controls="accordion_4-three">
-Accordion Heading #3
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_4-three" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_4-heading-three">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <h3 class="panel-inside-title">Panel Default</h3>
-            <div class="panel-group" id="accordion_5" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="accordion_5-heading-one">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion_5" href="#accordion_5-one" aria-expanded="true" aria-controls="accordion_5-one">
-Accordion Heading #1
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_5-one" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordion_5-heading-one">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="accordion_5-heading-two">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_5" href="#accordion_5-two" aria-expanded="false"
-                                aria-controls="accordion_5-two">
-Accordion Heading #2
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_5-two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_5-heading-two">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="accordion_5-heading-three">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_5" href="#accordion_5-three" aria-expanded="false"
-                                aria-controls="accordion_5-three">
-Accordion Heading #3
-</a>
-                        </h4>
-                    </div>
-                    <div id="accordion_5-three" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion_5-heading-three">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, vim alii aeque an, ad sea agam fuisset, at sea simul assueverit vituperatoribus. Eos at dicta
-                            placerat, volumus definitiones delicatissimi cu nec, mei ferri liber nonumes
-                            ad. An per consul sensibus, ei ius facilis molestie. Modo libris propriae
-                            ut vis, ei mnesarchum assueverit quo, mucius voluptua euripidis vim ex.
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 

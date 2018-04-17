@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClassService} from '../../services/class.service';
 
 @Component({
   selector: 'app-classes',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassesComponent implements OnInit {
 
-  constructor() { }
+  classes;
+  classCount;
+
+  constructor(private classService: ClassService) { }
+
+  getAllMyClasses(){
+    this.classService.getTeacherClasses().subscribe(data=>{
+      this.classCount= data.count;
+      this.classes= data.classes[0].classes;
+    });
+  }
+
+
 
   ngOnInit() {
+    this.getAllMyClasses();
   }
 
 }

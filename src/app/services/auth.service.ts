@@ -16,7 +16,7 @@ export class AuthService {
 
   //Function to create headers, add token, to be used in http requests
   createAuthenticationHeaders(){
-    this.loadToken(); //Loado token to attach to headers
+    this.loadToken(); //Load token to attach to headers
     //Headers configuration options
     this.options=new RequestOptions({
       headers: new Headers({
