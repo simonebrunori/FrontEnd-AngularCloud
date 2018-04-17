@@ -20,8 +20,9 @@
       "prefix": "app",
       "styles": [
         "assets/plugins/bootstrap/dist/css/bootstrap.css",
-        "assets/plugins/animate-css/animate.css",
         "assets/plugins/font-awesome/css/font-awesome.min.css",  
+        "assets/plugins/animate-css/animate.css", 
+        "assets/plugins/iCheck/skins/square/_all.css", 
         "assets/plugins/switchery/dist/switchery.css",
         "assets/plugins/metisMenu/dist/metisMenu.css",
         "assets/plugins/pace/themes/white/pace-theme-flash.css",
@@ -34,11 +35,11 @@
         "assets/plugins/jquery-ui/jquery-ui.js",
         "assets/plugins/bootstrap/dist/js/bootstrap.min.js",
         "assets/plugins/pace/pace.js",
+        "assets/plugins/iCheck/icheck.js",
         "assets/plugins/screenfull/src/screenfull.js",
         "assets/plugins/metisMenu/dist/metisMenu.js",
         "assets/plugins/jquery-slimscroll/jquery.slimscroll.js",
-        "assets/plugins/switchery/dist/switchery.js",
-        "assets/plugins/iCheck/icheck.js",
+        "assets/plugins/switchery/dist/switchery.js",       
         "assets/js/admin.js"
       
         
