@@ -37,8 +37,8 @@
                         </h4>
                     </div>
                     <div [attr.id]="'accordion_1-'+i" class="panel-collapse collapse" role="tabpanel" [attr.aria-labelledby]="'accordion_1-heading-'+i">
-                        <ul class="list-group" *ngFor="let student of students[class.year+class.section]">         <!-- *ngFor="let student of students[i].students"-->
-                            <li class="list-group-item">{{student.name}} {{student.surname}}</li>
+                        <ul class="list-group">         <!-- *ngFor="let student of students[i].students"-->
+                            <li class="list-group-item" *ngFor="let student of students[class.year+class.section]">{{student.name}} {{student.surname}}</li>
                         </ul>
                     </div>
                 </div>
