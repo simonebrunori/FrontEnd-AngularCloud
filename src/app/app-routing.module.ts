@@ -46,7 +46,8 @@ const appRoutes: Routes = [
   }, 
   {
     path: '**',             // "Catch-All" Route
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate:[AuthGuard]
   } 
 
 ];

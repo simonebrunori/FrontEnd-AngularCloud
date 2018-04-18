@@ -34,6 +34,12 @@ export class ClassService {
     return this.http.get(this.domain + 'users/myClasses', this.options).map(res=>res.json());   
   }
 
+  //Function to get all class' students
+  getClassStudents(year,section){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'users/students/'+year+'/'+section, this.options).map(res=>res.json());   
+  }
+
 
 
 
