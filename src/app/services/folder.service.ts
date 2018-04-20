@@ -37,6 +37,13 @@ export class FolderService {
     return this.http.get(this.domain + 'folders/Tfolders/'+ this.getUsername(), this.options).map(res=>res.json());   
   }
 
+
+  //Function to get all folder's files
+  getFolderFiles(folderID){
+      this.createAuthenticationHeaders();   //create the header for the request
+      return this.http.get(this.domain + 'folders/files/'+ folderID +'/'+this.getUsername(), this.options).map(res=>res.json());   
+    }
+
   //Function to get username from localStorage
   getUsername(){
     var user=localStorage.getItem('user');

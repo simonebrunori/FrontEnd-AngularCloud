@@ -12,6 +12,7 @@ import { FileManagerComponent} from './components/file-manager/file-manager.comp
 
 
 
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
         path: 'filemanager',          //file manager route
         component: FileManagerComponent,
         canActivate: [AuthGuard] // User must be logged in to view this route
-      },
+      }
     ]
   }, 
   {

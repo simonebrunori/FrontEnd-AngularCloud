@@ -23,6 +23,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { FileManagerComponent } from './components/file-manager/file-manager.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { FileInfoComponent } from './components/file-info/file-info.component';
+
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     DashboardComponent,
     ClassesComponent,
     FileManagerComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FileInfoComponent
+
   ],
   imports: [
     BrowserModule,
