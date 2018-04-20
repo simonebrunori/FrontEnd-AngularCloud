@@ -20,6 +20,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClassesComponent } from './components/classes/classes.component';
+import { FileManagerComponent } from './components/file-manager/file-manager.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ClassesComponent } from './components/classes/classes.component';
     SidebarComponent,
     ProfileComponent,
     DashboardComponent,
-    ClassesComponent
+    ClassesComponent,
+    FileManagerComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

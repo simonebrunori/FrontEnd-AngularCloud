@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent} from './components/profile/profile.component';
 import { DashboardComponent} from './components/dashboard/dashboard.component';
 import { ClassesComponent} from './components/classes/classes.component';
+import { FileManagerComponent} from './components/file-manager/file-manager.component';
 
 
 
@@ -36,7 +37,12 @@ const appRoutes: Routes = [
         path: 'classes',          //classes route
         component: ClassesComponent,
         canActivate: [AuthGuard] // User must be logged in to view this route
-      }, 
+      },
+      {
+        path: 'filemanager',          //file manager route
+        component: FileManagerComponent,
+        canActivate: [AuthGuard] // User must be logged in to view this route
+      },
     ]
   }, 
   {

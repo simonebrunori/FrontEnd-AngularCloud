@@ -28,6 +28,7 @@
         "assets/plugins/pace/themes/white/pace-theme-flash.css",
         "assets/css/style.css",
         "assets/css/themes/allthemes.css",
+        "assets/plugins/jstree/dist/themes/default/style.css",
         "styles.css"
       ],
       "scripts": [
@@ -40,6 +41,9 @@
         "assets/plugins/metisMenu/dist/metisMenu.js",
         "assets/plugins/jquery-slimscroll/jquery.slimscroll.js",
         "assets/plugins/switchery/dist/switchery.js",       
+        "assets/js/pages/miscellaneous/file-manager.js",
+        "assets/plugins/jstree/dist/jstree.js",
+        "assets/js/pages/ui/modals.js",
         "assets/js/admin.js"
       
         
