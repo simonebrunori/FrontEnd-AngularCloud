@@ -46,8 +46,10 @@ export class AuthService {
 
   //Function to store user's data to client local storage
   storeUserData(token,user){
+    console.log(user);
     localStorage.setItem('token', token);   //Set token in local storage
     localStorage.setItem('user',JSON.stringify(user)); //Set username in local storage as string
+    localStorage.setItem('type',user.type); //Set type in local storage as string
     this.authToken=token;   //Set token to be used anywhere
     this.user=user;   //Set user to be used anywhere
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FolderService } from '../../services/folder.service';
 
 @Component({
   selector: 'app-file-manager',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileManagerComponent implements OnInit {
 
-  constructor() { }
+  folders;
+  user;
+
+  constructor(private folderService:FolderService) { }
+
+  //Function to get user's folders
+  getFolders(){
+    //Call function getTeacherFolder() of FolderService
+    this.folderService.getTeacherFolder().subscribe(data=>{ 
+      this.folders=data.folders;
+    })
+  }
 
   ngOnInit() {
+    this.getFolders();    //get folder's on component initialization
   }
 
 }

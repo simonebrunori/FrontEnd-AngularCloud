@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions} from '@angular/http';
-import {AuthService} from './auth.service';
+import { AuthService } from './auth.service';
 import 'rxjs/add/operator/map';
 import {environment} from '../../environments/environment';
- 
+
+
+
 @Injectable()
-export class ClassService {
+export class FolderService {
 
   domain=environment.domain;   //test domain
   options;
 
   constructor(
-    private http:Http,
-    private authService:AuthService
+    private authService: AuthService,
+    private http: Http
   ) { }
-
 
   //Function to create headers, add token, to be used in http requests
   createAuthenticationHeaders(){
@@ -29,17 +30,22 @@ export class ClassService {
   }
 
 
-  //Function to get all teacher's classes
-  getTeacherClasses(){
+   //Function to get all teacher's folders
+   getTeacherFolder(){
+  
     this.createAuthenticationHeaders();   //create the header for the request
-    return this.http.get(this.domain + 'users/myClasses', this.options).map(res=>res.json());   
+    return this.http.get(this.domain + 'folders/Tfolders/'+ this.getUsername(), this.options).map(res=>res.json());   
   }
 
-  //Function to get all class' students
-  getClassStudents(year,section){
-    this.createAuthenticationHeaders();   //create the header for the request
-    return this.http.get(this.domain + 'users/students/'+year+'/'+section, this.options).map(res=>res.json());   
+  //Function to get username from localStorage
+  getUsername(){
+    var user=localStorage.getItem('user');
+    var userObj= JSON.parse(user)   //convert to object
+    return userObj.username;
   }
+
+
+
 
 
 

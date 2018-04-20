@@ -12,7 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { NotAuthGuard } from './guard/notAuth.guard';
-import {  ClassService } from './services/class.service';
+import { ClassService } from './services/class.service';
+import { FolderService} from './services/folder.service';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -46,7 +47,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     ReactiveFormsModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

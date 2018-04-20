@@ -63,8 +63,8 @@
         <div class="panel-body">
           <div class="row clearfix">
 
-
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+            <!-- FOLDER -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let folder of folders">
               <div class="file-box">
                 <div class="heading">
                   <input type="checkbox" />
@@ -75,49 +75,17 @@
                   </div>
                 </div>
                 <div class="footer">
-                  <a href="javascript:void(0);" class="name">Audio</a>
-                  <div class="size">2 folders</div>
+                  <a href="javascript:void(0);" class="name">{{folder.name}}</a>
+                  <div class="size">{{folder.createdAt}}</div>
                 </div>
               </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-              <div class="file-box">
-                <div class="heading">
-                  <input type="checkbox" />
-                </div>
-                <div class="body">
-                  <div class="icon">
-                    <i class="fa fa-folder-open"></i>
-                  </div>
-                </div>
-                <div class="footer">
-                  <a href="javascript:void(0);" class="name">Audio</a>
-                  <div class="size">2 folders</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-              <div class="file-box">
-                <div class="heading">
-                  <input type="checkbox" />
-                </div>
-                <div class="body">
-                  <div class="icon">
-                    <i class="fa fa-folder-open"></i>
-                  </div>
-                </div>
-                <div class="footer">
-                  <a href="javascript:void(0);" class="name">Audio</a>
-                  <div class="size">2 folders</div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <!-- END FOLDER -->
 
         </div>
       </div>
+    </div>
     </div>
     <!-- END FOLDERS -->
 
