@@ -116,8 +116,8 @@
                   <a href="javascript:void(0);" class="download" data-toggle="tooltip" data-title="Download File">
                                             <i class="fa fa-download"></i>
                                         </a>
-                  <a href="javascript:void(0);" role="button" (click)="toggleSidebar()" class="name js-right-sidebar">{{file.path}}</a>       
-                  <div class="size">{{file.uploadedBy}}</div>
+                  <a href="javascript:void(0);" role="button" (click)="toggleSidebar(file.filename)" class="name js-right-sidebar">{{file.path}}</a>       
+                  <div class="size">{{file.uploadedAt}}</div>
                 </div>
               </div>
             </div>
@@ -152,7 +152,35 @@
 
 
 <aside class="right-sidebar">
-    <app-file-info></app-file-info>
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#tab_overview" data-toggle="tab">FILE INFOS</a></li>
+        <li role="presentation"><a href="#tab_settings" data-toggle="tab">USERS</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="right-sidebar-close">
+            <i class="fa fa-times"></i>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in active" id="tab_overview">
+            <div class="tab-container">
+              <div class="container">
+              <br>
+              <br>
+      
+              <p><strong>Filename : </strong></p><p>{{fileInfos.path}}</p> 
+              <p><strong>Uploaded By : </strong> </p><p>{{fileInfos.uploadedBy}}</p> 
+              <p><strong>Uploaded At : </strong> </p><p>{{fileInfos.uploadedAt}}</p> 
+              <p><strong>Descriprion : </strong></p> <p>{{fileInfos.description}}</p> 
+       
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="tab_settings">
+            <div class="tab-container">
+                
+            </div>
+        </div>
+      </div>
+    
 </aside>
 
   

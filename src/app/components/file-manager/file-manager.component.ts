@@ -13,14 +13,19 @@ export class FileManagerComponent implements OnInit {
   folders;
   user;
   files;
+  fileInfos="";
+  fileUsers="";
 
   constructor(private folderService:FolderService) {
     
    }
 
   //JQuery sidebar event
-  toggleSidebar(){
+  toggleSidebar(name){
       $('.right-sidebar').addClass('open');
+      this.getFileInfo(name);
+      this.getUsersList(name);
+
   }
 
 
@@ -39,8 +44,30 @@ export class FileManagerComponent implements OnInit {
     //Call function getFolderFiles() of FolderService
     this.folderService.getFolderFiles(id).subscribe(data=>{ 
       this.files=data.files[0].files;
+      console.log(data);
     })
   }
+
+  //Function to get folder's files
+  getFileInfo(name){
+    //Call function getFileInfo() of FolderService
+    this.folderService.getFileInfo(name).subscribe(data=>{ 
+      this.fileInfos=data.file.files[0];
+    })
+    
+  }
+
+
+   //Function to get folder's files
+   getUsersList(name){
+    //Call function getUsersList() of FolderService
+    this.folderService.getUsersList(name).subscribe(data=>{ 
+      this.fileUsers=data.users.users;
+    })
+    
+  }
+
+
 
 
   ngOnInit() {
