@@ -150,7 +150,7 @@
   </div>
 </div>
 
-
+<!-- RIGHT SIDEBAR -->
 <aside class="right-sidebar">
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#tab_overview" data-toggle="tab">FILE INFOS</a></li>
@@ -160,6 +160,8 @@
         <div class="right-sidebar-close">
             <i class="fa fa-times"></i>
         </div>
+
+        <!-- FILE INFO -->
         <div role="tabpanel" class="tab-pane fade in active" id="tab_overview">
             <div class="tab-container">
               <div class="container">
@@ -174,13 +176,23 @@
             </div>
           </div>
         </div>
+
+        <!-- END FILE INFO -->
+
+        <!-- USERS -->
         <div role="tabpanel" class="tab-pane fade" id="tab_settings">
             <div class="tab-container">
+
+                <ul class="list-group">        
+                  <li class="list-group-item" *ngFor="let user of fileUsers">{{user}}</li>
+              </ul>
                 
             </div>
         </div>
+        <!-- END USERS -->
       </div>
     
 </aside>
+<!-- END RIGHT SIDEBAR -->
 
   

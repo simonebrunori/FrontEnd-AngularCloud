@@ -1,14 +1,70 @@
+<form [formGroup]="form">
 <div class="modal-header">
-    <h4 class="modal-title" id="defaultModalLabel">MODAL TITLE</h4>
+  <h4 class="modal-title" id="defaultModalLabel">UPLOAD FILE</h4>
 </div>
 <div class="modal-body">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-    vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-    Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-    nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-    Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+  <!-- USERS SELECTION -->
+
+  <div class="row clearfix">
+    <div class="col-sm-12">
+
+            <label>MULTIPLE SELECT</label>
+            <select2 [options]="options" [data]="exampleData" [width]="'100%'"  [value]="value" (valueChanged)="prova($event)" name="users" formControlName="users"> 
+                <!-- <option value="volvo">Volvo</option> -->
+                <!-- <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+                <option value="ford">Ford</option>
+                <option value="bmw">BMW</option> -->
+            </select2>
+
+    </div>
+  </div>
+  <!--END USERS SELECTION -->
+  <br>
+
+  <!-- FILE UPLOAD -->
+  <div class="row clearfix">
+    <div class="col-sm-12">
+      <label>Upload your file here</label>
+      <form  id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">       <!--action="http://sensitive.adminbsb-themes.com/"-->
+        <div class="dz-message">
+          <div class="drag-icon-cph">
+            <i class="far fa-hand-point-up fa-5x"></i>
+          </div>
+          <h3>Drop files here or click to upload.</h3>
+        </div>
+        <div class="fallback">
+          <input name="file" type="file" name="file" formControlName="file" multiple />
+        </div>
+    </form>
+    </div>
+  </div>
+
+  <!-- END FILE UPLOAD -->
+
+  <br>
+
+  <!-- TEXTAREA -->
+
+  <div class="row clearfix">
+    <div class="col-sm-12">
+        <label>Description</label>
+      <div class="form-horizontal">
+        <textarea class="form-control no-resize" cols="8" rows="5" placeholder="Please type what you want..." name="description" formControlName="description"></textarea>
+      </div>
+    </div>
+  </div>
+  <!-- END TEXTAREA -->
+
+
+
 </div>
+
+
+
+
 <div class="modal-footer">
-    <button type="button" class="btn btn-link">SAVE CHANGES</button>
-    <button type="button" class="btn btn-link" data-dismiss="modal">CLOSE</button>
+    <button type="button" class="btn btn-success">SAVE CHANGES</button>
+  <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="form.reset()">CLOSE</button>
 </div>
+</form>

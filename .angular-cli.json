@@ -26,9 +26,11 @@
         "assets/plugins/switchery/dist/switchery.css",
         "assets/plugins/metisMenu/dist/metisMenu.css",
         "assets/plugins/pace/themes/white/pace-theme-flash.css",
-        "assets/css/style.css",
         "assets/css/themes/allthemes.css",
         "assets/plugins/jstree/dist/themes/default/style.css",
+        "assets/plugins/select2/dist/css/select2.css",
+        "assets/plugins/dropzone/dist/dropzone.css",
+        "assets/css/style.css",
         "styles.css"
       ],
       "scripts": [
@@ -44,6 +46,8 @@
         "assets/js/pages/miscellaneous/file-manager.js",
         "assets/plugins/jstree/dist/jstree.js",
         "assets/js/pages/ui/modals.js",
+        "assets/plugins/select2/dist/js/select2.js",
+        "assets/plugins/dropzone/dist/dropzone.js",
         "assets/js/admin.js"
       
         

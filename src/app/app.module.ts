@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { Select2Module } from 'ng2-select2';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -47,7 +48,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    Select2Module
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService],
   bootstrap: [AppComponent]
