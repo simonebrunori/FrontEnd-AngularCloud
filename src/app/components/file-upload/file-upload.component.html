@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+
 <div class="modal-header">
   <h4 class="modal-title" id="defaultModalLabel">UPLOAD FILE</h4>
 </div>
@@ -9,12 +9,7 @@
     <div class="col-sm-12">
 
             <label>MULTIPLE SELECT</label>
-            <select2 [options]="options" [data]="exampleData" [width]="'100%'"  [value]="value" (valueChanged)="prova($event)" name="users" formControlName="users"> 
-                <!-- <option value="volvo">Volvo</option> -->
-                <!-- <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-                <option value="ford">Ford</option>
-                <option value="bmw">BMW</option> -->
+            <select2 [options]="options" [data]="exampleData" [width]="'100%'"  [value]="value" (valueChanged)="prova($event)" > 
             </select2>
 
     </div>
@@ -25,8 +20,10 @@
   <!-- FILE UPLOAD -->
   <div class="row clearfix">
     <div class="col-sm-12">
-      <label>Upload your file here</label>
-      <form  id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">       <!--action="http://sensitive.adminbsb-themes.com/"-->
+        <label>Upload your file here</label>
+        <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+      <!-- 
+      <form  action="http://sensitive.adminbsb-themes.com/" id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">       
         <div class="dz-message">
           <div class="drag-icon-cph">
             <i class="far fa-hand-point-up fa-5x"></i>
@@ -34,9 +31,9 @@
           <h3>Drop files here or click to upload.</h3>
         </div>
         <div class="fallback">
-          <input name="file" type="file" name="file" formControlName="file" multiple />
-        </div>
-    </form>
+          <input name="file" type="file" multiple />
+      </div>
+    </form> -->
     </div>
   </div>
 
@@ -50,7 +47,7 @@
     <div class="col-sm-12">
         <label>Description</label>
       <div class="form-horizontal">
-        <textarea class="form-control no-resize" cols="8" rows="5" placeholder="Please type what you want..." name="description" formControlName="description"></textarea>
+        <textarea class="form-control no-resize" cols="8" rows="5" placeholder="Please type what you want..."></textarea>
       </div>
     </div>
   </div>
@@ -65,6 +62,6 @@
 
 <div class="modal-footer">
     <button type="button" class="btn btn-success">SAVE CHANGES</button>
-  <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="form.reset()">CLOSE</button>
+  <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
 </div>
-</form>
+

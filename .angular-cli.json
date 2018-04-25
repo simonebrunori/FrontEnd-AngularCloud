@@ -29,7 +29,7 @@
         "assets/css/themes/allthemes.css",
         "assets/plugins/jstree/dist/themes/default/style.css",
         "assets/plugins/select2/dist/css/select2.css",
-        "assets/plugins/dropzone/dist/dropzone.css",
+        "assets/plugins/bootstrap-select/dist/css/bootstrap-select.css",
         "assets/css/style.css",
         "styles.css"
       ],
@@ -47,7 +47,7 @@
         "assets/plugins/jstree/dist/jstree.js",
         "assets/js/pages/ui/modals.js",
         "assets/plugins/select2/dist/js/select2.js",
-        "assets/plugins/dropzone/dist/dropzone.js",
+        "assets/plugins/bootstrap-select/dist/js/bootstrap-select.js",
         "assets/js/admin.js"
       
         

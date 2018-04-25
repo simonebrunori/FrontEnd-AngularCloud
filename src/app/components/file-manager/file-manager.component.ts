@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FolderService } from '../../services/folder.service';
+import { Select2OptionData } from 'ng2-select2';
 declare var jquery:any;
 declare var $ :any;
 
@@ -10,6 +11,9 @@ declare var $ :any;
 })
 export class FileManagerComponent implements OnInit {
 
+  public exampleData: Array<Select2OptionData>;
+  public value: string[];
+  public options: Select2Options;
   folders;
   user;
   files;
@@ -72,7 +76,24 @@ export class FileManagerComponent implements OnInit {
 
   ngOnInit() {
     this.getFolders();    //get folder's on component initialization
-    
+
+    this.options = {
+      multiple: true,
+      theme: 'classic',
+      closeOnSelect: false
+    }
+
+
+    this.exampleData=[
+      {
+        id: "volvo",
+        text:"Volvo"
+      },
+      {
+        id: "fiat",
+        text:"Fiat"
+      }
+    ];
   }
 
 }

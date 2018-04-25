@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
-import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
+declare var jquery:any;
+declare var $ :any;
 
 
 @Component({
@@ -17,22 +18,12 @@ export class FileUploadComponent implements OnInit {
   test:any;
   form;
 
-  constructor(private formBuilder:FormBuilder) {
-    this.createForm();  //create upload form
+  constructor() {
    }
 
 
 
-    //Function to create upload form
-   createForm(){
-    var users=new FormControl([]);
-    this.form=this.formBuilder.group({
-      users,   //users
-      file: [''],    //file
-      description:['']    //description
-
-    });
-   }
+    
 
 
   //delete
@@ -57,7 +48,11 @@ export class FileUploadComponent implements OnInit {
         id: "fiat",
         text:"Fiat"
       }
-    ]
+    ];
+
+    $('.dropzone').addClass('dz-clickable');
+
+
   }
 
 }
