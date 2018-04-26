@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { InitService } from './services/init.service';
+declare var moment: any;
 
 
 @Component({
@@ -7,10 +9,16 @@ import {Router} from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
 
-  constructor(private router: Router){}
+  constructor(private router: Router){
+    router.events.subscribe(function(){
+      InitService.initCommon();
+      window.scrollTo(0,0);
+    });
+  }
 
+  ngAfterViewInit(){
 
-  title = 'app works!';
+  }
 }

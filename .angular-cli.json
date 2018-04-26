@@ -26,11 +26,12 @@
         "assets/plugins/switchery/dist/switchery.css",
         "assets/plugins/metisMenu/dist/metisMenu.css",
         "assets/plugins/pace/themes/white/pace-theme-flash.css",
-        "assets/css/themes/allthemes.css",
+        
         "assets/plugins/jstree/dist/themes/default/style.css",
         "assets/plugins/select2/dist/css/select2.css",
         "assets/plugins/bootstrap-select/dist/css/bootstrap-select.css",
         "assets/css/style.css",
+        "assets/css/themes/allthemes.css",
         "styles.css"
       ],
       "scripts": [

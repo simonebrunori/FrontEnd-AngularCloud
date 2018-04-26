@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {AuthGuard} from '../../guard/auth.guard';
+import {InitService} from '../../services/init.service';
 
 
 
@@ -11,7 +12,7 @@ import {AuthGuard} from '../../guard/auth.guard';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements AfterViewInit {
 
   messageClass;
   message;
@@ -83,7 +84,11 @@ export class LoginComponent implements OnInit {
         });
    }
 
-  ngOnInit() {
+   ngAfterViewInit() {
+
+    InitService.init();
+
+    $('body').addClass('sign-in-page');
      // On page load, check if user was redirected to login
      if (this.authGuard.redirectUrl) {
       this.messageClass = 'alert alert-danger'; // Set error message: need to login

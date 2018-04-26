@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { FolderService } from '../../services/folder.service';
 import { Select2OptionData } from 'ng2-select2';
+import {InitService} from '../../services/init.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -9,7 +10,7 @@ declare var $ :any;
   templateUrl: './file-manager.component.html',
   styleUrls: ['./file-manager.component.css']
 })
-export class FileManagerComponent implements OnInit {
+export class FileManagerComponent implements AfterViewInit {
 
   public exampleData: Array<Select2OptionData>;
   public value: string[];
@@ -74,7 +75,9 @@ export class FileManagerComponent implements OnInit {
 
 
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    InitService.rightInit();
+    InitService.initCommon();
     this.getFolders();    //get folder's on component initialization
 
     this.options = {
