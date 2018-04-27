@@ -1,6 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { FolderService } from '../../services/folder.service';
-import { Select2OptionData } from 'ng2-select2';
 import {InitService} from '../../services/init.service';
 declare var jquery:any;
 declare var $ :any;
@@ -10,16 +9,15 @@ declare var $ :any;
   templateUrl: './file-manager.component.html',
   styleUrls: ['./file-manager.component.css']
 })
-export class FileManagerComponent implements AfterViewInit {
+export class FileManagerComponent implements AfterViewInit, OnInit {
 
-  public exampleData: Array<Select2OptionData>;
-  public value: string[];
-  public options: Select2Options;
   folders;
   user;
   files;
   fileInfos="";
   fileUsers="";
+  childrenFolders="";
+  path;
 
   constructor(private folderService:FolderService) {
     
@@ -27,6 +25,7 @@ export class FileManagerComponent implements AfterViewInit {
 
   //JQuery sidebar event
   toggleSidebar(name){
+      $('#'+name).addClass('active');
       $('.right-sidebar').addClass('open');
       this.getFileInfo(name);
       this.getUsersList(name);
@@ -44,13 +43,12 @@ export class FileManagerComponent implements AfterViewInit {
 
 
 
-  //Function to get folder's files
-  getFiles(id){
-    //Call function getFolderFiles() of FolderService
-    this.folderService.getFolderFiles(id).subscribe(data=>{ 
-      this.files=data.files[0].files;
-      console.log(data);
-    })
+  //Function to get folder's content (files and folders)
+  getFolderContent(id){
+    
+    this.addActiveClass(id);
+    //Call getChildrenFolders() to get all the children folders
+    this.getChildrenFolders(id);
   }
 
   //Function to get folder's files
@@ -72,6 +70,34 @@ export class FileManagerComponent implements AfterViewInit {
     
   }
 
+  //Function to get children folders
+  getChildrenFolders(parent){
+    //Call the service to get all children folders
+    this.folderService.getChildrenFolders(parent).subscribe(data=>{
+      this.childrenFolders=data.folders;
+      console.log(data);
+      //Call the function getFiles() to get the files
+      this.getFiles(parent);
+    })
+  }
+
+  //Function to get all files of the folders
+  getFiles(parent){
+    //Call function getFolderFiles() of FolderService
+    this.folderService.getFolderFiles(parent).subscribe(data=>{ 
+    this.files=data.files[0].files;
+    console.log(data);
+    })
+
+  }
+
+
+  addActiveClass(id){
+    var selector="#"+id;
+    $('.file-box').removeClass('active');
+    $(selector).addClass('active');
+  }
+
 
 
 
@@ -80,23 +106,12 @@ export class FileManagerComponent implements AfterViewInit {
     InitService.initCommon();
     this.getFolders();    //get folder's on component initialization
 
-    this.options = {
-      multiple: true,
-      theme: 'classic',
-      closeOnSelect: false
-    }
 
+    
+  }
 
-    this.exampleData=[
-      {
-        id: "volvo",
-        text:"Volvo"
-      },
-      {
-        id: "fiat",
-        text:"Fiat"
-      }
-    ];
+  ngOnInit(){
+    this.path="/";
   }
 
 }

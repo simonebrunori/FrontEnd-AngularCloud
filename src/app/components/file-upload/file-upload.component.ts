@@ -27,28 +27,15 @@ export class FileUploadComponent implements OnInit {
 
 
   //delete
-  prova(data: {value: string[]}){
-    this.test=data.value;
-    console.log(this.test);
-  }
+  // prova(data: {value: string[]}){
+  //   this.test=data.value;
+  //   console.log(this.test);
+  // }
 
 
   
 
   ngOnInit() {
-    this.options = {
-      multiple: true
-    }
-    this.exampleData=[
-      {
-        id: "volvo",
-        text:"Volvo"
-      },
-      {
-        id: "fiat",
-        text:"Fiat"
-      }
-    ];
 
     $('.dropzone').addClass('dz-clickable');
 

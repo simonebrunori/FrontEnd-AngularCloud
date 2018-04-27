@@ -65,6 +65,13 @@ export class FolderService {
   }
 
 
+  //Function to get all children folders of a folder
+  getChildrenFolders(parent){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'folders/childrenFolders/'+ parent , this.options).map(res=>res.json()); 
+  }
+
+
 
 
 

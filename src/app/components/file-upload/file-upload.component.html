@@ -3,37 +3,14 @@
   <h4 class="modal-title" id="defaultModalLabel">UPLOAD FILE</h4>
 </div>
 <div class="modal-body">
-  <!-- USERS SELECTION -->
 
-  <div class="row clearfix">
-    <div class="col-sm-12">
 
-            <label>MULTIPLE SELECT</label>
-            <select2 [options]="options" [data]="exampleData" [width]="'100%'"  [value]="value" (valueChanged)="prova($event)" > 
-            </select2>
-
-    </div>
-  </div>
-  <!--END USERS SELECTION -->
-  <br>
-
+  
   <!-- FILE UPLOAD -->
   <div class="row clearfix">
     <div class="col-sm-12">
         <label>Upload your file here</label>
         <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
-      <!-- 
-      <form  action="http://sensitive.adminbsb-themes.com/" id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">       
-        <div class="dz-message">
-          <div class="drag-icon-cph">
-            <i class="far fa-hand-point-up fa-5x"></i>
-          </div>
-          <h3>Drop files here or click to upload.</h3>
-        </div>
-        <div class="fallback">
-          <input name="file" type="file" multiple />
-      </div>
-    </form> -->
     </div>
   </div>
 

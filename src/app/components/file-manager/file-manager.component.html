@@ -16,30 +16,18 @@
 
 <div class="page-body">
   <div class="file-manager row clearfix">
-    <!-- Upload -->
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <button class="btn btn-success btn-block" data-toggle="modal" data-target="#uploadModal">
-            <!--onclick="$('.js-file-upload').click();"-->
-            <i class="fa fa-upload m-r-5"></i>Upload Files
-          </button>
-          <input type="file" class="js-file-upload hide" multiple>
-        </div>
-      </div>
-    </div>
-    <!-- END UPLOAD -->
+    
 
     <!-- SEARCHBAR -->
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row clearfix">
-            <div class="col-sm-9">
+            <div class="col-sm-12 col-xs-12 col-md-9">
               <button class="btn btn-danger" data-toggle="tooltip" data-title="Delete" data-placement="right">
                 <i class="fas fa-trash-alt"></i>
               </button>
-              <button type="button" class="m-w-150 btn btn-info"  data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
+              
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
               <div class="input-group input-group-sm">
@@ -68,9 +56,10 @@
 
             <!-- FOLDER -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let folder of folders">
-              <div class="file-box" (onCreate)="checkBox()">
+                <a role="button"  (click)="getFolderContent(folder._id)">
+              <div class="file-box" [attr.id]="folder._id">
                 <div class="heading">
-                  <input type="checkbox" data-icheck-theme="square" data-icheck-color="green"/>
+                  <input type="checkbox"/>
                 </div>
                 <div class="body">
                   <div class="icon">
@@ -78,10 +67,11 @@
                   </div>
                 </div>
                 <div class="footer">
-                  <a role="button" class="name" (click)="getFiles(folder._id)">{{folder.name}}</a>
+                  <div class="name">{{folder.name}}</div>
                   <div class="size">{{folder.createdAt}}</div>
                 </div>
               </div>
+              </a>
             </div>
 
             <!-- END FOLDER -->
@@ -93,18 +83,71 @@
     <!-- END FOLDERS -->
 
 
+
+<!-- Upload -->
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#uploadModal">
+                <!--onclick="$('.js-file-upload').click();"-->
+                <i class="fa fa-upload m-r-5"></i>Upload Files
+              </button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+          <button type="button" class="btn btn-info btn-block"  data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
+        </div>
+        <div class="col-md-4 col-lg-6"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
+            <div class="col-888 font-bold">Path: {{path}}</div>
+          </div>
+      </div>
+        <input type="file" class="js-file-upload hide" multiple>
+      </div>
+    </div>
+  </div>
+  <!-- END UPLOAD -->
+
+
+
+
+
     <!-- FILES -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          FILES
+          SELECTED FOLDER'S CONTENT
         </div>
         <div class="panel-body">
           <div class="row clearfix">
 
+            <!-- SUBFOLDER -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let cFolder of childrenFolders">
+                <a role="button" (click)="getFolderContent(cFolder._id)">
+                <div class="file-box" [attr.id]="cFolder._id">
+                  <div class="heading">
+                    <input type="checkbox"/>
+                  </div>
+                  <div class="body">
+                    <div class="icon">
+                      <i class="fa fa-folder-open"></i>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <div class="name">{{cFolder.name}}</div>
+                    <div class="size">{{cFolder.createdAt}}</div>
+                  </div>
+                </div>
+                </a>
+              </div>
+  
+              <!-- END SUBFOLDER -->
+
             <!-- FILE -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let file of files">
-              <div class="file-box">
+                <a href="javascript:void(0);" role="button"  (click)="toggleSidebar(file.filename)">
+              <div class="file-box" [attr.id]="file.filename">
                 <div class="heading">
                   <input type="checkbox" />
                 </div>
@@ -117,10 +160,11 @@
                   <a href="javascript:void(0);" class="download" data-toggle="tooltip" data-title="Download File">
                                             <i class="fa fa-download"></i>
                                         </a>
-                  <a href="javascript:void(0);" role="button" (click)="toggleSidebar(file.filename)" class="name js-right-sidebar">{{file.path}}</a>       
+                  <div class="name js-right-sidebar">{{file.path}}</div>       
                   <div class="size">{{file.uploadedAt}}</div>
                 </div>
               </div>
+                </a>
             </div>
             <!-- END FILE -->
           </div>
@@ -166,13 +210,7 @@
                     </div>
                   </div>
                   <br>
-                  <div class="row clearfix">
-                    <div class="col-sm-12">
-                      <label>Select Parent Folder</label>
-                      <select2 [options]="options" [data]="exampleData" [width]="'100%'"  [value]="value" > 
-                      </select2>
-                    </div>
-                  </div>
+                
                   
                 
                 </div>
