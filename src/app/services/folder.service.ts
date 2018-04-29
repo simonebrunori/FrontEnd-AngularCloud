@@ -41,7 +41,7 @@ export class FolderService {
   //Function to get all folder's files
   getFolderFiles(folderID){
       this.createAuthenticationHeaders();   //create the header for the request
-      return this.http.get(this.domain + 'folders/files/'+ folderID +'/'+this.getUsername(), this.options).map(res=>res.json());   
+      return this.http.get(this.domain + 'folders/files/'+ folderID /*+'/'+this.getUsername()*/, this.options).map(res=>res.json());   
     }
 
   //Function to get file's informations
@@ -70,6 +70,38 @@ export class FolderService {
     this.createAuthenticationHeaders();   //create the header for the request
     return this.http.get(this.domain + 'folders/childrenFolders/'+ parent , this.options).map(res=>res.json()); 
   }
+
+
+  //Function the path of a folder
+  getFolderPath(folderID){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'folders/getFolderPath/'+ folderID , this.options).map(res=>res.json()); 
+  }
+
+
+  //Function folder's files by name
+  getFolderFileByName(folderName){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'folders/getFoldersFileByName/'+ folderName , this.options).map(res=>res.json()); 
+  }
+
+  //Function folder's children folders by name
+  getFolderChildrenByName(parentFolderName){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'folders/childrenFoldersByName/'+ parentFolderName , this.options).map(res=>res.json()); 
+  }
+
+
+   //Function folder's path by name
+   getFolderPathByName(folderName){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'folders/getFolderPathByName/'+ folderName , this.options).map(res=>res.json()); 
+  }
+
+
+
+
+
 
 
 

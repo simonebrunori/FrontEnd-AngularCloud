@@ -17,7 +17,8 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   fileInfos="";
   fileUsers="";
   childrenFolders="";
-  path;
+  folderPath;
+  canGoBack;
 
   constructor(private folderService:FolderService) {
     
@@ -49,6 +50,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     this.addActiveClass(id);
     //Call getChildrenFolders() to get all the children folders
     this.getChildrenFolders(id);
+    this.getFolderPath(id);
   }
 
   //Function to get folder's files
@@ -75,7 +77,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     //Call the service to get all children folders
     this.folderService.getChildrenFolders(parent).subscribe(data=>{
       this.childrenFolders=data.folders;
-      console.log(data);
+      // console.log(data);
       //Call the function getFiles() to get the files
       this.getFiles(parent);
     })
@@ -86,7 +88,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     //Call function getFolderFiles() of FolderService
     this.folderService.getFolderFiles(parent).subscribe(data=>{ 
     this.files=data.files[0].files;
-    console.log(data);
+    // console.log(data);
     })
 
   }
@@ -98,6 +100,62 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     $(selector).addClass('active');
   }
 
+  //Function to get the folder path
+  getFolderPath(id){
+    this.folderService.getFolderPath(id).subscribe(data=>{ 
+      this.folderPath=data.path.folderPath;
+      this.checkIfCanGoBack();
+    })
+  }
+
+  goBack(){
+    var s=this.folderPath.split('/');
+    this.getFolderChildrenByName(s[s.length-3]);
+    
+  }
+
+
+  //Function to get folder's file by name
+  getFolderFileByName(name){
+      //Call function getFolderFileByName() of FolderService
+      this.folderService.getFolderFileByName(name).subscribe(data=>{ 
+      this.files=data.files[0].files;
+      this.getFolderPathByName(name);
+      })
+
+  }
+
+
+  //Function to get folder's folders by name
+  getFolderChildrenByName(name){
+    //Call function getFolderChildrenByName() of FolderService
+    this.folderService.getFolderChildrenByName(name).subscribe(data=>{ 
+      this.childrenFolders=data.folders;
+      });
+      this.getFolderFileByName(name);
+  }
+
+  //Function to get folder's path by name
+  getFolderPathByName(name){
+     //Call function getFolderPathByName() of FolderService
+     this.folderService.getFolderPathByName(name).subscribe(data=>{ 
+      this.folderPath=data.path.folderPath;
+      this.checkIfCanGoBack();
+      });
+  }
+
+
+  //Function to enable/disable Back button
+  checkIfCanGoBack(){
+    var s=this.folderPath.split('/');
+    //Check if it is possible to go back
+    if(s[s.length-3]==''){
+      this.canGoBack=false;
+    }else{
+      this.canGoBack=true;
+    }
+  }
+
 
 
 
@@ -105,13 +163,10 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     InitService.rightInit();
     InitService.initCommon();
     this.getFolders();    //get folder's on component initialization
-
-
-    
   }
 
   ngOnInit(){
-    this.path="/";
+    
   }
 
 }

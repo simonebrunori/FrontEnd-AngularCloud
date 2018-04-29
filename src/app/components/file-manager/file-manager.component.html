@@ -89,6 +89,9 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-1">
+                <button [disabled]="!folderPath || !canGoBack" type="button" class="btn btn-default btn-block" (click)="goBack()"><i class="fas fa-angle-left"></i> Back</button>
+              </div>
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             <button class="btn btn-success btn-block" data-toggle="modal" data-target="#uploadModal">
                 <!--onclick="$('.js-file-upload').click();"-->
@@ -98,9 +101,9 @@
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
           <button type="button" class="btn btn-info btn-block"  data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
         </div>
-        <div class="col-md-4 col-lg-6"></div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
-            <div class="col-888 font-bold">Path: {{path}}</div>
+        <div class="col-md-2 col-lg-4"></div>
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
+            <div class="col-888 font-bold">Path: {{folderPath}}</div>
           </div>
       </div>
         <input type="file" class="js-file-upload hide" multiple>
@@ -202,8 +205,16 @@
                 </div>
                 <div class="modal-body">
                   <!-- USERS SELECTION -->
+
+                  <div class="row clearfix">
+                      <div class="col-sm-12">
+                          <div class="col-888 font-bold">Path: {{folderPath}}</div>
+                        </div>
+                  </div>
+                  <br>
                 
                   <div class="row clearfix">
+                      
                     <div class="col-sm-12">
                         <label>Folder Name</label>
                         <input type="text" class="form-control" placeholder="Folder Name">
