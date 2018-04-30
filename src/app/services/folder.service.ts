@@ -99,6 +99,12 @@ export class FolderService {
   }
 
 
+   //Function to create new folders
+   postFolder(folder){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.post(this.domain + 'folders/createfolder', folder, this.options).map(res=>res.json()); 
+  }
+
 
 
 

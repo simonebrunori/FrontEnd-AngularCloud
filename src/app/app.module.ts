@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { Select2Module } from 'ng2-select2';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import {ModalModule} from "ngx-modal";
 
 
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
@@ -63,7 +67,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ReactiveFormsModule,
     FlashMessagesModule,
     Select2Module,
-    DropzoneModule
+    DropzoneModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ModalModule
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService,
     {

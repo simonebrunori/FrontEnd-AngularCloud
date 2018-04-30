@@ -1,6 +1,10 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewContainerRef } from '@angular/core';
 import { FolderService } from '../../services/folder.service';
+import {AuthService} from '../../services/auth.service';
 import {InitService} from '../../services/init.service';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -19,10 +23,27 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   childrenFolders="";
   folderPath;
   canGoBack;
+  folderName="";
+  form;
+  username;
+  parentID;
+  
 
-  constructor(private folderService:FolderService) {
-    
+  message;
+
+
+  constructor(private folderService:FolderService, private formBuilder:FormBuilder, private authService:AuthService,private toastr: ToastrService) {
+    this.createFolderForm();
    }
+
+
+   //Function to create Folder form for folder name
+   createFolderForm(){
+    this.form=this.formBuilder.group({
+      fName: [''],   //Folder name
+    });
+   }
+   
 
   //JQuery sidebar event
   toggleSidebar(name){
@@ -46,7 +67,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
 
   //Function to get folder's content (files and folders)
   getFolderContent(id){
-    
+    this.parentID=id; 
     this.addActiveClass(id);
     //Call getChildrenFolders() to get all the children folders
     this.getChildrenFolders(id);
@@ -157,6 +178,50 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   }
 
 
+  //Function to get parent folder
+  getParentFolderName(){
+    var p=this.folderPath.split('/');
+    return p[p.length-2];
+  }
+
+
+
+
+  //Function to create folder 
+  createNewFolder(){
+    //Create folder object
+    const folder= {
+      name: this.form.get('fName').value,   //get value from form
+      createdBy: this.username,   //username
+      parent: this.parentID,    //parent folder
+      path: this.folderPath,    //path  
+      parentName: this.getParentFolderName()    //get parent folder name
+    }
+
+    console.log(folder);
+
+    this.folderService.postFolder(folder).subscribe(data=>{
+
+      // this.form.controls['fName'].setValue(null);
+      $('#folderModal').modal('toggle');
+
+      this.form.reset();
+
+
+      if(!data.success){
+        this.toastr.error('Error!', data.message,{timeOut: 3000, closeButton:true});
+      }else{
+        this.toastr.success('Success!', data.message ,{timeOut: 3000, closeButton:true});
+
+
+        this.getFolderContent(this.parentID);
+      }
+    })
+
+  }
+
+
+
 
 
   ngAfterViewInit() {
@@ -167,6 +232,10 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
 
   ngOnInit(){
     
+      // Get profile username on page load
+      this.authService.getProfile().subscribe(profile => {
+       this.username = profile.user.username; // Used when creating new blog posts and comments
+      });
   }
 
 }

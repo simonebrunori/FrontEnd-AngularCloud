@@ -93,13 +93,13 @@
                 <button [disabled]="!folderPath || !canGoBack" type="button" class="btn btn-default btn-block" (click)="goBack()"><i class="fas fa-angle-left"></i> Back</button>
               </div>
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#uploadModal">
+            <button class="btn btn-success btn-block" [disabled]="!folderPath" data-toggle="modal" data-target="#uploadModal">
                 <!--onclick="$('.js-file-upload').click();"-->
                 <i class="fa fa-upload m-r-5"></i>Upload Files
               </button>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-          <button type="button" class="btn btn-info btn-block"  data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
+          <button type="button" class="btn btn-info btn-block"  [disabled]="!folderPath" data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
         </div>
         <div class="col-md-2 col-lg-4"></div>
         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
@@ -123,6 +123,7 @@
           SELECTED FOLDER'S CONTENT
         </div>
         <div class="panel-body">
+            
           <div class="row clearfix">
 
             <!-- SUBFOLDER -->
@@ -200,12 +201,12 @@
     <div class="modal fade" id="folderModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
+              <form [formGroup]="form" (submit)="createNewFolder()">
               <div class="modal-header">
                   <h4 class="modal-title" id="defaultModalLabel">CREATE FOLDER</h4>
                 </div>
                 <div class="modal-body">
-                  <!-- USERS SELECTION -->
-
+                  
                   <div class="row clearfix">
                       <div class="col-sm-12">
                           <div class="col-888 font-bold">Path: {{folderPath}}</div>
@@ -217,7 +218,7 @@
                       
                     <div class="col-sm-12">
                         <label>Folder Name</label>
-                        <input type="text" class="form-control" placeholder="Folder Name">
+                        <input type="text" class="form-control" placeholder="Folder Name" name="fName" formControlName="fName">
                     </div>
                   </div>
                   <br>
@@ -228,10 +229,10 @@
                 
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">SAVE CHANGES</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                    <button type="submit" class="btn btn-success">SAVE CHANGES</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="form.reset()">CLOSE</button>
                 </div>
-                
+              </form>
                 
           </div>
         </div>
