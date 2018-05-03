@@ -9,11 +9,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import {ModalModule} from "ngx-modal";
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { HttpClientModule} from '@angular/common/http';
 
-
-import { DropzoneModule } from 'ngx-dropzone-wrapper';
-import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 
 import { AppComponent } from './app.component';
@@ -35,12 +33,7 @@ import { ClassesComponent } from './components/classes/classes.component';
 import { FileManagerComponent } from './components/file-manager/file-manager.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
-const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
-  // Change this to your upload POST address:
-   url: 'https://httpbin.org/post',
-   maxFilesize: 50,
-   acceptedFiles: ''
- };
+
 
 
 
@@ -55,7 +48,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DashboardComponent,
     ClassesComponent,
     FileManagerComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FileSelectDirective
 
   ],
   imports: [
@@ -67,17 +61,13 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ReactiveFormsModule,
     FlashMessagesModule,
     Select2Module,
-    DropzoneModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ModalModule
+    ModalModule,
+    HttpClientModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService,
-    {
-      provide: DROPZONE_CONFIG,
-      useValue: DEFAULT_DROPZONE_CONFIG
-    }],
+  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -36,6 +36,8 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     this.createFolderForm();
    }
 
+   
+
 
    //Function to create Folder form for folder name
    createFolderForm(){

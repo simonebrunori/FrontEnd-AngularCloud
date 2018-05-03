@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Select2OptionData } from 'ng2-select2';
+import { FileUploader } from 'ng2-file-upload';
+import {environment} from '../../../environments/environment';
+import {FolderService} from '../../services/folder.service';
+import {saveAs} from 'file-saver';
 declare var jquery:any;
 declare var $ :any;
 
@@ -11,27 +14,49 @@ declare var $ :any;
 })
 export class FileUploadComponent implements OnInit {
 
-  public exampleData: Array<Select2OptionData>;
-  public options: Select2Options;
-  public value: string[];
+
+
+  fileName; //delete
+
+
+
+  domain=environment.domain;   //test domain
 
   test:any;
   form;
 
-  constructor() {
+  constructor(private folderService:FolderService) {
    }
 
 
+   public uploader:FileUploader = new FileUploader({url:this.domain+'upload'});   //Define uploader component
 
+
+
+   //Upload multiple files
+   uploadFiles(){
+    this.uploader.uploadAll();
+    console.log(this.uploader.queue[0].file.name);
+    this.fileName=this.uploader.queue[0].file.name;
+   }
+
+
+   //Upload single item
+   uploadItem(item){
+    item.upload();
+   }
+
+
+   //Function to reset all the form on closing
+   reset(){
+    this.uploader.clearQueue();
+    this.folderService.downloadFile(this.fileName)
+    .subscribe(
+        data => saveAs(data, this.fileName),
+        error => console.error(error)
+    );
+   }
     
-
-
-  //delete
-  // prova(data: {value: string[]}){
-  //   this.test=data.value;
-  //   console.log(this.test);
-  // }
-
 
   
 

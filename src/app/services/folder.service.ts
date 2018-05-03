@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions} from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { AuthService } from './auth.service';
 import 'rxjs/add/operator/map';
 import {environment} from '../../environments/environment';
+import 'rxjs/Rx';
+import {Observable} from 'rxjs';
 
 
 
@@ -14,7 +17,8 @@ export class FolderService {
 
   constructor(
     private authService: AuthService,
-    private http: Http
+    private http: Http,
+    private _http:HttpClient
   ) { }
 
   //Function to create headers, add token, to be used in http requests
@@ -104,6 +108,19 @@ export class FolderService {
     this.createAuthenticationHeaders();   //create the header for the request
     return this.http.post(this.domain + 'folders/createfolder', folder, this.options).map(res=>res.json()); 
   }
+
+
+
+  //Function for file download
+  downloadFile(file:String){
+    var body = {filename:file};
+
+    return this._http.post(this.domain+'download',body,{
+        responseType : 'blob',
+        headers:new HttpHeaders().append('Content-Type','application/json')
+    });
+}
+  
 
 
 
