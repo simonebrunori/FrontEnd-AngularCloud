@@ -30,6 +30,8 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   
 
   message;
+  previousID;
+  previousTID;
 
 
   constructor(private folderService:FolderService, private formBuilder:FormBuilder, private authService:AuthService,private toastr: ToastrService) {
@@ -48,9 +50,12 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
    
 
   //JQuery sidebar event
-  toggleSidebar(name){
-      $('#'+name).addClass('active');
+  toggleSidebar(name,id){
+    console.log(id);
+      $(this.previousID).removeClass('active');
+      $('#'+id).addClass('active');
       $('.right-sidebar').addClass('open');
+      this.previousID='#'+id;
       this.getFileInfo(name);
       this.getUsersList(name);
 
@@ -68,9 +73,9 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
 
 
   //Function to get folder's content (files and folders)
-  getFolderContent(id){
+  getFolderContent(id,Tf){
     this.parentID=id; 
-    this.addActiveClass(id);
+    this.addActiveClass(id,Tf);
     //Call getChildrenFolders() to get all the children folders
     this.getChildrenFolders(id);
     this.getFolderPath(id);
@@ -117,10 +122,15 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   }
 
 
-  addActiveClass(id){
-    var selector="#"+id;
-    $('.file-box').removeClass('active');
-    $(selector).addClass('active');
+  addActiveClass(id, Tf){
+
+    if(Tf==='T'){
+      var selector="#"+id+Tf;
+      $(this.previousTID).removeClass('active');
+      $(selector).addClass('active');
+      this.previousTID=selector;
+    }
+      
   }
 
   //Function to get the folder path
@@ -216,11 +226,20 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
         this.toastr.success('Success!', data.message ,{timeOut: 3000, closeButton:true});
 
 
-        this.getFolderContent(this.parentID);
+        this.getFolderContent(this.parentID,'');
       }
     })
 
   }
+
+
+//Function to get files from child component (file-upload)
+  public handleEvent(files){
+    this.files = files;
+    console.log(files);
+  }
+  
+
 
 
 

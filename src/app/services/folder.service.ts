@@ -120,6 +120,12 @@ export class FolderService {
         headers:new HttpHeaders().append('Content-Type','application/json')
     });
 }
+
+//Function to upload files
+postFiles(file){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.post(this.domain + 'folders/uploadfiles', file, this.options).map(res=>res.json()); 
+}
   
 
 

@@ -2,6 +2,9 @@ import {Component,OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 
+declare var jquery:any;
+declare var $ :any;
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -22,6 +25,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    $('body').addClass('navbar-fixed ls-fixed');
     // Once component loads, get username to display on navbar
     this.authService.getProfile().subscribe(profile => {
       this.username = profile.user.username; // Set username

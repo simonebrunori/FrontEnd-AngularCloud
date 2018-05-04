@@ -56,8 +56,8 @@
 
             <!-- FOLDER -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let folder of folders">
-                <a role="button"  (click)="getFolderContent(folder._id)">
-              <div class="file-box" [attr.id]="folder._id">
+                <a role="button"  (click)="getFolderContent(folder._id,'T')">
+              <div class="file-box" [attr.id]="folder._id+'T'">
                 <div class="heading">
                   <input type="checkbox"/>
                 </div>
@@ -128,7 +128,7 @@
 
             <!-- SUBFOLDER -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let cFolder of childrenFolders">
-                <a role="button" (click)="getFolderContent(cFolder._id)">
+                <a role="button" (click)="getFolderContent(cFolder._id,'')">
                 <div class="file-box" [attr.id]="cFolder._id">
                   <div class="heading">
                     <input type="checkbox"/>
@@ -149,11 +149,14 @@
               <!-- END SUBFOLDER -->
 
             <!-- FILE -->
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let file of files">
-                <a href="javascript:void(0);" role="button"  (click)="toggleSidebar(file.filename)">
-              <div class="file-box" [attr.id]="file.filename">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let file of files; let i=index;">
+                
+              <div class="file-box" [attr.id]="i">
                 <div class="heading">
-                  <input type="checkbox" />
+                 <input type="checkbox" />
+                  <a href="javascript:void(0);" style="margin-left:90%; color:#666" (click)="toggleSidebar(file.filename, i)">
+                      <i class="fas fa-info-circle fa-lg"></i>
+                  </a>
                 </div>
                 <div class="body">
                   <div class="icon">
@@ -168,7 +171,6 @@
                   <div class="size">{{file.uploadedAt}}</div>
                 </div>
               </div>
-                </a>
             </div>
             <!-- END FILE -->
           </div>
@@ -183,14 +185,9 @@
 
     <!-- MODAL -->
 
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <app-file-upload></app-file-upload>
+
+          <app-file-upload [fManagerData]="folderPath" (files)='handleEvent($event)'></app-file-upload>
           <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
 
     <!-- END MODAL -->
 
