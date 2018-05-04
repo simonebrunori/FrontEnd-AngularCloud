@@ -3,6 +3,7 @@ import { FolderService } from '../../services/folder.service';
 import {AuthService} from '../../services/auth.service';
 import {InitService} from '../../services/init.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {saveAs} from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
 
 declare var jquery:any;
@@ -233,17 +234,34 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   }
 
 
+//Function for file download
+downloadFile(filename){
+    this.folderService.downloadFile(filename)
+    .subscribe(
+        data => saveAs(data, filename),
+        error => console.error(error)
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Function to get files from child component (file-upload)
   public handleEvent(files){
     this.files = files;
     console.log(files);
   }
-  
-
-
-
-
-
 
   ngAfterViewInit() {
     InitService.rightInit();

@@ -3,7 +3,6 @@ import { FileUploader } from 'ng2-file-upload';
 import {environment} from '../../../environments/environment';
 import {FolderService} from '../../services/folder.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import {saveAs} from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
@@ -67,11 +66,7 @@ export class FileUploadComponent implements OnInit {
    reset(){
     this.uploader.clearQueue();
     this.form.reset();
-    // this.folderService.downloadFile(this.fileName)
-    // .subscribe(
-    //     data => saveAs(data, this.fileName),
-    //     error => console.error(error)
-    // );
+    
    }
 
 
