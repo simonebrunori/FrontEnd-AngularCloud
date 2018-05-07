@@ -28,6 +28,8 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   form;
   username;
   parentID;
+
+  selectedElements=[];
   
 
   message;
@@ -244,12 +246,27 @@ downloadFile(filename){
 }
 
 
+//function to add elements from the array of selected items
+addElementToDel(id){
+
+  this.selectedElements.push(id);
+  console.log(this.selectedElements);
+
+}
 
 
+//function to remove elements from the array of selected items
+removeElementToDel(id){
+  const index = this.selectedElements.indexOf(id);
+  this.selectedElements.splice(index, 1);
+  console.log(this.selectedElements);
+}
 
-
-
-
+//Function to delete elements
+delete(){
+  $('.icheckbox_square-green').removeClass('checked');
+  this.selectedElements=[];
+}
 
 
 
@@ -270,6 +287,7 @@ downloadFile(filename){
   }
 
   ngOnInit(){
+
     
       // Get profile username on page load
       this.authService.getProfile().subscribe(profile => {

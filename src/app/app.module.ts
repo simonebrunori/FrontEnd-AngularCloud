@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {ModalModule} from "ngx-modal";
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { HttpClientModule} from '@angular/common/http';
+import { ICheckModule } from 'ng4-icheck';
 
 
 
@@ -65,7 +66,11 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ModalModule,
-    HttpClientModule
+    HttpClientModule,
+    ICheckModule.forRoot({
+      checkboxClass: 'icheckbox_square-green',
+      radioClass: 'iradio_square-green'
+    })
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService],
   bootstrap: [AppComponent]

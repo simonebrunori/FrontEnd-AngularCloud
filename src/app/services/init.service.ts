@@ -19,10 +19,10 @@ export class InitService {
 }
 
 public static initCommon(){
-  $('input[type="checkbox"]').iCheck({
-      checkboxClass: 'icheckbox_square-aero',
-      radioClass: 'iradio_square-aero'
-  });
+  // $('input[type="checkbox"]').iCheck({
+  //     checkboxClass: 'icheckbox_square-aero',
+  //     radioClass: 'iradio_square-aero'
+  // });
 
   $.AdminBSB.dropdownMenu.init();
 }

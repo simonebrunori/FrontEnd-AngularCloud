@@ -644,10 +644,10 @@
     /* Page Load - Function ====================================================================================================
     *  You can manage the function when page loaded */
     $(function () {
-        $('input[type="checkbox"]').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue'
-        });
+        // $('input[type="checkbox"]').iCheck({
+        //     checkboxClass: 'icheckbox_square-blue',
+        //     radioClass: 'iradio_square-blue'
+        // });
 
         $.AdminBSB.leftSideBar.init();
         $.AdminBSB.rightSideBar.init();

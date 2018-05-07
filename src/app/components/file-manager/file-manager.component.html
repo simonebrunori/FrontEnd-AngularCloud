@@ -24,7 +24,7 @@
         <div class="panel-body">
           <div class="row clearfix">
             <div class="col-sm-12 col-xs-12 col-md-9">
-              <button class="btn btn-danger" data-toggle="tooltip" data-title="Delete" data-placement="right">
+              <button class="btn btn-danger" data-toggle="tooltip" data-title="Delete" data-placement="right" (click)="delete()">
                 <i class="fas fa-trash-alt"></i>
               </button>
               
@@ -59,7 +59,8 @@
                 <a role="button"  (click)="getFolderContent(folder._id,'T')">
               <div class="file-box" [attr.id]="folder._id+'T'">
                 <div class="heading">
-                  <input type="checkbox"/>
+                  <!-- <input type="checkbox"/> -->
+                  <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(folder._id)" (ifUnchecked)="removeElementToDel(folder._id)">
                 </div>
                 <div class="body">
                   <div class="icon">
@@ -131,7 +132,8 @@
                 <a role="button" (click)="getFolderContent(cFolder._id,'')">
                 <div class="file-box" [attr.id]="cFolder._id">
                   <div class="heading">
-                    <input type="checkbox"/>
+                    <!-- <input type="checkbox"/> -->
+                    <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(cFolder._id)" (ifUnchecked)="removeElementToDel(cFolder._id)">
                   </div>
                   <div class="body">
                     <div class="icon">
@@ -153,10 +155,9 @@
                 
               <div class="file-box" [attr.id]="i">
                 <div class="heading">
-                 <input type="checkbox" />
-                  <a href="javascript:void(0);" style="margin-left:90%; color:#666" (click)="toggleSidebar(file.filename, i)">
-                      <i class="fas fa-info-circle fa-lg"></i>
-                  </a>
+                 <!-- <input type="checkbox" /> -->
+                 <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(file._id)" (ifUnchecked)="removeElementToDel(file._id)"/>
+                  
                 </div>
                 <div class="body">
                   <div class="icon">
@@ -164,7 +165,10 @@
                   </div>
                 </div>
                 <div class="footer">
-                  <a href="javascript:void(0);" class="download" data-toggle="tooltip" data-title="Download File" (click)="downloadFile(file.filename)">
+                    <a href="javascript:void(0);" class="download" style="padding-left:10px; color:#666" (click)="toggleSidebar(file.filename, i)" data-toggle="tooltip" data-placement="bottom" title="File Infos">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                  <a href="javascript:void(0);" class="download" data-toggle="tooltip" data-title="Download File" (click)="downloadFile(file.filename)" data-toggle="tooltip" data-placement="bottom" title="File Download">
                                             <i class="fa fa-download"></i>
                                         </a>
                   <div class="name js-right-sidebar">{{file.path}}</div>       
@@ -195,7 +199,7 @@
 
     <!-- MODAL -->
 
-    <div class="modal fade" id="folderModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="folderModal" tabindex="-1" role="dialog" style="margin-top:50px;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <form [formGroup]="form" (submit)="createNewFolder()">

@@ -16,7 +16,7 @@ declare var $ :any;
 export class FileUploadComponent implements OnInit {
 
 
-
+    //"assets/plugins/iCheck/icheck.js",  "assets/plugins/iCheck/skins/square/_all.css", 
   fileName=[]; 
 
 
