@@ -1,0 +1,47 @@
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-10">
+    <div class="panel panel-default email-panel">
+        <div class="email-panel-heading">
+            <div class="row clearfix">
+                <div class="col-sm-5">
+                    <h2>COMPOSE EMAIL</h2>
+                </div>
+                <div class="col-sm-7 align-right">
+                    <a routerLink="/dashboard/mailbox/inbox" type="button" class="btn btn-danger btn-sm"><i class="fa fa-times m-r-5"></i>Cancel</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form class="m-t-15">
+                <div class="form-group p-l-15 p-r-15">
+                    <label for="select2_1">Classes:</label>
+                    <select2 id="select2_1" [data]="exampleData" [options]="options" [width]="'100%'"></select2>
+                </div>
+                <div class="form-group p-l-15 p-r-15">
+                    <label for="select2_2">Sendee:</label>
+                    <select2 id="select2_2" [data]="exampleData" [options]="options" [width]="'100%'"></select2>
+                </div>
+                <div class="form-group p-l-15 p-r-15">
+                    <input type="text" placeholder="Subject:" class="form-control" />
+                </div>
+                <div class="form-group p-l-15 p-r-15">
+                    <div id="summernote">
+                        <h2>Hi John,</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper
+                            sapien non nisl facilisis bibendum in quis tellus. Duis in urna bibendum
+                            turpis pretium fringilla. Aenean neque velit, porta eget mattis ac, imperdiet
+                            quis nisi. Donec non dui et tortor vulputate luctus. Praesent consequat rhoncus
+                            velit, ut molestie arcu venenatis sodales.</p>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-sm"><i class="fa fa-save m-r-5"></i>Save As Draft</button>
+                    </div>
+                    <div class="col-sm-6 align-right">
+                        <button class="btn btn-sm btn-success">SEND<i class="fa fa-arrow-right m-l-5"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

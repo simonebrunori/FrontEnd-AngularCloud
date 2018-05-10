@@ -119,14 +119,22 @@ export class FolderService {
         responseType : 'blob',
         headers:new HttpHeaders().append('Content-Type','application/json')
     });
-}
+  }
 
-//Function to upload files
-postFiles(file){
-  this.createAuthenticationHeaders();   //create the header for the request
-  return this.http.post(this.domain + 'folders/uploadfiles', file, this.options).map(res=>res.json()); 
-}
-  
+  //Function to upload files
+  postFiles(file){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.post(this.domain + 'folders/uploadfiles', file, this.options).map(res=>res.json()); 
+  }
+
+
+  // Function to delete an element file/folder
+  deleteElement(id) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.delete(this.domain + 'folders/deleteElement/' + id, this.options).map(res => res.json());
+  }
+
+
 
 
 

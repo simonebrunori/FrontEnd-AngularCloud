@@ -15,6 +15,7 @@ import { ICheckModule } from 'ng4-icheck';
 
 
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -33,6 +34,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { FileManagerComponent } from './components/file-manager/file-manager.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { MailboxComponent } from './components/mailbox/mailbox.component';
+import { MailComponent } from './components/mailbox/mail/mail.component';
+import { MailSidebarComponent } from './components/mailbox/mail-sidebar/mail-sidebar.component';
+import { InboxComponent } from './components/mailbox/inbox/inbox.component';
+import { ComposeComponent } from './components/mailbox/compose/compose.component';
 
 
 
@@ -50,7 +56,12 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     ClassesComponent,
     FileManagerComponent,
     FileUploadComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    MailboxComponent,
+    MailComponent,
+    MailSidebarComponent,
+    InboxComponent,
+    ComposeComponent
 
   ],
   imports: [
@@ -67,10 +78,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     ToastrModule.forRoot(),
     ModalModule,
     HttpClientModule,
-    ICheckModule.forRoot({
-      checkboxClass: 'icheckbox_square-green',
-      radioClass: 'iradio_square-green'
-    })
+    ICheckModule.forRoot()
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService],
   bootstrap: [AppComponent]

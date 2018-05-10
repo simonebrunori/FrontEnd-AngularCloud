@@ -1,0 +1,27 @@
+<div class="page-heading">
+    <h1>MAILBOX</h1>
+    <ol class="breadcrumb">
+      <li>
+        <a routerLink="/dashboard/home">
+          <i class="fa fa-home"></i> Home</a>
+      </li>
+      <li class="active">
+        <a routerLink="/dashboard/filemanager">
+          <i class="fas fa-envelope"></i> MailBox</a>
+      </li>
+    </ol>
+  </div>
+
+  <div class="page-body">
+      <div class="row clearfix">
+          <app-mail-sidebar></app-mail-sidebar>
+        <div class="email-copose-inbox">
+            <router-outlet></router-outlet>
+        </div>
+          
+          
+      </div> 
+      
+  </div>
+
+  

@@ -1,5 +1,3 @@
-
-
 <div class="page-heading">
   <h1>MY FILES</h1>
   <ol class="breadcrumb">
@@ -16,7 +14,7 @@
 
 <div class="page-body">
   <div class="file-manager row clearfix">
-    
+
 
     <!-- SEARCHBAR -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -24,10 +22,11 @@
         <div class="panel-body">
           <div class="row clearfix">
             <div class="col-sm-12 col-xs-12 col-md-9">
-              <button class="btn btn-danger" data-toggle="tooltip" data-title="Delete" data-placement="right" (click)="delete()">
-                <i class="fas fa-trash-alt"></i>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#smallModal">
+                  <i class="fas fa-trash-alt"></i>
               </button>
-              
+
+
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
               <div class="input-group input-group-sm">
@@ -56,23 +55,23 @@
 
             <!-- FOLDER -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let folder of folders">
-                <a role="button"  (click)="getFolderContent(folder._id,'T')">
-              <div class="file-box" [attr.id]="folder._id+'T'">
-                <div class="heading">
-                  <!-- <input type="checkbox"/> -->
-                  <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(folder._id)" (ifUnchecked)="removeElementToDel(folder._id)">
-                </div>
-                <div class="body">
-                  <div class="icon">
-                    <i class="fa fa-folder-open"></i>
+              <!-- <a role="button" (click)="getFolderContent(folder._id,'T')"> -->
+                <div class="file-box" [attr.id]="folder._id+'T'">
+                  <div class="heading">
+                    <!-- <input type="checkbox"/> -->
+                    <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(folder._id)" (ifUnchecked)="removeElementToDel(folder._id)">
+                  </div>
+                  <div class="body">
+                    <div class="icon">
+                      <i class="fa fa-folder-open"></i>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <a class="name" role="button" (click)="getFolderContent(folder._id,'T')">{{folder.name}}</a>
+                    <div class="size">{{folder.createdAt}}</div>
                   </div>
                 </div>
-                <div class="footer">
-                  <div class="name">{{folder.name}}</div>
-                  <div class="size">{{folder.createdAt}}</div>
-                </div>
-              </div>
-              </a>
+              <!-- </a> -->
             </div>
 
             <!-- END FOLDER -->
@@ -85,33 +84,33 @@
 
 
 
-<!-- Upload -->
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="row clearfix">
+    <!-- Upload -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-2 col-lg-1">
-                <button [disabled]="!folderPath || !canGoBack" type="button" class="btn btn-default btn-block" (click)="goBack()"><i class="fas fa-angle-left"></i> Back</button>
-              </div>
-        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-            <button class="btn btn-success btn-block" [disabled]="!folderPath" data-toggle="modal" data-target="#uploadModal">
+              <button [disabled]="!folderPath || !canGoBack" type="button" class="btn btn-default btn-block" (click)="goBack()"><i class="fas fa-angle-left"></i> Back</button>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <button class="btn btn-success btn-block" [disabled]="!folderPath" data-toggle="modal" data-target="#uploadModal">
                 <!--onclick="$('.js-file-upload').click();"-->
                 <i class="fa fa-upload m-r-5"></i>Upload Files
               </button>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-          <button type="button" class="btn btn-info btn-block"  [disabled]="!folderPath" data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
-        </div>
-        <div class="col-md-2 col-lg-4"></div>
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
-            <div class="col-888 font-bold">Path: {{folderPath}}</div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <button type="button" class="btn btn-info btn-block" [disabled]="!folderPath" data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
+            </div>
+            <div class="col-md-2 col-lg-4"></div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
+              <div class="col-888 font-bold">Path: {{folderPath}}</div>
+            </div>
           </div>
-      </div>
-        <input type="file" class="js-file-upload hide" multiple>
+          <input type="file" class="js-file-upload hide" multiple>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- END UPLOAD -->
+    <!-- END UPLOAD -->
 
 
 
@@ -124,12 +123,13 @@
           SELECTED FOLDER'S CONTENT
         </div>
         <div class="panel-body">
-            
-          <div class="row clearfix">
 
+
+
+          <div class="row clearfix">
             <!-- SUBFOLDER -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let cFolder of childrenFolders">
-                <a role="button" (click)="getFolderContent(cFolder._id,'')">
+              <!-- <a role="button" (click)="getFolderContent(cFolder._id,'')"> -->
                 <div class="file-box" [attr.id]="cFolder._id">
                   <div class="heading">
                     <!-- <input type="checkbox"/> -->
@@ -141,23 +141,24 @@
                     </div>
                   </div>
                   <div class="footer">
-                    <div class="name">{{cFolder.name}}</div>
+                    <a role="button" class="name" (click)="getFolderContent(cFolder._id,'')">{{cFolder.name}}</a>
                     <div class="size">{{cFolder.createdAt}}</div>
                   </div>
                 </div>
-                </a>
-              </div>
-  
-              <!-- END SUBFOLDER -->
+              <!-- </a> -->
+            </div>
+
+            <!-- END SUBFOLDER -->
 
             <!-- FILE -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let file of files; let i=index;">
-                
+
               <div class="file-box" [attr.id]="i">
                 <div class="heading">
-                 <!-- <input type="checkbox" /> -->
-                 <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(file._id)" (ifUnchecked)="removeElementToDel(file._id)"/>
-                  
+                  <!-- <input type="checkbox" /> -->
+                  <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(file._id)" (ifUnchecked)="removeElementToDel(file._id)"
+                  />
+
                 </div>
                 <div class="body">
                   <div class="icon">
@@ -165,13 +166,15 @@
                   </div>
                 </div>
                 <div class="footer">
-                    <a href="javascript:void(0);" class="download" style="padding-left:10px; color:#666" (click)="toggleSidebar(file.filename, i)" data-toggle="tooltip" data-placement="bottom" title="File Infos">
+                  <a href="javascript:void(0);" class="download" style="padding-left:10px; color:#666" (click)="toggleSidebar(file.filename, i)"
+                    data-toggle="tooltip" data-placement="bottom" title="File Infos">
                         <i class="fas fa-info-circle"></i>
                     </a>
-                  <a href="javascript:void(0);" class="download" data-toggle="tooltip" data-title="Download File" (click)="downloadFile(file.filename)" data-toggle="tooltip" data-placement="bottom" title="File Download">
+                  <a href="javascript:void(0);" class="download" data-toggle="tooltip" data-title="Download File" (click)="downloadFile(file.filename)"
+                    data-toggle="tooltip" data-placement="bottom" title="File Download">
                                             <i class="fa fa-download"></i>
                                         </a>
-                  <div class="name js-right-sidebar">{{file.path}}</div>       
+                  <div class="name js-right-sidebar">{{file.path}}</div>
                   <div class="size">{{file.uploadedAt}}</div>
                 </div>
               </div>
@@ -190,8 +193,8 @@
     <!-- MODAL -->
 
 
-          <app-file-upload [fManagerData]="folderPath" (files)='handleEvent($event)'></app-file-upload>
-          <router-outlet></router-outlet>
+    <app-file-upload [fManagerData]="folderPath" (files)='handleEvent($event)'></app-file-upload>
+    <router-outlet></router-outlet>
 
     <!-- END MODAL -->
 
@@ -200,47 +203,68 @@
     <!-- MODAL -->
 
     <div class="modal fade" id="folderModal" tabindex="-1" role="dialog" style="margin-top:50px;">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <form [formGroup]="form" (submit)="createNewFolder()">
-              <div class="modal-header">
-                  <h4 class="modal-title" id="defaultModalLabel">CREATE FOLDER</h4>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form [formGroup]="form" (submit)="createNewFolder()">
+            <div class="modal-header">
+              <h4 class="modal-title" id="defaultModalLabel">CREATE FOLDER</h4>
+            </div>
+            <div class="modal-body">
+
+              <div class="row clearfix">
+                <div class="col-sm-12">
+                  <div class="col-888 font-bold">Path: {{folderPath}}</div>
                 </div>
-                <div class="modal-body">
-                  
-                  <div class="row clearfix">
-                      <div class="col-sm-12">
-                          <div class="col-888 font-bold">Path: {{folderPath}}</div>
-                        </div>
-                  </div>
-                  <br>
-                
-                  <div class="row clearfix">
-                      
-                    <div class="col-sm-12">
-                        <label>Folder Name</label>
-                        <input type="text" class="form-control" placeholder="Folder Name" name="fName" formControlName="fName">
-                    </div>
-                  </div>
-                  <br>
-                
-                  
-                
+              </div>
+              <br>
+
+              <div class="row clearfix">
+
+                <div class="col-sm-12">
+                  <label>Folder Name</label>
+                  <input type="text" class="form-control" placeholder="Folder Name" name="fName" formControlName="fName">
                 </div>
-                
-                
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">SAVE CHANGES</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="form.reset()">CLOSE</button>
-                </div>
-              </form>
-                
-          </div>
+              </div>
+              <br>
+
+
+
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">SAVE CHANGES</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="form.reset()">CLOSE</button>
+            </div>
+          </form>
+
         </div>
       </div>
-  
-      <!-- END MODAL -->
+    </div>
 
+    <!-- END MODAL -->
+
+
+
+
+    <!-- MODAL -->
+    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" style="margin-top:50px;">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="smallModalLabel">NOTICE</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the selected elements?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="delete()">DELETE</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="deselectElements()">DISCARD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->
 
 
   </div>
@@ -248,47 +272,49 @@
 
 <!-- RIGHT SIDEBAR -->
 <aside class="right-sidebar">
-    <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#tab_overview" data-toggle="tab">FILE INFOS</a></li>
-        <li role="presentation"><a href="#tab_settings" data-toggle="tab">USERS</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="right-sidebar-close">
-            <i class="fa fa-times"></i>
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#tab_overview" data-toggle="tab">FILE INFOS</a></li>
+    <li role="presentation"><a href="#tab_settings" data-toggle="tab">USERS</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="right-sidebar-close">
+      <i class="fa fa-times"></i>
+    </div>
+
+    <!-- FILE INFO -->
+    <div role="tabpanel" class="tab-pane fade in active" id="tab_overview">
+      <div class="tab-container">
+        <div class="container">
+          <br>
+          <br>
+
+          <p><strong>Filename : </strong></p>
+          <p>{{fileInfos.path}}</p>
+          <p><strong>Uploaded By : </strong> </p>
+          <p>{{fileInfos.uploadedBy}}</p>
+          <p><strong>Uploaded At : </strong> </p>
+          <p>{{fileInfos.uploadedAt}}</p>
+          <p><strong>Descriprion : </strong></p>
+          <p>{{fileInfos.description}}</p>
+
         </div>
-
-        <!-- FILE INFO -->
-        <div role="tabpanel" class="tab-pane fade in active" id="tab_overview">
-            <div class="tab-container">
-              <div class="container">
-              <br>
-              <br>
-      
-              <p><strong>Filename : </strong></p><p>{{fileInfos.path}}</p> 
-              <p><strong>Uploaded By : </strong> </p><p>{{fileInfos.uploadedBy}}</p> 
-              <p><strong>Uploaded At : </strong> </p><p>{{fileInfos.uploadedAt}}</p> 
-              <p><strong>Descriprion : </strong></p> <p>{{fileInfos.description}}</p> 
-       
-            </div>
-          </div>
-        </div>
-
-        <!-- END FILE INFO -->
-
-        <!-- USERS -->
-        <div role="tabpanel" class="tab-pane fade" id="tab_settings">
-            <div class="tab-container">
-
-                <ul class="list-group">        
-                  <li class="list-group-item" *ngFor="let user of fileUsers">{{user}}</li>
-              </ul>
-                
-            </div>
-        </div>
-        <!-- END USERS -->
       </div>
-    
+    </div>
+
+    <!-- END FILE INFO -->
+
+    <!-- USERS -->
+    <div role="tabpanel" class="tab-pane fade" id="tab_settings">
+      <div class="tab-container">
+
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let user of fileUsers">{{user}}</li>
+        </ul>
+
+      </div>
+    </div>
+    <!-- END USERS -->
+  </div>
+
 </aside>
 <!-- END RIGHT SIDEBAR -->
-
-  

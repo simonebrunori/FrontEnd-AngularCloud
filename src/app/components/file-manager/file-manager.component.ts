@@ -16,6 +16,9 @@ declare var $ :any;
 })
 export class FileManagerComponent implements AfterViewInit, OnInit {
 
+
+
+
   folders;
   user;
   files;
@@ -30,7 +33,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   parentID;
 
   selectedElements=[];
-  
+  check;
 
   message;
   previousID;
@@ -77,10 +80,12 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
 
   //Function to get folder's content (files and folders)
   getFolderContent(id,Tf){
+    
     this.parentID=id; 
     this.addActiveClass(id,Tf);
     //Call getChildrenFolders() to get all the children folders
     this.getChildrenFolders(id);
+    setTimeout
     this.getFolderPath(id);
   }
 
@@ -262,11 +267,33 @@ removeElementToDel(id){
   console.log(this.selectedElements);
 }
 
-//Function to delete elements
-delete(){
+//Function to remove checked from elements
+deselectElements(){
   $('.icheckbox_square-green').removeClass('checked');
   this.selectedElements=[];
 }
+
+//Function to delete elements
+delete(){
+  this.selectedElements.forEach(element => {
+    this.folderService.deleteElement(element).subscribe(data=>{
+      if(!data.success){    //if return error
+        this.toastr.error('Error!', data.message,{timeOut: 3000, closeButton:true});
+      }else{    //if return success
+        this.toastr.success('Success!', data.message ,{timeOut: 3000, closeButton:true});      
+      }
+      this.getFolderContent(this.parentID,'');  //reload elements on the screen
+    })   
+    this.deselectElements();  //deselect checked elements
+    $('#smallModal').modal('toggle');
+  });
+
+  
+}
+
+
+
+
 
 
 
@@ -291,7 +318,7 @@ delete(){
     
       // Get profile username on page load
       this.authService.getProfile().subscribe(profile => {
-       this.username = profile.user.username; // Used when creating new blog posts and comments
+       this.username = profile.user.username; // Used when creating new elements
       });
   }
 
