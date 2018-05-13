@@ -321,5 +321,8 @@ delete(){
        this.username = profile.user.username; // Used when creating new elements
       });
   }
+  
+
+  
 
 }
