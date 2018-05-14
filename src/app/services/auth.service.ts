@@ -60,6 +60,12 @@ export class AuthService {
     return this.http.get(this.domain+'users/profile', this.options).map(res=>res.json());
   }
 
+  //Function to get all users data
+  getAllUsers(username){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/allUsers/'+username, this.options).map(res=>res.json());
+  }
+
 
   //Function to check if user is logged in
   loggedIn(){

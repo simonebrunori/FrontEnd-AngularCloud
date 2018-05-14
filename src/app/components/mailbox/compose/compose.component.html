@@ -14,31 +14,23 @@
             <form class="m-t-15">
                 <div class="form-group p-l-15 p-r-15">
                     <label for="select2_1">Classes:</label>
-                    <select2 id="select2_1" [data]="exampleData" [options]="options" [width]="'100%'"></select2>
+                    <select2 id="select2_1" [data]="selectArrayClasses" [options]="options" [width]="'100%'"  (valueChanged)="changedClasses($event)"></select2>
                 </div>
                 <div class="form-group p-l-15 p-r-15">
                     <label for="select2_2">Sendee:</label>
-                    <select2 id="select2_2" [data]="exampleData" [options]="options" [width]="'100%'"></select2>
+                    <select2 id="select2_2" [data]="selectArrayStudents" [options]="options" [width]="'100%'" (valueChanged)="changedUsers($event)"></select2>
                 </div>
                 <div class="form-group p-l-15 p-r-15">
-                    <input type="text" placeholder="Subject:" class="form-control" />
+                    <input type="text" placeholder="Subject:" class="form-control" [(ngModel)]="subject" name="subject"/>
                 </div>
-                <div class="form-group p-l-15 p-r-15">
+                <div class="form-group p-l-15 p-r-15" >
                     <div id="summernote">
-                        <h2>Hi John,</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper
-                            sapien non nisl facilisis bibendum in quis tellus. Duis in urna bibendum
-                            turpis pretium fringilla. Aenean neque velit, porta eget mattis ac, imperdiet
-                            quis nisi. Donec non dui et tortor vulputate luctus. Praesent consequat rhoncus
-                            velit, ut molestie arcu venenatis sodales.</p>
+                        
                     </div>
                 </div>
                 <div class="form-group clearfix">
-                    <div class="col-sm-6">
-                        <button class="btn btn-default btn-sm"><i class="fa fa-save m-r-5"></i>Save As Draft</button>
-                    </div>
-                    <div class="col-sm-6 align-right">
-                        <button class="btn btn-sm btn-success">SEND<i class="fa fa-arrow-right m-l-5"></i></button>
+                    <div class="col-sm-12 align-right">
+                        <button class="btn btn-sm btn-success" (click)="prova()">SEND<i class="fa fa-arrow-right m-l-5"></i></button>
                     </div>
                 </div>
             </form>
