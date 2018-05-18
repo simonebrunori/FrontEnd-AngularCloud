@@ -25,6 +25,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { NotAuthGuard } from './guard/notAuth.guard';
 import { ClassService } from './services/class.service';
 import { FolderService} from './services/folder.service';
+import { MailService} from './services/mail.service';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -80,7 +81,7 @@ import { ComposeComponent } from './components/mailbox/compose/compose.component
     HttpClientModule,
     ICheckModule.forRoot()
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService, MailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

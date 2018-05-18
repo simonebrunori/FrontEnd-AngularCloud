@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
 import {ClassService} from '../../../services/class.service';
 import { AuthService} from '../../../services/auth.service';
+import { MailService} from '../../../services/mail.service';
 declare var $: any;
 
 @Component({
@@ -20,14 +21,27 @@ export class ComposeComponent implements OnInit {
   subject="";
   users=[];
   classes=[];
+  user;
 
 
-  constructor(private classService:ClassService, private authService: AuthService) { }
+  constructor(private classService:ClassService, private authService: AuthService, private mailService: MailService) { }
 
-  prova(){
+  //Function to send Email
+  sendEmail(){
     var textareaValue = $('#summernote').summernote('code');
-    console.log(textareaValue);
-    console.log(this.subject);
+    var mail={
+        subject:this.subject,
+        writtenBy: this.user,
+        body: textareaValue,
+        sendees:this.users,
+        classesSendee: this.classes
+    };
+
+    this.mailService.SendEmail(mail).subscribe(data=>{
+          console.log(data.message);
+    })
+
+    console.log(mail);
   }
 
 
@@ -85,7 +99,7 @@ export class ComposeComponent implements OnInit {
         this.selectArrayStudents=[];
         data.users.forEach(element => {  //for each element of result add element in select2 data array
           this.selectArrayStudents.push({
-          id:element._id, 
+          id:element.username, 
           text:element.name+' '+element.surname});
         });
       });
@@ -97,6 +111,11 @@ export class ComposeComponent implements OnInit {
   ngOnInit() {
     $('#summernote').summernote({
       height: '500'
+    });
+
+    //get usernmame
+    this.authService.getProfile().subscribe((data)=>{
+      this.user=data.user.username;
     });
 
 
