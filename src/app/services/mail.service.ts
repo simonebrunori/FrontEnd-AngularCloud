@@ -37,6 +37,18 @@ export class MailService {
     this.createAuthenticationHeaders();   //create the header for the request
     return this.http.post(this.domain + 'mails/sendEmail', mail, this.options).map(res=>res.json()); 
   }
+
+  //Function to add classes to email
+  addSendeesClass(clas, mailId){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.put(this.domain + 'mails/addSendeesClass/'+mailId, clas, this.options).map(res=>res.json()); 
+  }
+
+  //Function to add users email
+  addSendees(sendee,mailId){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.put(this.domain + 'mails/addSendees/'+mailId, sendee, this.options).map(res=>res.json()); 
+  }
   
 
 }

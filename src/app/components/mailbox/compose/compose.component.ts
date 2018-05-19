@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Select2OptionData } from 'ng2-select2';
 import {ClassService} from '../../../services/class.service';
 import { AuthService} from '../../../services/auth.service';
 import { MailService} from '../../../services/mail.service';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 
 @Component({
@@ -24,25 +26,93 @@ export class ComposeComponent implements OnInit {
   user;
 
 
-  constructor(private classService:ClassService, private authService: AuthService, private mailService: MailService) { }
+  constructor(private classService:ClassService, private authService: AuthService, private mailService: MailService, private router:Router, private toastr:ToastrService) { }
 
   //Function to send Email
   sendEmail(){
     var textareaValue = $('#summernote').summernote('code');
-    var mail={
-        subject:this.subject,
-        writtenBy: this.user,
-        body: textareaValue,
-        sendees:this.users,
-        classesSendee: this.classes
-    };
 
+    if(this.users.length==0 && this.classes.length==0){
+      this.toastr.error('You must provide at least a class or a sendee', 'Error!',{timeOut: 3000, closeButton:true});
+    }else{
+      //create mail object
+        var mail={
+          subject:this.subject,
+          writtenBy: this.user,
+          body: textareaValue
+        };
+        this.postEmail(mail);   //call postEmail() function to add new email
+        this.toastr.success('Mail sent','Success!',{timeOut: 3000, closeButton:true});
+        this.router.navigate(['/dashboard/mailbox/inbox']); // Navigate to inbox
+        
+    }
+    
+  }
+
+  //Function to send email to database
+  postEmail(mail){
     this.mailService.SendEmail(mail).subscribe(data=>{
-          console.log(data.message);
+      if(!data.success){
+        this.toastr.error(data.message,'Error!', {timeOut: 3000, closeButton:true});
+      }
+      console.log('postEmail: '+data.message);
+      if(this.classes.length==0){
+        this.users.forEach(element => {
+          this.putSendees({sendee:element}, data.mail);
+        });
+      }else{
+        if(this.users.length==0){
+          this.classes.forEach(element => {
+            this.putClasses({clas:element},data.mail);
+          });
+        }else{
+          this.classes.forEach(element => {
+            this.putSendeesClasses({clas:element},data.mail);
+          });
+
+        }
+      }
+    })
+  }
+
+
+//Function to put sendees in mail entity (users)
+  putSendees(sendee, mailId){
+    this.mailService.addSendees(sendee, mailId).subscribe(data=>{
+      if(!data.success){
+        this.toastr.error(data.message,'Error!', {timeOut: 3000, closeButton:true});
+      }
+      console.log('Put Sendees: '+data.message);
+    })
+  }
+
+  //Function to put sendees in mail entity (classes)
+  putClasses(clas, mailId){
+    console.log(clas);
+    this.mailService.addSendeesClass(clas, mailId).subscribe(data=>{
+      if(!data.success){
+        this.toastr.error(data.message,'Error!', {timeOut: 3000, closeButton:true});
+      }
+      console.log('PutClasses: '+data.message);
+    })
+  }
+
+  //Function to put sendees in mail entity (users and classes)
+  putSendeesClasses(clas, mailId){
+    this.mailService.addSendeesClass(clas,mailId).subscribe(data=>{
+      if(!data.success){
+        this.toastr.error(data.message,'Error!', {timeOut: 3000, closeButton:true});
+      }
+        console.log('Put sendeesClasses: '+data.message);
+        this.users.forEach(element => {
+          this.putSendees({sendee:element},mailId);
+        });
     })
 
-    console.log(mail);
   }
+  
+
+
 
 
 
@@ -59,6 +129,7 @@ export class ComposeComponent implements OnInit {
           section:s[1]
         }
         this.classes.push(Obj);   //push object to array
+
       });
     }
   }
@@ -99,7 +170,7 @@ export class ComposeComponent implements OnInit {
         this.selectArrayStudents=[];
         data.users.forEach(element => {  //for each element of result add element in select2 data array
           this.selectArrayStudents.push({
-          id:element.username, 
+          id:element._id, 
           text:element.name+' '+element.surname});
         });
       });
