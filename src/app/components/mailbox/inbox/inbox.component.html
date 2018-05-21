@@ -17,14 +17,14 @@
                                 <div class="row clearfix m-t-15">
                                     <div class="col-sm-6">
                                         <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkAll()" (ifUnchecked)="unCheckAll()"></label>
-                                        <button class="btn btn-sm btn-default m-l-15"><i class="fas fa-sync-alt m-r-5"></i>Refresh</button>
+                                        <button class="btn btn-sm btn-default m-l-15" (click)="refresh()"><i class="fas fa-sync-alt m-r-5"></i>Refresh</button>
                                         <div class="btn-group">
                                             <button class="btn btn-sm btn-default" title="Set as read"><i class="fa fa-eye"></i></button>
                                             <button class="btn btn-sm btn-default" title="Delete email"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 align-right">
-                                        <span class="page-info">1-15 / 62</span>
+                                        <span class="page-info">{{startElement}}-{{endElement}} / 62</span>
                                         <div class="btn-group">
                                             <button class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i></button>
                                             <button class="btn btn-default btn-sm"><i class="fa fa-arrow-right"></i></button>
@@ -35,118 +35,17 @@
                             <div class="panel-body email-panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
-                                        <tbody>
-                                            <tr class="unread">
+                                        <tbody> 
+                                            <tr [ngClass]="{'unread': !mail.read}" *ngFor="let mail of mails">
                                                 <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
                                                 <td></td>
-                                                <td><a routerLink="/dashboard/mailbox/mail">Jamia Doe</a></td>
-                                                <td><a routerLink="/dashboard/mailbox/mail">Corrupti, dolorum ab nobis ex culpa.</a></td>
+                                                <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}">{{mail.writtenBy}}</a></td>
+                                                <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}">
+                                                    <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span> 
+                                                    <span *ngIf="mail.badge==='homework'" class="badge bg-warning">Homework</span> 
+                                                    <span *ngIf="mail.badge==='important'" class="badge bg-danger">Important</span> {{mail.subject}}</a></td>
                                                 <td></td>
                                                 <td>13:20</td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Office - Reminder</a></td>
-                                                <td><a href="email-view.html"><span class="label label-warning m-r-5">Work</span>Reminder about the metting for tomorrow</a></td>
-                                                <td></td>
-                                                <td>13:20</td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Peter Doe</a></td>
-                                                <td><a href="email-view.html"><span class="label label-success m-r-5">Sport</span>Lorem ipsum dolor noretek imit...</a></td>
-                                                <td></td>
-                                                <td>08:50</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Peters Doe</a></td>
-                                                <td><a href="email-view.html">Modi aut tempora provident ab consequatur.</a></td>
-                                                <td></td>
-                                                <td>9 Dec</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Peter Doe</a></td>
-                                                <td><a href="email-view.html"><span class="label label-danger m-r-5">Attention</span>Lorem ipsum dolor noretek imit...</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td>9 Dec</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">John Doe</a></td>
-                                                <td><a href="email-view.html">Illo eius porro nisi sapiente.</a></td>
-                                                <td></td>
-                                                <td>9 Dec</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">James Doe</a></td>
-                                                <td><a href="email-view.html">Illo eius porro nisi sapiente.</a></td>
-                                                <td></td>
-                                                <td>7 Dec</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Henry Doe</a></td>
-                                                <td><a href="email-view.html">Illo eius porro nisi sapiente.</a></td>
-                                                <td></td>
-                                                <td>27 Nov</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">James Doe</a></td>
-                                                <td><a href="email-view.html">Illo eius porro nisi sapiente.</a></td>
-                                                <td></td>
-                                                <td>27 Nov</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Jaima Doe</a></td>
-                                                <td><a href="email-view.html">Modi aut tempora provident ab consequatur.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td>25 Nov</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Peter Doe</a></td>
-                                                <td><a href="email-view.html">Illo eius porro nisi sapiente.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td>24 Nov</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">Office - Reminder</a></td>
-                                                <td><a href="email-view.html"><span class="label label-warning m-r-5">Work</span>Illo eius porro nisi sapiente.</a></td>
-                                                <td></td>
-                                                <td>24 Nov</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">John Doe</a></td>
-                                                <td><a href="email-view.html">Velit, accusamus.</a></td>
-                                                <td></td>
-                                                <td>20 Nov</td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
-                                                <td></td>
-                                                <td><a href="email-view.html">David Doe</a></td>
-                                                <td><a href="email-view.html">Illo eius porro nisi sapiente.</a></td>
-                                                <td></td>
-                                                <td>18 Nov</td>
                                             </tr>
                                         </tbody>
                                     </table>

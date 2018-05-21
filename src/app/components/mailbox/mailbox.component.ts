@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-mailbox',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MailboxComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+    this.router.navigateByUrl('/dashboard/mailbox/inbox');
+
   }
 
 }

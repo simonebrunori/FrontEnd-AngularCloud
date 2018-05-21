@@ -64,7 +64,7 @@ const appRoutes: Routes = [
             canActivate: [AuthGuard] // User must be logged in to view this route
           },
           {
-            path: 'mail',          //mail route
+            path: 'mail/:mailId',          //mail route
             component: MailComponent,
             canActivate: [AuthGuard] // User must be logged in to view this route
           },

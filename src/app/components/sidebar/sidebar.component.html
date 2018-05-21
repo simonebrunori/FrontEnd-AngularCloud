@@ -16,7 +16,7 @@
       </li>
       <!--END DASHBOARD -->
       <!-- CLASSES -->
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="userType==='T'">
         <a routerLink="/dashboard/classes">
           <i class="fas fa-users fa-lg"></i>
           <span class="nav-label">&ensp;My Classes</span>
@@ -34,8 +34,8 @@
   <!--FILE MANAGER -->
 
   <!-- FILE MANAGER -->
-  <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-      <a routerLink="/dashboard/mailbox/inbox">
+  <li [routerLinkActive]="['active']" >
+      <a routerLink="/dashboard/mailbox">
         <i class="fas fa-envelope fa-lg"></i>
         <span class="nav-label">&ensp;Inbox</span>
       </a>

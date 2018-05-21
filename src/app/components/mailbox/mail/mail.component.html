@@ -1,3 +1,112 @@
-<p>
-  mail works!
-</p>
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-10">
+  <div class="panel panel-default email-panel">
+    <div class="email-panel-heading">
+      <div class="row clearfix">
+        <div class="col-sm-7">
+          <h2>{{mail.subject}}</h2>
+        </div>
+        <div class="col-sm-5 align-right">
+          <!--<div class="btn-group">
+            <button class="btn btn-sm btn-default m-l-15">
+              <i class="fa fa-reply font-14 m-r-5"></i>Reply</button>
+            <button class="btn btn-sm btn-default m-l-15">Forward
+              <i class="fa fa-share font-14 m-l-5"></i>
+            </button>
+          </div>-->
+            <button class="btn btn-sm btn-default" title="Delete email">
+              <i class="fa fa-trash"></i>
+            </button>
+
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-sm-7">
+          <div class="from-email">From:
+            <b>{{mail.writtenBy}}</b>
+          </div>
+        </div>
+        
+        <div class="col-sm-5 align-right">
+          <div class="date-info">{{mail.writtenAt}}</div>
+        </div>
+      </div>
+      <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span>
+      <span *ngIf="mail.badge==='homework'" class="badge bg-warning">Homework</span>
+      <span *ngIf="mail.badge==='important'" class="badge bg-danger">Important</span>
+    </div>
+     
+    <div class="panel-body">
+      <div class="email-body">
+          <div [innerHTML]="mail.body"></div>
+      <!--<div class="attachment-holder">
+        <div>
+          <i class="fa fa-paperclip m-r-5"></i>3 attachments |
+          <a href="javascript:void(0);">Download All Attachments</a>
+        </div>
+        <ul>
+          <li>
+            <div class="file-box">
+              <div class="heading">
+                <i class="fa fa-music"></i>
+              </div>
+              <div class="footer">
+                <div class="title">sound-file.wav</div>
+                <div class="size">2.10 MB</div>
+                <div class="link">
+                  <a href="javascript:void(0);">Download</a> |
+                  <a href="javascript:void(0);">Listen</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="file-box">
+              <div class="heading">
+                <img src="../../assets/images/email-thumbs/email-thumb-1.jpg" alt="Email Thumb Image" />
+              </div>
+              <div class="footer">
+                <div class="title">sea.jpg</div>
+                <div class="size">122 KB</div>
+                <div class="link">
+                  <a href="javascript:void(0);">Download</a> |
+                  <a href="javascript:void(0);">View</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="file-box">
+              <div class="heading">
+                <img src="../../assets/images/email-thumbs/email-thumb-2.jpg" alt="Email Thumb Image" />
+              </div>
+              <div class="footer">
+                <div class="title">parachute.jpg</div>
+                <div class="size">127 KB</div>
+                <div class="link">
+                  <a href="javascript:void(0);">Download</a> |
+                  <a href="javascript:void(0);">View</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+      <div class="clearfix p-t-15 p-b-15" style="border-top: 1px solid #eee;">
+        <div class="col-sm-6">
+            <button class="btn btn-sm btn-default">
+              <i class="fa fa-trash m-r-5"></i>Delete</button>
+          </div>
+        <!--<div class="col-sm-6 align-right">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-default m-l-15">
+              <i class="fa fa-reply font-14 m-r-5"></i>Reply</button>
+            <button class="btn btn-sm btn-default m-l-15">Forward
+              <i class="fa fa-share font-14 m-l-5"></i>
+            </button>
+          </div>
+        </div>-->
+      </div>
+    </div>
+</div>
+</div>

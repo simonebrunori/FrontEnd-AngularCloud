@@ -24,6 +24,7 @@ export class ComposeComponent implements OnInit {
   users=[];
   classes=[];
   user;
+  badge="";
 
 
   constructor(private classService:ClassService, private authService: AuthService, private mailService: MailService, private router:Router, private toastr:ToastrService) { }
@@ -39,7 +40,8 @@ export class ComposeComponent implements OnInit {
         var mail={
           subject:this.subject,
           writtenBy: this.user,
-          body: textareaValue
+          body: textareaValue,
+          badge: this.badge
         };
         this.postEmail(mail);   //call postEmail() function to add new email
         this.toastr.success('Mail sent','Success!',{timeOut: 3000, closeButton:true});
@@ -175,6 +177,10 @@ export class ComposeComponent implements OnInit {
         });
       });
     });
+  }
+
+  selectMark(){
+    console.log(this.badge);
   }
 
 
