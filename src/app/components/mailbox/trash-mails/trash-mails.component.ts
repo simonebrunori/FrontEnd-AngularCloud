@@ -4,11 +4,11 @@ declare var jquery:any;
 declare var $ :any;
 
 @Component({
-  selector: 'app-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  selector: 'app-trash-mails',
+  templateUrl: './trash-mails.component.html',
+  styleUrls: ['./trash-mails.component.css']
 })
-export class InboxComponent implements OnInit {
+export class TrashMailsComponent implements OnInit {
 
   limit=14;
   skip=0;
@@ -19,32 +19,35 @@ export class InboxComponent implements OnInit {
 
   constructor(private mailService:MailService) { }
 
+  //Function to check all checkbox
   checkAll(){
     $('.icheckbox_flat-green').addClass('checked');
   }
+  //Function to uncheck all the checkbox
   unCheckAll(){
     $('.icheckbox_flat-green').removeClass('checked');
   }
 
-  //Function to get all user's email
-  getMails(){
-    this.mailService.getMails(this.limit, this.skip).subscribe(data=>{
+  //Function to get TRASH user's email
+  getTrashMails(){
+    this.mailService.getTrashMails(this.limit, this.skip).subscribe(data=>{
       this.mails=data.mails;
       if(data.mails.length!=0){
         this.startElement=this.skip+1;
         this.endElement=this.mails.length;
       }
+
     })
   }
 
   //Function to refresh inbox
   refresh(){
-    this.getMails();  //Call getMails function to get all email on refresh button click
+    this.getTrashMails();  //Call getTrashMails function to get TRASH email on refresh button click
   }
 
   ngOnInit() {
     
-    this.getMails();  //get all emails on component load
+    this.getTrashMails();  //get TRASH emails on component load
 
     
 

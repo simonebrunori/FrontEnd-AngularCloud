@@ -11,6 +11,8 @@ export class MailComponent implements OnInit {
 
 
   public mail="";
+  previousUrl;
+  disable=false;
 
   constructor(private acRoute: ActivatedRoute, private mailService: MailService) { }
 
@@ -26,7 +28,12 @@ export class MailComponent implements OnInit {
 
   ngOnInit() {
     var mailId = this.acRoute.snapshot.params.mailId; // Get URL paramaters on page load
+    this.previousUrl = this.acRoute.snapshot.params.previousUrl; // Get URL paramaters on page load
     this.getMail(mailId);   //get mail content on component load
+
+    if(this.previousUrl==='sent' || this.previousUrl==='trash'){
+      this.disable=true;
+    }
   }
 
 }

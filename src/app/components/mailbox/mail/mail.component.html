@@ -13,9 +13,11 @@
               <i class="fa fa-share font-14 m-l-5"></i>
             </button>
           </div>-->
-            <button class="btn btn-sm btn-default" title="Delete email">
+          <button class="btn btn-sm btn-default m-l-15" routerLink="/dashboard/mailbox/{{previousUrl}}" style="margin-left: 0px;"><i class="fas fa-arrow-left m-r-5"></i>Go Back</button>
+            <button class="btn btn-sm btn-default" title="Delete email" *ngIf="!disable">
               <i class="fa fa-trash"></i>
             </button>
+            
 
         </div>
       </div>
@@ -27,7 +29,7 @@
         </div>
         
         <div class="col-sm-5 align-right">
-          <div class="date-info">{{mail.writtenAt}}</div>
+          <div class="date-info">{{mail.writtenAt | date:'fullDate'}}        {{mail.writtenAt |  date:'shortTime'}}</div>
         </div>
       </div>
       <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span>
@@ -94,7 +96,7 @@
     </div>
       <div class="clearfix p-t-15 p-b-15" style="border-top: 1px solid #eee;">
         <div class="col-sm-6">
-            <button class="btn btn-sm btn-default">
+            <button class="btn btn-sm btn-default" *ngIf="!disable">
               <i class="fa fa-trash m-r-5"></i>Delete</button>
           </div>
         <!--<div class="col-sm-6 align-right">

@@ -61,6 +61,44 @@ export class MailService {
     this.createAuthenticationHeaders();   //create the header for the request
     return this.http.get(this.domain + 'mails/mail/'+mailId, this.options).map(res=>res.json()); 
   }
+
+
+  //Function to get NEW mails
+  getNewMails(limit, skip){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailNew/'+limit+'/'+skip, this.options).map(res=>res.json()); 
+  }
+
+  //Function to get TRASH mails
+  getTrashMails(limit, skip){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailTrash/'+limit+'/'+skip, this.options).map(res=>res.json()); 
+  }
+
+
+  //Function to get IMPORTANT mails
+  getImportantMails(limit, skip){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailImportant/'+limit+'/'+skip, this.options).map(res=>res.json()); 
+  }
+
+  //Function to get user COMMUNICATION
+  getCommunicationMails(limit, skip){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailCommunication/'+limit+'/'+skip, this.options).map(res=>res.json()); 
+  }
+
+  //Function to get HOMEWORK mails
+  getHomeworkMails(limit, skip){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailHomework/'+limit+'/'+skip, this.options).map(res=>res.json()); 
+  }
+
+  //Function to get SENT mails
+  getSentMails(limit, skip, user){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailSent/'+limit+'/'+skip+'/'+user, this.options).map(res=>res.json()); 
+  }
   
 
 }

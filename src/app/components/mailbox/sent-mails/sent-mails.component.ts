@@ -4,11 +4,12 @@ declare var jquery:any;
 declare var $ :any;
 
 @Component({
-  selector: 'app-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  selector: 'app-sent-mails',
+  templateUrl: './sent-mails.component.html',
+  styleUrls: ['./sent-mails.component.css']
 })
-export class InboxComponent implements OnInit {
+export class SentMailsComponent implements OnInit {
+
 
   limit=14;
   skip=0;
@@ -16,6 +17,7 @@ export class InboxComponent implements OnInit {
   mails;
   startElement=0;
   endElement=0;
+  user;
 
   constructor(private mailService:MailService) { }
 
@@ -26,9 +28,9 @@ export class InboxComponent implements OnInit {
     $('.icheckbox_flat-green').removeClass('checked');
   }
 
-  //Function to get all user's email
-  getMails(){
-    this.mailService.getMails(this.limit, this.skip).subscribe(data=>{
+  //Function to get SENT user's email
+  getSentMails(){
+    this.mailService.getSentMails(this.limit, this.skip, this.user).subscribe(data=>{
       this.mails=data.mails;
       if(data.mails.length!=0){
         this.startElement=this.skip+1;
@@ -39,12 +41,14 @@ export class InboxComponent implements OnInit {
 
   //Function to refresh inbox
   refresh(){
-    this.getMails();  //Call getMails function to get all email on refresh button click
+    this.getSentMails();  //Call getSentMails function to get SENT email on refresh button click
   }
 
   ngOnInit() {
     
-    this.getMails();  //get all emails on component load
+    this.user=localStorage.getItem('username'); //Get username from localstorage
+    this.getSentMails();  //get SENT emails on component load
+    
 
     
 

@@ -14,6 +14,14 @@ import { ComposeComponent} from './components/mailbox/compose/compose.component'
 import { MailComponent} from './components/mailbox/mail/mail.component';
 
 
+import { NewMailsComponent} from './components/mailbox/new-mails/new-mails.component';
+import { SentMailsComponent} from './components/mailbox/sent-mails/sent-mails.component';
+import { TrashMailsComponent} from './components/mailbox/trash-mails/trash-mails.component';
+import { ImportantMailsComponent} from './components/mailbox/important-mails/important-mails.component';
+import { HomeworkMailsComponent} from './components/mailbox/homework-mails/homework-mails.component';
+import { CommunicationMailsComponent} from './components/mailbox/communication-mails/communication-mails.component';
+
+
 
 
 
@@ -64,8 +72,38 @@ const appRoutes: Routes = [
             canActivate: [AuthGuard] // User must be logged in to view this route
           },
           {
-            path: 'mail/:mailId',          //mail route
+            path: 'mail/:mailId/:previousUrl',          //mail route
             component: MailComponent,
+            canActivate: [AuthGuard] // User must be logged in to view this route
+          },
+          {
+            path: 'new',          //New mail route
+            component: NewMailsComponent,
+            canActivate: [AuthGuard] // User must be logged in to view this route
+          },
+          {
+            path: 'sent',          // Sent mail route
+            component: SentMailsComponent,
+            canActivate: [AuthGuard] // User must be logged in to view this route
+          },
+          {
+            path: 'trash',          //Trash mail route
+            component: TrashMailsComponent,
+            canActivate: [AuthGuard] // User must be logged in to view this route
+          },
+          {
+            path: 'important',          //Important mail route
+            component: ImportantMailsComponent,
+            canActivate: [AuthGuard] // User must be logged in to view this route
+          },
+          {
+            path: 'homework',          //homework mail route
+            component: HomeworkMailsComponent,
+            canActivate: [AuthGuard] // User must be logged in to view this route
+          },
+          {
+            path: 'communication',          //communication mail route
+            component: CommunicationMailsComponent,
             canActivate: [AuthGuard] // User must be logged in to view this route
           },
         ]

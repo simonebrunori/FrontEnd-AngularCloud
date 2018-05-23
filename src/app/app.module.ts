@@ -40,6 +40,12 @@ import { MailComponent } from './components/mailbox/mail/mail.component';
 import { MailSidebarComponent } from './components/mailbox/mail-sidebar/mail-sidebar.component';
 import { InboxComponent } from './components/mailbox/inbox/inbox.component';
 import { ComposeComponent } from './components/mailbox/compose/compose.component';
+import { TrashMailsComponent } from './components/mailbox/trash-mails/trash-mails.component';
+import { HomeworkMailsComponent } from './components/mailbox/homework-mails/homework-mails.component';
+import { ImportantMailsComponent } from './components/mailbox/important-mails/important-mails.component';
+import { CommunicationMailsComponent } from './components/mailbox/communication-mails/communication-mails.component';
+import { SentMailsComponent } from './components/mailbox/sent-mails/sent-mails.component';
+import { NewMailsComponent } from './components/mailbox/new-mails/new-mails.component';
 
 
 
@@ -62,8 +68,13 @@ import { ComposeComponent } from './components/mailbox/compose/compose.component
     MailComponent,
     MailSidebarComponent,
     InboxComponent,
-    ComposeComponent
-
+    ComposeComponent,
+    TrashMailsComponent,
+    HomeworkMailsComponent,
+    ImportantMailsComponent,
+    CommunicationMailsComponent,
+    SentMailsComponent,
+    NewMailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,56 @@
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-10">
+  <div class="panel panel-default email-panel">
+      <div class="email-panel-heading">
+          <div class="row clearfix">
+              <div class="col-sm-5">
+                  <h2>HOMEWORK (4)</h2><span class="badge bg-warning" style="margin-left: 20px;">Homework</span> 
+              </div>
+              <div class="col-sm-7 align-right">
+                  <form class="pull-right email-search">
+                      <div class="form-group has-feedback">
+                          <input type="text" class="form-control" placeholder="Search in email..." name="Query" id="Query" required>
+                          <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="row clearfix m-t-15">
+              <div class="col-sm-6">
+                  <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkAll()" (ifUnchecked)="unCheckAll()"></label>
+                  <button class="btn btn-sm btn-default m-l-15" (click)="refresh()"><i class="fas fa-sync-alt m-r-5"></i>Refresh</button>
+                  <div class="btn-group">
+                      <button class="btn btn-sm btn-default" title="Set as read"><i class="fa fa-eye"></i></button>
+                      <button class="btn btn-sm btn-default" title="Delete email"><i class="fa fa-trash"></i></button>
+                  </div>
+              </div>
+              <div class="col-sm-6 align-right">
+                  <span class="page-info">{{startElement}}-{{endElement}} / 62</span>
+                  <div class="btn-group">
+                      <button class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i></button>
+                      <button class="btn btn-default btn-sm"><i class="fa fa-arrow-right"></i></button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="panel-body email-panel-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <tbody> 
+                      <tr [ngClass]="{'unread': !mail.read}" *ngFor="let mail of mails">
+                          <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
+                          <td></td>
+                          <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/homework">{{mail.writtenBy}}</a></td>
+                          <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/homework">
+                              <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span> 
+                              <span *ngIf="mail.badge==='homework'" class="badge bg-warning">Homework</span> 
+                              <span *ngIf="mail.badge==='important'" class="badge bg-danger">Important</span> {{mail.subject}}</a></td>
+                          <td></td>
+                          <td style="width: 20%;">{{mail.writtenAt | date}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          
+      </div>
+  </div>
+</div>

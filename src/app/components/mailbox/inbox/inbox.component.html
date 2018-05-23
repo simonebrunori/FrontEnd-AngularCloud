@@ -39,13 +39,13 @@
                                             <tr [ngClass]="{'unread': !mail.read}" *ngFor="let mail of mails">
                                                 <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
                                                 <td></td>
-                                                <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}">{{mail.writtenBy}}</a></td>
-                                                <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}">
+                                                <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/inbox">{{mail.writtenBy}}</a></td>
+                                                <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/inbox">
                                                     <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span> 
                                                     <span *ngIf="mail.badge==='homework'" class="badge bg-warning">Homework</span> 
                                                     <span *ngIf="mail.badge==='important'" class="badge bg-danger">Important</span> {{mail.subject}}</a></td>
                                                 <td></td>
-                                                <td>13:20</td>
+                                                <td style="width: 20%;">{{mail.writtenAt | date}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

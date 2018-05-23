@@ -63,9 +63,8 @@ export class FolderService {
 
   //Function to get username from localStorage
   getUsername(){
-    var user=localStorage.getItem('user');
-    var userObj= JSON.parse(user)   //convert to object
-    return userObj.username;
+    var user=localStorage.getItem('username');
+    return user;
   }
 
 

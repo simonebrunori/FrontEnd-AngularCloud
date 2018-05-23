@@ -4,11 +4,12 @@ declare var jquery:any;
 declare var $ :any;
 
 @Component({
-  selector: 'app-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  selector: 'app-new-mails',
+  templateUrl: './new-mails.component.html',
+  styleUrls: ['./new-mails.component.css']
 })
-export class InboxComponent implements OnInit {
+export class NewMailsComponent implements OnInit {
+
 
   limit=14;
   skip=0;
@@ -26,9 +27,9 @@ export class InboxComponent implements OnInit {
     $('.icheckbox_flat-green').removeClass('checked');
   }
 
-  //Function to get all user's email
-  getMails(){
-    this.mailService.getMails(this.limit, this.skip).subscribe(data=>{
+  //Function to get NEW user's email
+  getNewMails(){
+    this.mailService.getNewMails(this.limit, this.skip).subscribe(data=>{
       this.mails=data.mails;
       if(data.mails.length!=0){
         this.startElement=this.skip+1;
@@ -39,12 +40,12 @@ export class InboxComponent implements OnInit {
 
   //Function to refresh inbox
   refresh(){
-    this.getMails();  //Call getMails function to get all email on refresh button click
+    this.getNewMails();  //Call getNewMails function to get NEW email on refresh button click
   }
 
   ngOnInit() {
     
-    this.getMails();  //get all emails on component load
+    this.getNewMails();  //get NEW emails on component load
 
     
 
