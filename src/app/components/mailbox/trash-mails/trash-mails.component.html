@@ -35,7 +35,7 @@
                               <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span> 
                               <span *ngIf="mail.badge==='homework'" class="badge bg-warning">Homework</span> 
                               <span *ngIf="mail.badge==='important'" class="badge bg-danger">Important</span> {{mail.subject}}</a></td>
-                          <td style="width: 20%;">{{mail.writtenAt | date}}</td>
+                          <td style="width: 20%;text-align: right;">{{mail.writtenAt | date}}</td>
                       </tr>
                   </tbody>
               </table>

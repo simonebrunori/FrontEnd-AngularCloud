@@ -99,6 +99,13 @@ export class MailService {
     this.createAuthenticationHeaders();   //create the header for the request
     return this.http.get(this.domain + 'mails/mailSent/'+limit+'/'+skip+'/'+user, this.options).map(res=>res.json()); 
   }
+
+
+   //Function to set mail as read
+   setMailRead(mailId){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailRead/'+mailId, this.options).map(res=>res.json()); 
+  }
   
 
 }

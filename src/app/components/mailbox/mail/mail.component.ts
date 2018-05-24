@@ -10,7 +10,9 @@ import { MailService} from '../../../services/mail.service';
 export class MailComponent implements OnInit {
 
 
-  public mail="";
+  public mail={
+    _id:''
+  };
   previousUrl;
   disable=false;
 
@@ -21,8 +23,20 @@ export class MailComponent implements OnInit {
   getMail(mailId){
     this.mailService.getMail(mailId).subscribe(data=>{
       this.mail=data.mail;
+      this.readMail();
     });
   }
+
+
+  //Function to set mail as read
+  readMail(){
+    if( this.previousUrl.localeCompare('sent')!=0 || this.previousUrl.localeCompare('trash')!=0){
+      this.mailService.setMailRead(this.mail._id).subscribe(data=>{
+          console.log(data.message);
+
+      })
+  }
+}
 
 
 
@@ -31,9 +45,9 @@ export class MailComponent implements OnInit {
     this.previousUrl = this.acRoute.snapshot.params.previousUrl; // Get URL paramaters on page load
     this.getMail(mailId);   //get mail content on component load
 
-    if(this.previousUrl==='sent' || this.previousUrl==='trash'){
+    if(this.previousUrl.localeCompare('sent')==0 || this.previousUrl.localeCompare('trash')==0){
       this.disable=true;
     }
-  }
+}
 
 }
