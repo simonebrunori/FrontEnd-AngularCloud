@@ -18,15 +18,22 @@ export class InboxComponent implements OnInit {
   startElement=0;
   endElement=0;
   userId;
+  All=false;
 
   constructor(private mailService:MailService, private authService: AuthService) { }
 
   checkAll(){
     $('.icheckbox_flat-green').addClass('checked');
+    $('.icheckbox_flat-green').addClass('disabled');
+    this.All=true;
   }
   unCheckAll(){
     $('.icheckbox_flat-green').removeClass('checked');
+    $('.icheckbox_flat-green').removeClass('disabled');
+    this.All=false;
   }
+
+
 
   //Function to get all user's email
   getMails(){

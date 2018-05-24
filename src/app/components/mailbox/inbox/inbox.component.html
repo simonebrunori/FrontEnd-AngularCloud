@@ -37,7 +37,7 @@
                                     <table class="table table-hover">
                                         <tbody> 
                                             <tr [ngClass]="{'unread': !mail.read}" *ngFor="let mail of mails">
-                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
+                                                <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"  [disabled]="All"></label></td>
                                                 <td></td>
                                                 <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/inbox">{{mail.writtenBy}}</a></td>
                                                 <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/inbox">
