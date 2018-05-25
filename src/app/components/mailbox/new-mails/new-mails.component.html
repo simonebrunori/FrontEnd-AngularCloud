@@ -16,11 +16,11 @@
           </div>
           <div class="row clearfix m-t-15">
               <div class="col-sm-6">
-                  <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkAll()" (ifUnchecked)="unCheckAll()"></label>
-                  <button class="btn btn-sm btn-default m-l-15" (click)="refresh()"><i class="fas fa-sync-alt m-r-5"></i>Refresh</button>
+                  <!-- <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkAll()" (ifUnchecked)="unCheckAll()"></label> -->
+                  <button class="btn btn-sm btn-default m-l-15" (click)="refresh()" style="margin-left: 0px;"><i class="fas fa-sync-alt m-r-5"></i>Refresh</button>
                   <div class="btn-group">
-                      <button class="btn btn-sm btn-default" title="Set as read"><i class="fa fa-eye"></i></button>
-                      <button class="btn btn-sm btn-default" title="Delete email"><i class="fa fa-trash"></i></button>
+                      <button class="btn btn-sm btn-default" title="Set as read" [disabled]="!atLeastOneChecked" (click)="setAsRead()"><i class="fa fa-eye"></i></button>
+                      <button class="btn btn-sm btn-default" title="Delete email" [disabled]="!atLeastOneChecked" (click)="deleteMail()"><i class="fa fa-trash"></i></button>
                   </div>
               </div>
               <div class="col-sm-6 align-right">
@@ -35,9 +35,9 @@
       <div class="panel-body email-panel-body">
           <div class="table-responsive">
               <table class="table table-hover">
-                  <tbody> 
+                  <tbody *ngIf="!empty"> 
                       <tr [ngClass]="{'unread': !mail.read}" *ngFor="let mail of mails">
-                          <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox"></label></td>
+                          <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkOne(mail._id)" (ifUnchecked)="unCheckOne(mail._id)" [disabled]="All"></label></td>
                           <td></td>
                           <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/new">{{mail.writtenBy}}</a></td>
                           <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/new">
@@ -48,6 +48,9 @@
                           <td style="width: 20%;">{{mail.writtenAt | date}}</td>
                       </tr>
                   </tbody>
+                  <div *ngIf="empty" align="center" style="margin-top: 10px">
+                    <span style="margin-top: 5px;" align="center">No mails Found!</span>
+                  </div>
               </table>
           </div>
           

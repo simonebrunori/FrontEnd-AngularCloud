@@ -103,8 +103,26 @@ export class MailService {
 
    //Function to set mail as read
    setMailRead(mailId){
+     const mailData={
+        mailId: mailId
+     }
     this.createAuthenticationHeaders();   //create the header for the request
-    return this.http.get(this.domain + 'mails/mailRead/'+mailId, this.options).map(res=>res.json()); 
+    return this.http.put(this.domain + 'mails/mailRead',mailData, this.options).map(res=>res.json()); 
+  }
+
+//Function to set ALL mails as read
+  // setAllMailAsRead(){
+  //   this.createAuthenticationHeaders();   //create the header for the request
+  //   return this.http.get(this.domain + 'mails/allMailRead', this.options).map(res=>res.json()); 
+  // }
+
+  //Function to DELETE mail
+  deleteMail(mailId){
+    const mailData={
+      mailId: mailId
+   }
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.put(this.domain + 'mails/mailDelete', mailData , this.options).map(res=>res.json()); 
   }
   
 

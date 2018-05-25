@@ -18,6 +18,7 @@ export class SentMailsComponent implements OnInit {
   startElement=0;
   endElement=0;
   user;
+  empty=false;
 
   constructor(private mailService:MailService) { }
 
@@ -35,6 +36,8 @@ export class SentMailsComponent implements OnInit {
       if(data.mails.length!=0){
         this.startElement=this.skip+1;
         this.endElement=this.mails.length;
+      }else{
+        this.empty=true;
       }
     })
   }

@@ -28,7 +28,7 @@
       <div class="panel-body email-panel-body">
           <div class="table-responsive">
               <table class="table table-hover">
-                  <tbody> 
+                  <tbody *ngIf="!empty">  
                       <tr *ngFor="let mail of mails">
                           <td style="width: 90%;"><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/sent">
                               <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span> 
@@ -37,6 +37,9 @@
                           <td style="width: 20%;text-align: right;">{{mail.writtenAt | date}}</td>
                       </tr>
                   </tbody>
+                  <div *ngIf="empty" align="center" style="margin-top: 10px">
+                    <span style="margin-top: 5px;" align="center">No mails Found!</span>
+                  </div>
               </table>
           </div>
           

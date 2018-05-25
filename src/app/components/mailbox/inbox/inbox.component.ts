@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MailService } from '../../../services/mail.service';
 import { AuthService } from '../../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 declare var jquery:any;
 declare var $ :any;
 
@@ -19,10 +20,16 @@ export class InboxComponent implements OnInit {
   endElement=0;
   userId;
   All=false;
+  atLeastOneChecked=false;
+  checkedMails=[];
+  empty=false;
 
-  constructor(private mailService:MailService, private authService: AuthService) { }
 
-  checkAll(){
+  
+
+  constructor(private mailService:MailService, private authService: AuthService, private toastr:ToastrService) { }
+
+  /*checkAll(){
     $('.icheckbox_flat-green').addClass('checked');
     $('.icheckbox_flat-green').addClass('disabled');
     this.All=true;
@@ -31,6 +38,51 @@ export class InboxComponent implements OnInit {
     $('.icheckbox_flat-green').removeClass('checked');
     $('.icheckbox_flat-green').removeClass('disabled');
     this.All=false;
+  }*/
+
+  //Control for delete and read buttons
+  /*isValidCheck(){
+    if(this.All || this.atLeastOneChecked){
+      return true;
+    }else{
+      return false;
+    }
+  }*/
+
+
+  //Function to add checked element to array
+  checkOne(mailId){
+    this.checkedMails.push(mailId);
+    console.log(this.checkedMails);
+    this.atLeastOneChecked=true;
+  }
+
+//Function to remove unchecked element to array
+  unCheckOne(mailId){
+    const index = this.checkedMails.indexOf(mailId);
+    this.checkedMails.splice(index, 1);
+    console.log(this.checkedMails);
+    if(this.checkedMails.length==0){
+      this.atLeastOneChecked=false;
+    }
+  }
+
+
+  //Function to set emails as read on button click
+  setAsRead(){
+    // if(this.All){
+    //   this.mailService.setAllMailAsRead().subscribe(data=>{
+    //       console.log(data.message);
+    //       this.unCheckAll();
+    //   })
+    // }else{
+      this.checkedMails.forEach(element => {
+        this.mailService.setMailRead(element).subscribe(data=>{
+            console.log(data.message);
+        })       
+      });
+    // }
+    this.refresh(); 
   }
 
 
@@ -42,13 +94,17 @@ export class InboxComponent implements OnInit {
       if(data.mails.length!=0){
         this.startElement=this.skip+1;
         this.endElement=this.mails.length;
+      }else{
+        this.empty=true;
       }
     })
   }
 
   //Function to refresh inbox
   refresh(){
+    this.checkedMails=[];
     this.mails=[];
+    this.atLeastOneChecked=false;
     this.getMails();  //Call getMails function to get all email on refresh button click
   }
 
@@ -71,6 +127,18 @@ export class InboxComponent implements OnInit {
           }
         });
     });
+  }
+
+
+
+  //Function to delete mails
+  deleteMail(){
+    this.checkedMails.forEach(element => {
+      this.mailService.deleteMail(element).subscribe(data=>{
+        console.log(data.message);
+      })
+    });
+    this.refresh();   //after update refresh the inbox
   }
 
   ngOnInit() {

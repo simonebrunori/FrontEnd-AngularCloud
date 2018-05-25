@@ -16,6 +16,7 @@ export class TrashMailsComponent implements OnInit {
   mails;
   startElement=0;
   endElement=0;
+  empty=false;
 
   constructor(private mailService:MailService) { }
 
@@ -35,6 +36,8 @@ export class TrashMailsComponent implements OnInit {
       if(data.mails.length!=0){
         this.startElement=this.skip+1;
         this.endElement=this.mails.length;
+      }else{
+        this.empty=true;
       }
 
     })

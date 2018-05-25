@@ -18,15 +18,53 @@ export class CommunicationMailsComponent implements OnInit {
   startElement=0;
   endElement=0;
   userId;
+  empty=false;
+  atLeastOneChecked=false;
+  checkedMails=[];
 
   constructor(private mailService:MailService,private authService: AuthService) { }
 
-  checkAll(){
-    $('.icheckbox_flat-green').addClass('checked');
-  }
-  unCheckAll(){
-    $('.icheckbox_flat-green').removeClass('checked');
-  }
+  // checkAll(){
+  //   $('.icheckbox_flat-green').addClass('checked');
+  // }
+  // unCheckAll(){
+  //   $('.icheckbox_flat-green').removeClass('checked');
+  // }
+
+    //Function to add checked element to array
+    checkOne(mailId){
+      this.checkedMails.push(mailId);
+      console.log(this.checkedMails);
+      this.atLeastOneChecked=true;
+    }
+  
+  //Function to remove unchecked element to array
+    unCheckOne(mailId){
+      const index = this.checkedMails.indexOf(mailId);
+      this.checkedMails.splice(index, 1);
+      console.log(this.checkedMails);
+      if(this.checkedMails.length==0){
+        this.atLeastOneChecked=false;
+      }
+    }
+  
+  
+    //Function to set emails as read on button click
+    setAsRead(){
+      // if(this.All){
+      //   this.mailService.setAllMailAsRead().subscribe(data=>{
+      //       console.log(data.message);
+      //       this.unCheckAll();
+      //   })
+      // }else{
+        this.checkedMails.forEach(element => {
+          this.mailService.setMailRead(element).subscribe(data=>{
+              console.log(data.message);
+          })       
+        });
+      // }
+      this.refresh(); 
+    }
 
   //Function to get COMMUNICATION user's email
   getCommunicationMails(){
@@ -35,6 +73,8 @@ export class CommunicationMailsComponent implements OnInit {
       if(data.mails.length!=0){
         this.startElement=this.skip+1;
         this.endElement=this.mails.length;
+      }else{
+        this.empty=true;
       }
     })
   }
@@ -61,9 +101,21 @@ export class CommunicationMailsComponent implements OnInit {
     });
   }
 
+    //Function to delete mails
+    deleteMail(){
+      this.checkedMails.forEach(element => {
+        this.mailService.deleteMail(element).subscribe(data=>{
+          console.log(data.message);
+        })
+      });
+      this.refresh(); 
+    }
+
   //Function to refresh inbox
   refresh(){
+    this.checkedMails=[];
     this.mails=[];
+    this.atLeastOneChecked=false;
     this.getCommunicationMails();  //Call getCommunicationMails function to get COMMUNICATION email on refresh button click
   }
 
