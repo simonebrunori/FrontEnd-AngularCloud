@@ -3,7 +3,7 @@
       <div class="email-panel-heading">
           <div class="row clearfix">
               <div class="col-sm-5">
-                  <h2>IMPORTANT (4)</h2><span class="badge bg-danger" style="margin-left: 20px;">Important</span> 
+                  <h2>IMPORTANT ({{newMails}})</h2><span class="badge bg-danger" style="margin-left: 20px;">Important</span> 
               </div>
               <div class="col-sm-7 align-right">
                   <form class="pull-right email-search">
@@ -24,10 +24,10 @@
                   </div>
               </div>
               <div class="col-sm-6 align-right">
-                  <span class="page-info">{{startElement}}-{{endElement}} / 62</span>
+                  <span class="page-info">{{startElement}}-{{endElement}} / {{mailsCount}}</span>
                   <div class="btn-group">
-                      <button class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i></button>
-                      <button class="btn btn-default btn-sm"><i class="fa fa-arrow-right"></i></button>
+                      <button class="btn btn-default btn-sm" (click)="previous()" [disabled]="disablePrev"><i class="fa fa-arrow-left" ></i></button>
+                      <button class="btn btn-default btn-sm" (click)="next()" [disabled]="disableNext"><i class="fa fa-arrow-right" ></i></button>
                   </div>
               </div>
           </div>

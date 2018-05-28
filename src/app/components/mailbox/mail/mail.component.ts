@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MailService} from '../../../services/mail.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class MailComponent implements OnInit {
   previousUrl;
   disable=false;
 
-  constructor(private acRoute: ActivatedRoute, private mailService: MailService) { }
+  constructor(private acRoute: ActivatedRoute, private mailService: MailService, private router: Router) { }
 
 
   //Function to get mail content
@@ -36,6 +36,15 @@ export class MailComponent implements OnInit {
 
       })
   }
+}
+
+deleteMail(){
+    this.mailService.deleteMail(this.mail._id).subscribe(data=>{
+      console.log(data.message);
+      if(data.success){
+        this.router.navigateByUrl('/dashboard/mailbox/'+this.previousUrl);
+      }
+    })
 }
 
 

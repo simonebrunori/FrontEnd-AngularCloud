@@ -3,7 +3,7 @@
   <div class="list-group">
     <a routerLink="/dashboard/mailbox/inbox" class="list-group-item">
       <i class="fa fa-inbox fa-fw m-r-5"></i>Inbox
-      <span class="badge bg-warning">4</span>
+      <span *ngIf="newMails>0" class="badge bg-primary">{{newMails}}</span>
     </a>
     <a routerLink="/dashboard/mailbox/new" class="list-group-item">
       <i class="fas fa-newspaper fa-fw m-r-5"></i>New
@@ -19,12 +19,15 @@
   <div class="list-group">
     <a routerLink="/dashboard/mailbox/important" class="list-group-item">
       <i class="fa fa-exclamation-circle fa-fw m-r-5"></i>Important
+      <span *ngIf="newImportant>0" class="badge bg-danger">{{newImportant}}</span>
     </a>
     <a routerLink="/dashboard/mailbox/communication" class="list-group-item">
       <i class="fas fa-comments fa-fw m-r-5"></i>Communication
+      <span *ngIf="newCommunication>0" class="badge bg-success">{{newCommunication}}</span>
     </a>
     <a routerLink="/dashboard/mailbox/homework" class="list-group-item">
       <i class="fas fa-briefcase fa-fw m-r-5"></i>Homework
+      <span *ngIf="newHomework>0" class="badge bg-warning">{{newHomework}}</span>
     </a>
   </div>
 </div>

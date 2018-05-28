@@ -24,6 +24,12 @@ export class HomeworkMailsComponent implements OnInit {
   atLeastOneChecked=false;
   checkedMails=[];
 
+  mailsCount=0;
+  disableNext=true;
+  disablePrev=true;
+
+  newMails=0;
+
   constructor(private mailService:MailService,private authService: AuthService) { }
 
   // checkAll(){
@@ -72,12 +78,7 @@ export class HomeworkMailsComponent implements OnInit {
   getHomeworkMails(){
     this.mailService.getHomeworkMails(this.limit, this.skip).subscribe(data=>{
       this.checkReadMails(data.mails);
-      if(data.mails.length!=0){
-        this.startElement=this.skip+1;
-        this.endElement=this.mails.length;
-      }else{
-        this.empty=true;
-      }
+      this.getMailsCount();
     })
   }
 
@@ -120,6 +121,45 @@ export class HomeworkMailsComponent implements OnInit {
     this.getHomeworkMails();  //Call getHomeworkMails function to get HOMEWORK email on refresh button click
   }
 
+    //Function to move to previous page in pagination
+    previous(){
+      if(this.skip-this.limit>=0){
+        this.skip=this.skip-this.limit;
+        this.refresh();
+        
+      } 
+    }
+  
+    //Function to move to next page in pagination
+    next(){
+      this.skip=this.skip+this.limit;
+      this.refresh();
+    }
+  
+    //Function to get mails count
+  getMailsCount(){
+    this.mailService.getHomeworkMailCount().subscribe(data=>{
+      this.mailsCount=data.count;
+      if(this.mails.length!=0){   //control to disable pagination
+        this.startElement=this.skip+1;
+        this.endElement=this.startElement+this.mails.length-1;
+        if(this.startElement<this.limit+1){
+          this.disablePrev=true;
+        }else{
+          this.disablePrev=false;
+        }
+        if(this.endElement==this.mailsCount){
+          this.disableNext=true;
+        }else{
+          this.disableNext=false;
+        }
+      }else{
+        this.disableNext=true;
+        this.empty=true;
+      }
+    })
+  }
+
   ngOnInit() {
 
     //Get the userID to check if email are read
@@ -128,6 +168,10 @@ export class HomeworkMailsComponent implements OnInit {
       this.getHomeworkMails();  //get HOMEWORK emails on component load
     })
     
+    //get the number of new mails
+    this.mailService.getNewHomeworkMailCount().subscribe(data=>{
+      this.newMails=data.count;
+    })
     
 
     

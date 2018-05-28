@@ -24,6 +24,11 @@ export class InboxComponent implements OnInit {
   checkedMails=[];
   empty=false;
 
+  mailsCount=0;
+  disableNext=true;
+  disablePrev=true;
+
+  newMails=0;
 
   
 
@@ -91,12 +96,7 @@ export class InboxComponent implements OnInit {
   getMails(){
     this.mailService.getMails(this.limit, this.skip).subscribe(data=>{
       this.checkReadMails(data.mails);
-      if(data.mails.length!=0){
-        this.startElement=this.skip+1;
-        this.endElement=this.mails.length;
-      }else{
-        this.empty=true;
-      }
+      this.getMailsCount();
     })
   }
 
@@ -141,6 +141,51 @@ export class InboxComponent implements OnInit {
     this.refresh();   //after update refresh the inbox
   }
 
+
+  //Function to move to previous page in pagination
+  previous(){
+    if(this.skip-this.limit>=0){
+      this.skip=this.skip-this.limit;
+      this.refresh();
+      
+    } 
+  }
+
+  //Function to move to next page in pagination
+  next(){
+    this.skip=this.skip+this.limit;
+    this.refresh();
+  }
+
+  //Function to get mails count
+getMailsCount(){
+  this.mailService.getInboxMailCount().subscribe(data=>{
+    this.mailsCount=data.count;
+    if(this.mails.length!=0){   //control to disable pagination
+      this.startElement=this.skip+1;
+      this.endElement=this.startElement+this.mails.length-1;
+      if(this.startElement<this.limit+1){
+        this.disablePrev=true;
+      }else{
+        this.disablePrev=false;
+      }
+      if(this.endElement==this.mailsCount){
+        this.disableNext=true;
+      }else{
+        this.disableNext=false;
+      }
+    }else{
+      this.disableNext=true;
+      this.empty=true;
+    }
+  })
+}
+
+
+
+
+
+
   ngOnInit() {
 
 
@@ -148,6 +193,12 @@ export class InboxComponent implements OnInit {
     this.authService.getProfile().subscribe(data=>{
       this.userId=data.user._id;
       this.getMails();  //get all emails on component load
+    })
+
+
+    //Get the number of new mails
+    this.mailService.getNewMailCount().subscribe(data=>{
+      this.newMails=data.count;
     })
     
     

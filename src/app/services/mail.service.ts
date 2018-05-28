@@ -124,6 +124,65 @@ export class MailService {
     this.createAuthenticationHeaders();   //create the header for the request
     return this.http.put(this.domain + 'mails/mailDelete', mailData , this.options).map(res=>res.json()); 
   }
+
+  //Function to get inbox mail count 
+  getInboxMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailInboxCount' , this.options).map(res=>res.json()); 
+  }
   
+  //Function to get sent mail count 
+  getSentMailCount(username){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailSentCount/'+username , this.options).map(res=>res.json()); 
+  }
+
+  //Function to get new mail count 
+  getNewMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailNewCount' , this.options).map(res=>res.json()); 
+  }
+
+  //Function to get trash mail count 
+  getTrashMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailTrashCount' , this.options).map(res=>res.json()); 
+  }
+
+  //Function to get important mail count 
+  getImportantMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailImportantCount' , this.options).map(res=>res.json()); 
+  }
+
+  //Function to get homework mail count 
+  getHomeworkMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailHomeworkCount' , this.options).map(res=>res.json()); 
+  }
+   //Function to get homework mail count 
+   getCommunicationMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailCommunicationCount' , this.options).map(res=>res.json()); 
+  }
+
+
+  //Function to get NEW IMPORTANT mail count 
+  getNewImportantMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailNewImportantCount' , this.options).map(res=>res.json()); 
+  }
+
+  //Function to get NEW COMMUNICATION mail count 
+  getNewCommunicationMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailNewCommunicationCount' , this.options).map(res=>res.json()); 
+  }
+
+  //Function to get NEW HOMEWORK mail count 
+  getNewHomeworkMailCount(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/mailNewHomeworkCount' , this.options).map(res=>res.json()); 
+  }
 
 }

@@ -20,6 +20,8 @@ export class SidebarComponent implements AfterViewInit, OnInit {
   }
   ngOnInit(){
     this.userType=localStorage.getItem('type'); //load user type to browser local storage
+
+    
   }
 
 }

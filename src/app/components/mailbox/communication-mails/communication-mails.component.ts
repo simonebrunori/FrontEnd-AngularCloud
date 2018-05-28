@@ -22,6 +22,11 @@ export class CommunicationMailsComponent implements OnInit {
   atLeastOneChecked=false;
   checkedMails=[];
 
+  mailsCount=0;
+  disableNext=true;
+  disablePrev=true;
+  newMails=0;
+
   constructor(private mailService:MailService,private authService: AuthService) { }
 
   // checkAll(){
@@ -70,12 +75,7 @@ export class CommunicationMailsComponent implements OnInit {
   getCommunicationMails(){
     this.mailService.getCommunicationMails(this.limit, this.skip).subscribe(data=>{
       this.checkReadMails(data.mails);
-      if(data.mails.length!=0){
-        this.startElement=this.skip+1;
-        this.endElement=this.mails.length;
-      }else{
-        this.empty=true;
-      }
+      this.getMailsCount();
     })
   }
 
@@ -119,6 +119,47 @@ export class CommunicationMailsComponent implements OnInit {
     this.getCommunicationMails();  //Call getCommunicationMails function to get COMMUNICATION email on refresh button click
   }
 
+
+
+  //Function to move to previous page in pagination
+  previous(){
+    if(this.skip-this.limit>=0){
+      this.skip=this.skip-this.limit;
+      this.refresh();
+      
+    } 
+  }
+
+  //Function to move to next page in pagination
+  next(){
+    this.skip=this.skip+this.limit;
+    this.refresh();
+  }
+
+  //Function to get mails count
+getMailsCount(){
+  this.mailService.getCommunicationMailCount().subscribe(data=>{
+    this.mailsCount=data.count;
+    if(this.mails.length!=0){   //control to disable pagination
+      this.startElement=this.skip+1;
+      this.endElement=this.startElement+this.mails.length-1;
+      if(this.startElement<this.limit+1){
+        this.disablePrev=true;
+      }else{
+        this.disablePrev=false;
+      }
+      if(this.endElement==this.mailsCount){
+        this.disableNext=true;
+      }else{
+        this.disableNext=false;
+      }
+    }else{
+      this.disableNext=true;
+      this.empty=true;
+    }
+  })
+}
+
   ngOnInit() {
 
         //Get the userID to check if email are read
@@ -127,6 +168,10 @@ export class CommunicationMailsComponent implements OnInit {
           this.getCommunicationMails();  //get COMMUNICATION emails on component load
         })
     
+        //get the number of new mails
+        this.mailService.getNewCommunicationMailCount().subscribe(data=>{
+          this.newMails=data.count;
+        })
     
 
     

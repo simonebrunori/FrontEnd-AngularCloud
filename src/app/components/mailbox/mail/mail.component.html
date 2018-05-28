@@ -14,7 +14,7 @@
             </button>
           </div>-->
           <button class="btn btn-sm btn-default m-l-15" routerLink="/dashboard/mailbox/{{previousUrl}}" style="margin-left: 0px;"><i class="fas fa-arrow-left m-r-5"></i>Go Back</button>
-            <button class="btn btn-sm btn-default" title="Delete email" *ngIf="!disable">
+            <button class="btn btn-sm btn-default" title="Delete email" *ngIf="!disable" (click)="deleteMail()">
               <i class="fa fa-trash"></i>
             </button>
             
@@ -96,7 +96,7 @@
     </div>
       <div class="clearfix p-t-15 p-b-15" style="border-top: 1px solid #eee;">
         <div class="col-sm-6">
-            <button class="btn btn-sm btn-default" *ngIf="!disable">
+            <button class="btn btn-sm btn-default" *ngIf="!disable" (click)="deleteMail()">
               <i class="fa fa-trash m-r-5"></i>Delete</button>
           </div>
         <!--<div class="col-sm-6 align-right">
