@@ -133,7 +133,11 @@ export class FolderService {
     return this.http.delete(this.domain + 'folders/deleteElement/' + id, this.options).map(res => res.json());
   }
 
-
+ //Function to get total files number
+ getFilesNumber(){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.get(this.domain + 'folders/getFilesCount' , this.options).map(res=>res.json()); 
+}
 
 
 

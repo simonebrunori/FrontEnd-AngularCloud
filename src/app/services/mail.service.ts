@@ -185,4 +185,10 @@ export class MailService {
     return this.http.get(this.domain + 'mails/mailNewHomeworkCount' , this.options).map(res=>res.json()); 
   }
 
+  //Function to get total number of mails  
+  getTotalMailsNumber(){
+    this.createAuthenticationHeaders();   //create the header for the request
+    return this.http.get(this.domain + 'mails/getTotalMailCount' , this.options).map(res=>res.json()); 
+  }
+
 }

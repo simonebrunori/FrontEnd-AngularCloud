@@ -72,6 +72,18 @@ export class AuthService {
     return tokenNotExpired();
   }
 
+  //Function to get students number
+  getTotalStudents(){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/studentsCount', this.options).map(res=>res.json());
+  }
+
+  //Function to get teachers number
+  getTotalTeachers(){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/teachersCount', this.options).map(res=>res.json());
+  }
+
   
 
 }
