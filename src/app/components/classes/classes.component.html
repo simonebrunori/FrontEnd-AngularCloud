@@ -42,9 +42,11 @@
                     <div class="panel-heading" role="tab" [attr.id]="'accordione_1-heading-'+i">             <!--id="accordion_1-heading-{{i}}"-->
                         <h4 class="panel-title">
                             <a role="button" data-toggle="collapse"  [attr.data-parent]="'#accordion_1-'+i"  [attr.href]="'#accordion_1-'+i" aria-expanded="false" [attr.aria-controls]="'#accordion_1-'+i">      <!--accordion_1-{{i}}      (click)="loadStudents(class.year, class.section)"-->
-                                    {{class.year}} {{class.section}}
+                                    {{class.year}} {{class.section}}    <i class="far fa-hand-pointer" style="float:right;"></i>
                             </a>
+                            
                         </h4>
+                        
                     </div>
                     <div [attr.id]="'accordion_1-'+i" class="panel-collapse collapse" role="tabpanel" [attr.aria-labelledby]="'accordion_1-heading-'+i">
                         <ul class="list-group">         <!-- *ngFor="let student of students[i].students"-->
