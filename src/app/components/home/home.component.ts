@@ -3,6 +3,9 @@ import {AuthService} from '../../services/auth.service';
 import {FolderService} from '../../services/folder.service';
 import {MailService} from '../../services/mail.service';
 import {Router} from '@angular/router';
+declare var jquery:any;
+declare var $ :any;
+
 
 @Component({
   selector: 'app-home',
@@ -15,6 +18,7 @@ export class HomeComponent implements OnInit {
   teachers=0;
   files=0;
   mails=0;
+ 
 
   constructor(private authService: AuthService, private router:Router, private folderService: FolderService, private mailService:MailService) { }
 
@@ -23,6 +27,8 @@ export class HomeComponent implements OnInit {
     this.authService.logout();  //call authService logout function 
     this.router.navigate(['/login']); 
   }
+
+
 
   ngOnInit() {
 
@@ -41,6 +47,9 @@ export class HomeComponent implements OnInit {
     this.mailService.getTotalMailsNumber().subscribe(data=>{
       this.mails=data.count;
     })
+
+    
+
 
     
 

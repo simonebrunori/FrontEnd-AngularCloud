@@ -84,6 +84,25 @@ export class AuthService {
     return this.http.get(this.domain+'users/teachersCount', this.options).map(res=>res.json());
   }
 
+
+  //Function to get todos 
+  getTodos(){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/getTodos', this.options).map(res=>res.json());
+  }
+
+  //Function to post todos 
+  postTodos(todo){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.put(this.domain+'users/addTodo', todo, this.options).map(res=>res.json());
+  }
+
+  //Function to post todos 
+  deleteTodos(id){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/deleteTodo/'+id, this.options).map(res=>res.json());
+  }
+
   
 
 }

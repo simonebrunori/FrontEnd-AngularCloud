@@ -46,6 +46,7 @@ import { ImportantMailsComponent } from './components/mailbox/important-mails/im
 import { CommunicationMailsComponent } from './components/mailbox/communication-mails/communication-mails.component';
 import { SentMailsComponent } from './components/mailbox/sent-mails/sent-mails.component';
 import { NewMailsComponent } from './components/mailbox/new-mails/new-mails.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 
 
@@ -74,7 +75,8 @@ import { NewMailsComponent } from './components/mailbox/new-mails/new-mails.comp
     ImportantMailsComponent,
     CommunicationMailsComponent,
     SentMailsComponent,
-    NewMailsComponent
+    NewMailsComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
