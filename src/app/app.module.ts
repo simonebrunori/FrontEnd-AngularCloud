@@ -12,6 +12,8 @@ import {ModalModule} from "ngx-modal";
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { HttpClientModule} from '@angular/common/http';
 import { ICheckModule } from 'ng4-icheck';
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 
 
 
@@ -47,6 +49,7 @@ import { CommunicationMailsComponent } from './components/mailbox/communication-
 import { SentMailsComponent } from './components/mailbox/sent-mails/sent-mails.component';
 import { NewMailsComponent } from './components/mailbox/new-mails/new-mails.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { TextEditorComponent } from './components/text-editor/text-editor.component';
 
 
 
@@ -76,7 +79,8 @@ import { TodoComponent } from './components/todo/todo.component';
     CommunicationMailsComponent,
     SentMailsComponent,
     NewMailsComponent,
-    TodoComponent
+    TodoComponent,
+    TextEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +96,8 @@ import { TodoComponent } from './components/todo/todo.component';
     ToastrModule.forRoot(),
     ModalModule,
     HttpClientModule,
-    ICheckModule.forRoot()
+    ICheckModule.forRoot(),
+    EditorModule
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService, MailService],
   bootstrap: [AppComponent]

@@ -103,6 +103,19 @@ export class AuthService {
     return this.http.get(this.domain+'users/deleteTodo/'+id, this.options).map(res=>res.json());
   }
 
+
+  //Function to set todos as closed 
+  closeTodo(id){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/todoClosed/'+id, this.options).map(res=>res.json());
+  }
+  
+  //Function to set todos as open 
+  openTodo(id){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/todoOpen/'+id, this.options).map(res=>res.json());
+  }
+
   
 
 }
