@@ -1,0 +1,27 @@
+
+  <div class="panel panel-default" id="texted">
+    <div class="panel-heading">TEXT EDITOR 
+      <a (click)="expand()" style="float: right; color: inherit; cursor: pointer;"><i class="fas fa-expand-arrows-alt"></i></a>
+    </div>
+    <div class="panel-body">
+      <editor *ngIf="!fullscreen" [(ngModel)]="content" apiKey="yt1d4p5sz56kkqw1kwn0u74n1pljvg1moyc53ifms8j5hyvx" 
+      [init]="{plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', 
+                          'searchreplace wordcount visualblocks visualchars code fullscreen', 
+                          'insertdatetime media nonbreaking save table contextmenu directionality', 
+                          'emoticons template paste textcolor colorpicker textpattern imagetools'],
+              toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+              toolbar2: 'print preview media | forecolor backcolor emoticons',
+              theme: 'modern',
+            height:300}"></editor>
+
+              <editor *ngIf="fullscreen" [(ngModel)]="content" apiKey="yt1d4p5sz56kkqw1kwn0u74n1pljvg1moyc53ifms8j5hyvx" 
+              [init]="{plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', 
+                                  'searchreplace wordcount visualblocks visualchars code fullscreen', 
+                                  'insertdatetime media nonbreaking save table contextmenu directionality', 
+                                  'emoticons template paste textcolor colorpicker textpattern imagetools'],
+                      toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                      toolbar2: 'print preview media | forecolor backcolor emoticons',
+                      theme: 'modern',
+                      height: 1000}"></editor>
+    </div>
+</div>

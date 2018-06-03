@@ -1,0 +1,26 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">TO-DO WIDGET</div>
+  <div class="panel-body">
+      <div class="input-group m-b-15">
+          <input type="text" placeholder="Please add to-do item..." class="input input-sm form-control js-input" [(ngModel)]="todoText">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-default js-btn-add-item" (click)="addNew()">
+                  <i class="fa fa-plus m-r-5"></i>Add item</button>
+          </span>
+      </div>
+      <ul class="todo-list">
+          <li *ngFor="let todo of todos" [attr.id]="todo._id" [ngClass]="{'closed': todo.closed}">
+              <label *ngIf="!todo.closed"><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="check(todo._id)" (ifUnchecked)="unCheck(todo._id)" ></label>
+              <label *ngIf="todo.closed" ><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="check(todo._id)" (ifUnchecked)="unCheck(todo._id)" checked></label>
+              <span>{{todo.text}}</span>
+              <span class="controls pull-right">
+                <a (click)="delete(todo._id)">
+                    <i class="fa fa-trash js-delete-todo"></i>
+                </a>
+                    
+              </span>
+          </li>
+      </ul>
+  </div>
+</div>

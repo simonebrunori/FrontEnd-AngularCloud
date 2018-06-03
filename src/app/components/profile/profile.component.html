@@ -4,128 +4,33 @@
       <div class="profile-info">
           <img src="../../assets/images/avatars/face2.jpg" alt="User Image" />
           <div class="sub">
-              <div class="name">{{username}}</div>
+              <div class="name">{{user.username}}</div>
               <div class="detail">
-                  <i class="far fa-envelope m-r-5"></i>{{email}}
+                  <i class="far fa-envelope m-r-5"></i>{{user.email}}
               </div>
           </div>
       </div>
   </div>
+  
   <div class="m-t-15 clearfix">
+
+
       <div class="col-sm-8">
-          <div class="post-box">
-              <textarea cols="12" rows="8" placeholder="What do you thinking now..."></textarea>
-              <div class="footer">
-                  <div class="row clearfix">
-                      <div class="col-sm-8">
-                          <ul class="extra">
-                              <li data-toggle="tooltip" data-title="Add Photo(s)"><i class="fa fa-photo"></i></li>
-                              <li data-toggle="tooltip" data-title="Add User(s)"><i class="fa fa-user-plus"></i></li>
-                              <li data-toggle="tooltip" data-title="Add Place" class="m-l--5"><i class="fa fa-map-marker"></i></li>
-                          </ul>
-                      </div>
-                      <div class="col-sm-4 align-right">
-                          <button class="btn btn-sm btn-success">SHARE</button>
-                      </div>
+
+            <div class="panel panel-default">
+                    <div class="panel-body">
+                            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add new student</button>
+                            <div style="float: right;">
+                                    Widgets in dashboard: 
+                                    <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkTodo()" (ifUnchecked)="unCheckTodo()" > ToDo</label>
+                                    <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkTE()" (ifUnchecked)="unCheckTE()" > Text Editor</label>
+                            </div>
+                    </div>
+                    
                   </div>
-              </div>
-          </div>
-          <div class="post-item">
-              <div class="header">
-                  <img src="../../assets/images/avatars/face5.jpg" alt="User Image" />
-                  <div class="title">John Doe posted on your timeline</div>
-                  <div class="time">45 minutes ago</div>
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-<i class="fa fa-ellipsis-v"></i>
-</button>
-                      <ul class="dropdown-menu pull-right">
-                          <li><a href="javascript:void(0);">Dropdown link - 1</a></li>
-                          <li><a href="javascript:void(0);">Dropdown link - 2</a></li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="body">
-                  <p>Lorem ipsum dolor sit amet, vim sale minimum mnesarchum in, ius veniam consulatu maiestatis
-                      ne. Pri liber fabulas vituperata id. Id sea modo vivendum, ei justo ipsum assum quo.
-                      Cu nec veniam eruditi mediocrem.</p>
-                  <div class="image-post">
-                      <img src="../../assets/images/cropit-demo.jpg" class="img-responsive" alt="Cover Image" />
-                  </div>
-              </div>
-              <div class="footer">
-                  <ul>
-                      <li>
-                          <a href="javascript:void(0);">
-<i class="fa fa-heart-o m-r-5"></i>Like (12)
-</a>
-                      </li>
-                      <li>
-                          <a href="javascript:void(0);">
-<i class="fa fa-comment-o m-r-5"></i>Comment (2)
-</a>
-                      </li>
-                      <li>
-                          <a href="javascript:void(0);">
-<i class="fa fa-share-alt m-r-5"></i>Share
-</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          <div class="post-item">
-              <div class="header">
-                  <img src="../../assets/images/avatars/face6.jpg" alt="User Image" />
-                  <div class="title">Nancy posted on your timeline</div>
-                  <div class="time">2 days ago</div>
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-<i class="fa fa-ellipsis-v"></i>
-</button>
-                      <ul class="dropdown-menu pull-right">
-                          <li><a href="javascript:void(0);">Dropdown link - 1</a></li>
-                          <li><a href="javascript:void(0);">Dropdown link - 2</a></li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="body">
-                  <p>Lorem ipsum dolor sit amet, vim sale minimum mnesarchum in, ius veniam consulatu maiestatis
-                      ne. Pri liber fabulas vituperata id. Id sea modo vivendum, ei justo ipsum assum quo.
-                      Cu nec veniam eruditi mediocrem.</p>
-                  <p>Qui nullam viderer contentiones cu. An quodsi voluptatum mei, posse debet commodo usu an,
-                      est in animal salutandi explicari. No mei facilis ponderum iudicabit, cum in sint dolore
-                      explicari. Ei regione quaeque theophrastus nam, duis animal tractatos ei mei, quando
-                      equidem pro ne.</p>
-                  <p>Mel ad wisi animal platonem, sit ne graeco mediocrem temporibus. Congue commodo his id, sit
-                      impedit copiosae accommodare no, ridens delectus inciderint sea ad. An causae fierent
-                      mei, pro eu integre deleniti mandamus. Audire consectetuer at usu. No tempor constituam
-                      interpretaris mel, altera appellantur eum ex.</p>
-                  <p>Cum putant melius ea, nulla possit tibique est ut. Qui et senserit iudicabit delicatissimi,
-                      vis brute verear consequuntur in. Eos utroque indoctum ex. Vix et dicunt praesent.</p>
-                  <p>In sed viris menandri, id per posse consetetur theophrastus. Ad ius nostrum propriae assueverit,
-                      ea imperdiet constituam qui. Ea apeirian voluptatum eam. Mei te scaevola perfecto consequat,
-                      vim stet sententiae eu.</p>
-              </div>
-              <div class="footer">
-                  <ul>
-                      <li>
-                          <a href="javascript:void(0);">
-<i class="fa fa-heart-o m-r-5"></i>Like (35)
-</a>
-                      </li>
-                      <li>
-                          <a href="javascript:void(0);">
-<i class="fa fa-comment-o m-r-5"></i>Comment (99)
-</a>
-                      </li>
-                      <li>
-                          <a href="javascript:void(0);">
-<i class="fa fa-share-alt m-r-5"></i>Share
-</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
+          <app-text-editor></app-text-editor>
+          <app-todo></app-todo>
+          
       </div>
       <div class="col-sm-4">
           <div class="panel panel-default" data-panel-close="false" data-panel-fullscreen="false">
@@ -134,39 +39,41 @@
                   <div class="info-content">
                       <div class="info-line">
                           <div class="info-title">Gender</div>
-                          <div class="info-detail">Male</div>
+                          <div class="info-detail">{{user.gender}}</div>
                       </div>
                       <div class="info-line">
-                          <div class="info-title">Birthday</div>
-                          <div class="info-detail">Dec 08, 1990</div>
+                          <div class="info-title">Birthdate</div>
+                          <div class="info-detail">{{user.birthDate | date}}</div>
                       </div>
                       <div class="info-line">
                           <div class="info-title">Location</div>
-                          <div class="info-detail">New York, USA</div>
+                          <div class="info-detail">{{user.city}}</div>
                       </div>
                       <div class="info-line">
                           <div class="info-title">About Me</div>
                           <div class="info-detail">
-                              Ad duis omittam apeirian per, diam malis cum ad. Doming audiam eu sit, has iuvaret apeirian senserit at. Sea ne munere officiis
-                              disputationi. Falli impedit petentium has no. His munere molestie accusata ne,
-                              solum audire scripserit per ea, usu feugait adolescens adversarium te.
+                                {{user.about}}
                           </div>
                       </div>
                   </div>
               </div>
           </div>
           <div class="panel panel-default m-t-20" data-panel-close="false" data-panel-fullscreen="false">
-              <div class="panel-heading">WORK</div>
+              <div class="panel-heading">OTHER INFORMATIONS</div>
               <div class="panel-body">
                   <div class="info-content">
                       <div class="info-line">
-                          <div class="info-title">Occupation</div>
-                          <div class="info-detail">Web Developer</div>
+                          <div class="info-title">Major</div>
+                          <div class="info-detail">{{user.major}}</div>
                       </div>
-                      <div class="info-line">
-                          <div class="info-title">Skills</div>
-                          <div class="info-detail">C#, Html, Css, Javascript, JQuery, AngularJS</div>
+                      <div class="info-line" *ngIf="user.type==='T'">
+                          <div class="info-title">Subjects</div>
+                          <div class="info-detail">{{user.subjects}}</div>
                       </div>
+                      <div class="info-line" *ngIf="user.type==='S'">
+                            <div class="info-title">Class</div>
+                            <div class="info-detail">{{user.clas.year}}° {{user.clas.section}}</div>
+                        </div>
                   </div>
               </div>
           </div>
