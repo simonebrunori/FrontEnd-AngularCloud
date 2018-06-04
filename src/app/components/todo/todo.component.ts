@@ -49,7 +49,6 @@ export class TodoComponent implements OnInit {
   getTodos(){
     this.authService.getTodos().subscribe(data=>{
       this.todos=data.todos.todos;
-      console.log(this.todos);
     })
     
   }

@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   teachers=0;
   files=0;
   mails=0;
+  todo=false;
+  te=false;
  
 
   constructor(private authService: AuthService, private router:Router, private folderService: FolderService, private mailService:MailService) { }
@@ -32,21 +34,34 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    //Service to get students' count
     this.authService.getTotalStudents().subscribe(data=>{
       this.students=data.count;
     })
 
+    //Service to get teachers' count
     this.authService.getTotalTeachers().subscribe(data=>{
       this.teachers=data.count;
     })
 
+    ////Service to get files' count
     this.folderService.getFilesNumber().subscribe(data=>{
       this.files=data.count[0].count;
     })
 
+    //Service to get mails' count
     this.mailService.getTotalMailsNumber().subscribe(data=>{
       this.mails=data.count;
     })
+
+
+
+    //Service to get user's data
+    this.authService.getProfile().subscribe(data=>{
+      this.te=data.user.TE;
+      this.todo=data.user.TODO;
+    })
+
 
     
 

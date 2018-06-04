@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import {tokenNotExpired} from 'angular2-jwt';
 import {environment} from '../../environments/environment';
 
+
 @Injectable()
 export class AuthService {
 
@@ -114,6 +115,19 @@ export class AuthService {
   openTodo(id){
     this.createAuthenticationHeaders(); //create token before sending to API
     return this.http.get(this.domain+'users/todoOpen/'+id, this.options).map(res=>res.json());
+  }
+
+
+  //Function to hide/view todo widget from dashboard
+  viewHideTodo(status){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/todoStatus/'+status , this.options).map(res=>res.json());
+  }
+
+  //Function to hide/view text editor widget from dashboard
+  viewHideTE(status){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/teStatus/'+status , this.options).map(res=>res.json());
   }
 
   

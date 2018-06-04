@@ -19,11 +19,12 @@
 
             <div class="panel panel-default">
                     <div class="panel-body">
-                            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add new student</button>
                             <div style="float: right;">
                                     Widgets in dashboard: 
-                                    <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkTodo()" (ifUnchecked)="unCheckTodo()" > ToDo</label>
-                                    <label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkTE()" (ifUnchecked)="unCheckTE()" > Text Editor</label>
+                                    <label *ngIf="user.TODO"><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="viewHideTodo()" (ifUnchecked)="viewHideTodo()" checked> ToDo</label>
+                                    <label *ngIf="!user.TODO"><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="viewHideTodo()" (ifUnchecked)="viewHideTodo()" > ToDo</label>
+                                    <label  *ngIf="user.TE"><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="viewHideTe()" (ifUnchecked)="viewHideTe()" checked > Text Editor</label>
+                                    <label *ngIf="!user.TE"><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="viewHideTe()" (ifUnchecked)="viewHideTe()" > Text Editor</label>
                             </div>
                     </div>
                     
@@ -80,3 +81,7 @@
       </div>
   </div>
 </div>
+
+
+
+
