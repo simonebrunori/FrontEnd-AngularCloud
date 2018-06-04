@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -30,9 +31,5 @@ export class TextEditorComponent implements OnInit {
 
   ngOnInit() {
 
-
-    
-
   }
-
 }

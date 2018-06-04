@@ -52,7 +52,7 @@
         "assets/plugins/bootstrap-select/dist/js/bootstrap-select.js",
         "assets/plugins/summernote/dist/summernote.js",
         "assets/plugins/jquery-validation/dist/jquery.validate.js",
-        "assets/plugins/jquery-steps/build/jquery.steps.js", 
+        "assets/plugins/jquery-steps/build/jquery.steps.js",
         "assets/js/admin.js",
         "assets/js/pages/forms/form-wizard.js",
         "assets/js/pages/ui/tooltips-popovers.js"

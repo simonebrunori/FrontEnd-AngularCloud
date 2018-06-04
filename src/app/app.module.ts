@@ -12,7 +12,8 @@ import {ModalModule} from "ngx-modal";
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { HttpClientModule} from '@angular/common/http';
 import { ICheckModule } from 'ng4-icheck';
-import { EditorModule } from '@tinymce/tinymce-angular';
+// import { EditorModule } from '@tinymce/tinymce-angular';
+import { CKEditorModule } from 'ngx-ckeditor';
 
 
 
@@ -100,7 +101,9 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
     ModalModule,
     HttpClientModule,
     ICheckModule.forRoot(),
-    EditorModule
+    // EditorModule
+    CKEditorModule
+
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService, MailService],
   bootstrap: [AppComponent]
