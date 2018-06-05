@@ -12,8 +12,8 @@ import {ModalModule} from "ngx-modal";
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { HttpClientModule} from '@angular/common/http';
 import { ICheckModule } from 'ng4-icheck';
-// import { EditorModule } from '@tinymce/tinymce-angular';
-import { CKEditorModule } from 'ngx-ckeditor';
+import { EditorModule } from '@tinymce/tinymce-angular';
+// import { CKEditorModule } from 'ngx-ckeditor';
 
 
 
@@ -27,6 +27,8 @@ import { HomeComponent } from './components/home/home.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
+import { AdminGuard } from './guard/admin.guard';
+import { NotAdminGuard } from './guard/notAdmin.guard';
 import { NotAuthGuard } from './guard/notAuth.guard';
 import { ClassService } from './services/class.service';
 import { FolderService} from './services/folder.service';
@@ -53,6 +55,8 @@ import { SentMailsComponent } from './components/mailbox/sent-mails/sent-mails.c
 import { NewMailsComponent } from './components/mailbox/new-mails/new-mails.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { NewUserComponent } from './components/new-user/new-user.component';
 
 
 
@@ -84,7 +88,9 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
     SentMailsComponent,
     NewMailsComponent,
     TodoComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    UsersListComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -101,11 +107,11 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
     ModalModule,
     HttpClientModule,
     ICheckModule.forRoot(),
-    // EditorModule
-    CKEditorModule
+    EditorModule,
+    // CKEditorModule
 
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService, MailService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, ClassService, FolderService, MailService, AdminGuard, NotAdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

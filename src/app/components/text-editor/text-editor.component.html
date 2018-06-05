@@ -1,31 +1,67 @@
 
   <div class="panel panel-default" id="texted">
     <div class="panel-heading">TEXT EDITOR 
-      <a (click)="expand()" style="float: right; color: inherit; cursor: pointer;"><i class="fas fa-expand-arrows-alt"></i></a>
+      
+        <a (click)="expand()" style="float: right; color: inherit; cursor: pointer;"><i class="fas fa-expand-arrows-alt"></i></a>
+
+        
+      <button *ngIf="!fullscreen" class="btn btn-danger btn-xs" style="float: right; margin-right: 10px;" data-target="#smallModal" data-toggle="modal"><i class="far fa-file-pdf"></i> Export PDF</button>
+      
+      
+     
     </div>
     <div class="panel-body">
-      <!-- <editor *ngIf="!fullscreen" [(ngModel)]="content" apiKey="yt1d4p5sz56kkqw1kwn0u74n1pljvg1moyc53ifms8j5hyvx" 
+      <editor *ngIf="!fullscreen" [(ngModel)]="content" apiKey="yt1d4p5sz56kkqw1kwn0u74n1pljvg1moyc53ifms8j5hyvx" 
       [init]="{plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', 
-                          'searchreplace wordcount visualblocks visualchars code fullscreen', 
+                          'searchreplace wordcount visualblocks visualchars code', 
                           'insertdatetime media nonbreaking save table contextmenu directionality', 
                           'emoticons template paste textcolor colorpicker textpattern imagetools'],
-              toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+              toolbar1: 'insertfile undo redo | sizeselect | bold italic | fontselect |  fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
               toolbar2: 'print preview media | forecolor backcolor emoticons',
               theme: 'modern',
             height:300}"></editor>
 
               <editor *ngIf="fullscreen" [(ngModel)]="content" apiKey="yt1d4p5sz56kkqw1kwn0u74n1pljvg1moyc53ifms8j5hyvx" 
               [init]="{plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', 
-                                  'searchreplace wordcount visualblocks visualchars code fullscreen', 
+                                  'searchreplace wordcount visualblocks visualchars code', 
                                   'insertdatetime media nonbreaking save table contextmenu directionality', 
                                   'emoticons template paste textcolor colorpicker textpattern imagetools'],
-                      toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                      toolbar1: 'insertfile undo redo | sizeselect | bold italic | fontselect |  fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
                       toolbar2: 'print preview media | forecolor backcolor emoticons',
                       theme: 'modern',
-                      height: 1000}"></editor> -->
+                      height: 1000}"></editor>
 
-                      <ck-editor name="ckeditor" [(ngModel)]="content" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
-
+                      <!-- <ck-editor name="ckeditor" [(ngModel)]="content" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor> -->
 
     </div>
 </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" style="margin-top:50px;">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="smallModalLabel">EXPORT TO PDF</h4>
+                </div>
+                <form ngNativeValidate>
+                <div class="modal-body">
+                  <div class="row">
+                  <div class="col-md-12">
+                    
+                    <label>Filename:</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="filename" id="filename" class="form-control" placeholder="Filename" [(ngModel)]="filename" required/>
+                        <span class="input-group-addon">.pdf</span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="discard()">DISCARD</button>
+                    <button type="submit" class="btn btn-success"  (click)="exportToPdf()">EXPORT</button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->

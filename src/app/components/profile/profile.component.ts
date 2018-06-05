@@ -6,10 +6,7 @@ declare var $ :any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  host: {
-    '(document:click)': 'onClick($event)',
-  },
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 
@@ -22,14 +19,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  
 
-  //Function to reset modal's form
-  onClick(event) {
-    $('.modal').on('hidden.bs.modal', function(){
-      $(this).find('form')[0].reset();
-    });
-  }
 
 
   //Functio to call viewHideTodo service

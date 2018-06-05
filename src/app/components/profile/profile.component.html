@@ -59,7 +59,7 @@
                   </div>
               </div>
           </div>
-          <div class="panel panel-default m-t-20" data-panel-close="false" data-panel-fullscreen="false">
+          <div *ngIf="user.type!=='A'" class="panel panel-default m-t-20" data-panel-close="false" data-panel-fullscreen="false">
               <div class="panel-heading">OTHER INFORMATIONS</div>
               <div class="panel-body">
                   <div class="info-content">

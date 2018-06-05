@@ -16,7 +16,7 @@
       </li>
       <!--END DASHBOARD -->
       <!-- CLASSES -->
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="userType==='T'">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="userType==='T' && userType!=='A'" >
         <a routerLink="/dashboard/classes">
           <i class="fas fa-users fa-lg"></i>
           <span class="nav-label">&ensp;My Classes</span>
@@ -25,7 +25,7 @@
     <!--END CLASSES -->
 
     <!-- FILE MANAGER -->
-    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="userType!=='A'">
       <a routerLink="/dashboard/filemanager">
         <i class="fas fa-folder-open fa-lg"></i>
         <span class="nav-label">&ensp;My Shared Files</span>
@@ -33,14 +33,32 @@
   </li>
   <!--FILE MANAGER -->
 
-  <!-- FILE MANAGER -->
-  <li [routerLinkActive]="['active']" >
+  <!-- INBOX -->
+  <li [routerLinkActive]="['active']" *ngIf="userType!=='A'">
       <a routerLink="/dashboard/mailbox">
         <i class="fas fa-envelope fa-lg"></i>
         <span class="nav-label">&ensp;Inbox</span>
       </a>
   </li>
-  <!--FILE MANAGER -->
+  <!--INBOX -->
+
+  <!-- USERS LIST -->
+  <li [routerLinkActive]="['active']" *ngIf="userType==='A'">
+      <a routerLink="/dashboard/usersList">
+        <i class="fas fa-users fa-lg"></i>
+        <span class="nav-label">&ensp;Users List</span>
+      </a>
+  </li>
+  <!--USERS LIST -->
+
+  <!-- NEW USER -->
+  <li [routerLinkActive]="['active']" *ngIf="userType==='A'">
+      <a routerLink="/dashboard/userNew">
+        <i class="fas fa-user-plus fa-lg"></i>
+        <span class="nav-label">&ensp;New User</span>
+      </a>
+  </li>
+  <!--NEW USERS-->
         
       
       

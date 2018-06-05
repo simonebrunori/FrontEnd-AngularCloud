@@ -139,6 +139,12 @@ export class FolderService {
   return this.http.get(this.domain + 'folders/getFilesCount' , this.options).map(res=>res.json()); 
 }
 
+//Function to create pdf
+createPdf(file){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.post(this.domain + 'pdf' , file, this.options).map(res=>res.json()); 
+}
+
 
 
 

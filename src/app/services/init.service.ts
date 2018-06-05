@@ -2,7 +2,6 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 
 import '../../assets/js/admin.js';
-import '../../assets/js/pages/forms/editors.js';
 declare var $;
 
 

@@ -2,6 +2,8 @@ import { RouterModule,Routes} from '@angular/router';
 import { NgModule} from '@angular/core';
 import { AuthGuard} from './guard/auth.guard';
 import { NotAuthGuard} from './guard/notAuth.guard';
+import { AdminGuard} from './guard/admin.guard';  //solo admin
+import { NotAdminGuard} from './guard/notAdmin.guard';  //tutti tranne admin
 import { LoginComponent} from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent} from './components/profile/profile.component';
@@ -12,6 +14,8 @@ import { MailboxComponent} from './components/mailbox/mailbox.component';
 import { InboxComponent} from './components/mailbox/inbox/inbox.component';
 import { ComposeComponent} from './components/mailbox/compose/compose.component';
 import { MailComponent} from './components/mailbox/mail/mail.component';
+import { UsersListComponent} from './components/users-list/users-list.component';
+import { NewUserComponent} from './components/new-user/new-user.component';
 
 
 import { NewMailsComponent} from './components/mailbox/new-mails/new-mails.component';
@@ -28,7 +32,7 @@ import { CommunicationMailsComponent} from './components/mailbox/communication-m
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo:'dashboard/home',
+    redirectTo:'login',
     pathMatch: 'full'
   },
   {
@@ -44,22 +48,32 @@ const appRoutes: Routes = [
       {
         path: 'home',          //home route
         component: HomeComponent,
-        canActivate: [AuthGuard] // User must be logged in to view this route
+        canActivate: [AuthGuard]// User must be logged in to view this route
       }, 
       {
         path: 'classes',          //classes route
         component: ClassesComponent,
-        canActivate: [AuthGuard] // User must be logged in to view this route
+        canActivate: [AuthGuard,NotAdminGuard]  // User must be logged in to view this route
       },
       {
         path: 'filemanager',          //file manager route
         component: FileManagerComponent,
-        canActivate: [AuthGuard] // User must be logged in to view this route
+        canActivate: [AuthGuard,NotAdminGuard] // User must be logged in to view this route
+      },
+      {
+        path: 'usersList',          //users list route
+        component: UsersListComponent,
+        canActivate: [AuthGuard, AdminGuard] // User must be logged in to view this route
+      },
+      {
+        path: 'userNew',          //new user route
+        component: NewUserComponent,
+        canActivate: [AuthGuard, AdminGuard] // User must be logged in to view this route
       },
       {
         path: 'mailbox',          //mailbox manager route
         component:MailboxComponent,
-        canActivate: [AuthGuard], // User must be logged in to view this route
+        canActivate: [AuthGuard,NotAdminGuard], // User must be logged in to view this route
         children:[
           {
             path: 'inbox',          //inbox route
@@ -117,8 +131,8 @@ const appRoutes: Routes = [
   }, 
   {
     path: '**',             // "Catch-All" Route
-    component: DashboardComponent,
-    canActivate:[AuthGuard]
+    component: LoginComponent,
+    canActivate:[NotAuthGuard]
   } 
 
 ];
