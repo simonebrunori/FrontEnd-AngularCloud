@@ -1,0 +1,41 @@
+<div class="page-heading">
+  <h1>USERS LIST</h1>
+  <ol class="breadcrumb">
+    <li><a routerLink="/dashboard/home"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active"><a routerLink="/dashboard/classes"><i class="fas fa-users"></i> Users List</a></li>
+  </ol>
+</div>
+<div class="page-body">
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <div class="table-responsive">
+            <table id="userList" class="table table-striped table-hover js-exportable dataTable" >
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Class</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.username}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.surname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.type}}</td>
+                        <td *ngIf="user.clas!=undefined">{{user.clas.year}}° {{user.clas.section}}</td>
+                        <td *ngIf="user.clas==undefined">-</td>
+                        <td><div class="centered"><a href="" class="btn btn-success btn-xs" style="width: 48%"><i class="fas fa-eye"></i></a><a href="" class="btn btn-danger btn-xs" style="margin-left: 5px; width: 48%"><i class="fas fa-trash-alt"></i></a></div></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+</div>

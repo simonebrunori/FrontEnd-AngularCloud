@@ -130,6 +130,19 @@ export class AuthService {
     return this.http.get(this.domain+'users/teStatus/'+status , this.options).map(res=>res.json());
   }
 
+  //Function to get all users
+  getAllUsersWhithMe(){
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain+'users/getAllUsers', this.options).map(res=>res.json());
+  }
+
+  // Function to check if username is taken
+  checkUsername(username) {
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.get(this.domain + 'users/checkUsername/' + username, this.options).map(res => res.json());
+  }
+
+
   
 
 }

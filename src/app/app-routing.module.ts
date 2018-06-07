@@ -73,7 +73,7 @@ const appRoutes: Routes = [
       {
         path: 'mailbox',          //mailbox manager route
         component:MailboxComponent,
-        canActivate: [AuthGuard,NotAdminGuard], // User must be logged in to view this route
+        canActivate: [AuthGuard], // User must be logged in to view this route
         children:[
           {
             path: 'inbox',          //inbox route
