@@ -16,6 +16,7 @@ import { ComposeComponent} from './components/mailbox/compose/compose.component'
 import { MailComponent} from './components/mailbox/mail/mail.component';
 import { UsersListComponent} from './components/users-list/users-list.component';
 import { NewUserComponent} from './components/new-user/new-user.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 import { NewMailsComponent} from './components/mailbox/new-mails/new-mails.component';
@@ -63,6 +64,11 @@ const appRoutes: Routes = [
       {
         path: 'usersList',          //users list route
         component: UsersListComponent,
+        canActivate: [AuthGuard, AdminGuard], // User must be logged in to view this route
+      },
+      {
+        path: 'usersList/userDetails/:id',          //user details route
+        component: UserDetailsComponent,
         canActivate: [AuthGuard, AdminGuard] // User must be logged in to view this route
       },
       {

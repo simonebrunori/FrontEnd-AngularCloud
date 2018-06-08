@@ -21,7 +21,12 @@ export class UsersListComponent implements OnInit {
 
     setTimeout(function(){
       $(function(){
-        $('#userList').DataTable();
+        $('#userList').DataTable({
+          dom: 'Bfrtip',
+          buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+        });
       });
     },1000);
   }

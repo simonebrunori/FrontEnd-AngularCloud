@@ -151,22 +151,21 @@ export class NewUserComponent implements OnInit {
     console.log(user);
 
     // Function from authentication service to register user
-    // this.authService.registerUser(user).subscribe(data => {
-    //   // Resposne from registration attempt
-    //   if (!data.success) {
+     this.authService.registerUser(user).subscribe(data => {
+       // Resposne from registration attempt
+       if (!data.success) {
 
-    //     this.toastr.error( data.message ,'Error!',{timeOut: 3000, closeButton:true});      
-    //     this.processing = false; // Re-enable submit button
-    //     this.enableForm(); // Re-enable form
-    //   } else {
-    //     this.toastr.success( data.message ,'Success!',{timeOut: 3000, closeButton:true}); 
-    //     this.processing=false;     
-    //     this.enableForm(); // Re-enable form
-    //   }
-    // });
+         this.toastr.error( data.message ,'Error!',{timeOut: 3000, closeButton:true});      
+         this.processing = false; // Re-enable submit button
+         this.enableForm(); // Re-enable form
+       } else {
+         this.toastr.success( data.message ,'Success!',{timeOut: 3000, closeButton:true}); 
+         this.processing=false;     
+         this.enableForm(); // Re-enable form
+       }
+     });
 
     this.form.reset();
-    this.enableForm(); // Re-enable form
 
   }
 

@@ -143,6 +143,26 @@ export class AuthService {
   }
 
 
+  // Function to register new user
+  registerUser(user) {
+    this.createAuthenticationHeaders(); //create token before sending to API
+    return this.http.post(this.domain + 'users/register' ,user, this.options).map(res => res.json());
+  }
+
+
+    // Function to get selected user's data
+    getUserData(userId) {
+      this.createAuthenticationHeaders(); //create token before sending to API
+      return this.http.get(this.domain + 'users/profileData/' + userId, this.options).map(res => res.json());
+    }
+
+    // Function to update student's profile with class
+    addClassToStudent(studentId, clas) {
+      this.createAuthenticationHeaders(); //create token before sending to API
+      return this.http.put(this.domain + 'users/addClassToStudent/' + studentId, clas,this.options).map(res => res.json());
+    }
+
+
   
 
 }

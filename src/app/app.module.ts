@@ -57,6 +57,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 
@@ -90,7 +91,8 @@ import { NewUserComponent } from './components/new-user/new-user.component';
     TodoComponent,
     TextEditorComponent,
     UsersListComponent,
-    NewUserComponent
+    NewUserComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,

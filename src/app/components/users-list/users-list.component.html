@@ -30,7 +30,7 @@
                         <td>{{user.type}}</td>
                         <td *ngIf="user.clas!=undefined">{{user.clas.year}}° {{user.clas.section}}</td>
                         <td *ngIf="user.clas==undefined">-</td>
-                        <td><div class="centered"><a href="" class="btn btn-success btn-xs" style="width: 48%"><i class="fas fa-eye"></i></a><a href="" class="btn btn-danger btn-xs" style="margin-left: 5px; width: 48%"><i class="fas fa-trash-alt"></i></a></div></td>
+                        <td><div class="centered"><a routerLink="/dashboard/usersList/userDetails/{{user._id}}" class="btn btn-success btn-xs" style="width: 48%"><i class="fas fa-eye"></i></a><a href="" class="btn btn-danger btn-xs" style="margin-left: 5px; width: 48%"><i class="fas fa-trash-alt"></i></a></div></td>
                     </tr>
                 </tbody>
             </table>
