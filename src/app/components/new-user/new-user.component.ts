@@ -152,6 +152,7 @@ export class NewUserComponent implements OnInit {
 
     // Function from authentication service to register user
      this.authService.registerUser(user).subscribe(data => {
+       console.log(data.message);
        // Resposne from registration attempt
        if (!data.success) {
 

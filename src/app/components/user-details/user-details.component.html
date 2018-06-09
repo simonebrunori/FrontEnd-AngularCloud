@@ -11,7 +11,7 @@
         <i class="fas fa-users"></i> Users List</a>
     </li>
     <li class="active">
-        <i class="fas fa-user-cog"></i> Users Details</li>
+      <i class="fas fa-info"></i> Users Details</li>
   </ol>
 </div>
 <div class="page-body">
@@ -77,46 +77,153 @@
 
       <form [formGroup]="form" (submit)="addClass()">
 
-      <div class="row" *ngIf="userData.type==='S'">
+        <div class="row" *ngIf="userData.type==='S'">
           <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
             <label>Class</label>
-              <div class="panel panel-default" style="background-color:#e7ebee;">
-                <div class="panel-body">
-    
-                  <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
-                    <div class="form-group">
-                      <label>Year*</label>
-                      <div [ngClass]="{'has-error': (form.controls.year.errors && form.controls.year.dirty), 'has-success': !form.controls.year.errors}">
-                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="year" name="year"/>
-                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.year}}" formControlName="year" name="year"/>
+            <div class="panel panel-default" style="background-color:#e7ebee;">
+              <div class="panel-body">
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Year*</label>
+                    <div [ngClass]="{'has-error': (form.controls.year.errors && form.controls.year.dirty), 'has-success': !form.controls.year.errors}">
+                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="year" name="year" />
+                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.year}}" formControlName="year" name="year" />
                       <!-- Validation -->
-                    <ul class="help-block">
+                      <ul class="help-block">
                         <li *ngIf="form.controls.year.errors?.required && form.controls.year.dirty">This field is required</li>
                       </ul>
                     </div>
-                    </div>
                   </div>
-                  <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
-                    <div class="form-group">
-                        <div [ngClass]="{'has-error': (form.controls.section.errors && form.controls.section.dirty), 'has-success': !form.controls.section.errors}">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
+                  <div class="form-group">
+                    <div [ngClass]="{'has-error': (form.controls.section.errors && form.controls.section.dirty), 'has-success': !form.controls.section.errors}">
                       <label>Section*</label>
-                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="section" name="section"/>
-                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.section}}" formControlName="section" name="section"/>
+                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="section" name="section" />
+                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.section}}" formControlName="section" name="section"
+                      />
                       <!-- Validation -->
-                    <ul class="help-block">
+                      <ul class="help-block">
                         <li *ngIf="form.controls.section.errors?.required && form.controls.section.dirty">This field is required</li>
                       </ul>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-      </div>
+          </div>
+        </div>
 
-      <button *ngIf="userData.type==='S'" type="submit" class="btn btn-success" [disabled]="!form.valid"><i class="fas fa-user-edit"></i> Update Profile</button>
+        <a *ngIf="userData.type==='S'" routerLink="/dashboard/usersList" class="btn btn-default">
+          <i class="fas fa-arrow-left"></i> Back</a>
 
-    </form>
+        <button *ngIf="userData.type==='S'" type="submit" class="btn btn-success" [disabled]="!form.valid">
+          <i class="fas fa-edit"></i> Update Profile</button>
+
+      </form>
+
+      <form [formGroup]="formT" (submit)="addClassT()">
+
+        <div class="row" *ngIf="userData.type==='T'">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <label>Classes</label>
+            <div class="panel panel-default" style="background-color:#e7ebee;">
+              <div class="panel-body">
+
+                <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-3 col-xl-3">
+                  <div class="form-group">
+                    <label>Year*</label>
+                    <div [ngClass]="{'has-error': (formT.controls.year.errors && formT.controls.year.dirty), 'has-success': !formT.controls.year.errors}">
+                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="year" name="year" />
+                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.year}}" formControlName="year" name="year" />
+                      <!-- Validation -->
+                      <ul class="help-block">
+                        <li *ngIf="formT.controls.year.errors?.required && formT.controls.year.dirty">This field is required</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-xl-3">
+                  <div class="form-group">
+                    <div [ngClass]="{'has-error': (formT.controls.section.errors && formT.controls.section.dirty), 'has-success': !formT.controls.section.errors}">
+                      <label>Section*</label>
+                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="section" name="section" />
+                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.section}}" formControlName="section" name="section"
+                      />
+                      <!-- Validation -->
+                      <ul class="help-block">
+                        <li *ngIf="formT.controls.section.errors?.required && formT.controls.section.dirty">This field is required</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-3 col-xl-3">
+                  <div class="form-group">
+                    <div [ngClass]="{'has-error': (formT.controls.subject.errors && formT.controls.subject.dirty), 'has-success': !formT.controls.subject.errors}">
+                      <label>Subject*</label>
+                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="subject" name="subject" />
+                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.section}}" formControlName="section" name="section"
+                      />
+                      <!-- Validation -->
+                      <ul class="help-block">
+                        <li *ngIf="formT.controls.subject.errors?.required && formT.controls.subject.dirty">This field is required</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-warning" [disabled]="!formT.valid" style="margin-top:27px;">
+                  <i class="fas fa-plus"></i> Add Class</button>
+
+                </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                          <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th>Year</th>
+                                  <th>Section</th>
+                                  <th>Subject</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody *ngIf="userData.classes">
+                              <tr *ngFor="let class of userData.classes; let i=index">
+                                  <td>{{i}}</td>
+                                  <td>{{class.year}}</td>
+                                  <td>{{class.section}}</td>
+                                  <td>{{class.subject}}</td>
+                                  <td><button class="btn btn-danger btn-xs" style="margin-left: 5px; width: 48%" (click)="deleteClassT(i)"><i class="fas fa-trash-alt"></i></button></td>
+                              </tr>
+                          </tbody>
+                          <tbody *ngIf="!userData.classes"> No data founded</tbody>
+                      </table>
+                  </div>
+                  </div>
+                  </div>  
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
+      </form>
+
+      <a *ngIf="userData.type==='T'" routerLink="/dashboard/usersList" class="btn btn-default">
+          <i class="fas fa-arrow-left"></i> Back</a>
+
+      <button *ngIf="userData.type==='T'" type="submit" class="btn btn-success" (click)="postTData()">
+          <i class="fas fa-edit"></i> Update Profile</button>
 
 
     </div>

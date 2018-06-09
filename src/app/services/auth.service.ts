@@ -162,6 +162,19 @@ export class AuthService {
       return this.http.put(this.domain + 'users/addClassToStudent/' + studentId, clas,this.options).map(res => res.json());
     }
 
+    // Function to update student's profile with class
+    addClassToTeacher(teacherId, classes) {
+      this.createAuthenticationHeaders(); //create token before sending to API
+      return this.http.put(this.domain + 'users/addClassToTeacher/' + teacherId, classes,this.options).map(res => res.json());
+    }
+
+
+    // Function to delete user
+    deleteUser(userId) {
+      this.createAuthenticationHeaders(); //create token before sending to API
+      return this.http.delete(this.domain + 'users/deleteUser/' + userId ,this.options).map(res => res.json());
+    }
+
 
   
 

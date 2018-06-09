@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 
 @Component({
@@ -23,17 +23,20 @@ export class UserDetailsComponent implements OnInit {
     birthDate:"",
     major:"",
     clas:{
-      year:"",
+      year: 0,
       section:""
-    }
+    },
+    classes:[{year:0,section:"",subject:""}]
   };
 
   class=false;
   form;
+  formT;
 
 
-  constructor(private authService: AuthService, private acRoute: ActivatedRoute, private formBuilder: FormBuilder) { 
+  constructor(private authService: AuthService, private acRoute: ActivatedRoute, private formBuilder: FormBuilder, private router: Router) { 
     this.createForm();
+    this.createFormT();
   }
 
 
@@ -42,6 +45,18 @@ export class UserDetailsComponent implements OnInit {
     this.form=this.formBuilder.group({
       year: ['', Validators.required],
       section: ['', Validators.required]
+    }); 
+
+  }
+
+
+
+  //Function to create angular reactive form
+  createFormT(){
+    this.formT=this.formBuilder.group({
+      year: ['', Validators.required],
+      section: ['', Validators.required],
+      subject: ['',Validators.required]
     }); 
 
   }
@@ -73,12 +88,48 @@ export class UserDetailsComponent implements OnInit {
       }
     }
   
-
+    //Call service to add student
     this.authService.addClassToStudent(this.userData._id, obj).subscribe(data=>{
       console.log(data.message);
     })
+    this.router.navigateByUrl('/dashboard/usersList');
+  }
 
 
+  //Function to add classes to teacher users
+  addClassT(){
+    var obj={
+      year: parseInt(this.formT.get('year').value),
+      section: this.formT.get('section').value,
+      subject: this.formT.get('subject').value   
+    }
+
+    this.userData.classes.push(obj);
+
+    this.formT.reset();
+  }
+
+  //Function to delete class from teacher's classes array
+  deleteClassT(index){
+
+    this.userData.classes.splice(index, 1); //array splice
+
+  }
+
+
+  //Function to post user data in the database
+  postTData(){
+    var obj={
+      classes:this.userData.classes
+    }
+    //Call service to save classes
+    this.authService.addClassToTeacher(this.userData._id, obj).subscribe(data=>{
+      console.log(data.message);
+    });
+
+    this.router.navigateByUrl('/dashboard/usersList');
+
+    
   }
 
   ngOnInit() {
