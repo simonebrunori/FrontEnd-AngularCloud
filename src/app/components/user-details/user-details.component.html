@@ -1,0 +1,124 @@
+<div class="page-heading">
+  <h1 style="text-transform: uppercase;">
+    <strong>{{userData.surname}} {{userData.name}}</strong> DETAIL</h1>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/dashboard/home">
+        <i class="fa fa-home"></i> Home</a>
+    </li>
+    <li>
+      <a routerLink="/dashboard/usersList">
+        <i class="fas fa-users"></i> Users List</a>
+    </li>
+    <li class="active">
+        <i class="fas fa-user-cog"></i> Users Details</li>
+  </ol>
+</div>
+<div class="page-body">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-2 col-xl-2">
+          <div class="form-group">
+            <label>Type</label>
+            <input type="text" class="form-control" readonly value="{{userData.type}}" />
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-2 col-xl-2">
+          <div class="form-group">
+            <label>Gender</label>
+            <input type="text" class="form-control" readonly value="{{userData.gender}}" />
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" readonly value="{{userData.name}}" />
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label>Surname</label>
+            <input type="text" class="form-control" readonly value="{{userData.surname}}" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label>Mail</label>
+            <input type="text" class="form-control" readonly value="{{userData.email}}" />
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" readonly value="{{userData.username}}" />
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label>BirthDate</label>
+            <input type="text" class="form-control" readonly value="{{userData.BirthDate}}" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label>Major</label>
+            <input type="text" class="form-control" readonly value="{{userData.major}}" />
+          </div>
+        </div>
+      </div>
+
+      <form [formGroup]="form" (submit)="addClass()">
+
+      <div class="row" *ngIf="userData.type==='S'">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
+            <label>Class</label>
+              <div class="panel panel-default" style="background-color:#e7ebee;">
+                <div class="panel-body">
+    
+                  <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
+                    <div class="form-group">
+                      <label>Year*</label>
+                      <div [ngClass]="{'has-error': (form.controls.year.errors && form.controls.year.dirty), 'has-success': !form.controls.year.errors}">
+                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="year" name="year"/>
+                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.year}}" formControlName="year" name="year"/>
+                      <!-- Validation -->
+                    <ul class="help-block">
+                        <li *ngIf="form.controls.year.errors?.required && form.controls.year.dirty">This field is required</li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
+                    <div class="form-group">
+                        <div [ngClass]="{'has-error': (form.controls.section.errors && form.controls.section.dirty), 'has-success': !form.controls.section.errors}">
+                      <label>Section*</label>
+                      <input *ngIf="!class" type="text" class="form-control" value="" formControlName="section" name="section"/>
+                      <input *ngIf="class" type="text" class="form-control" value="{{userData.clas.section}}" formControlName="section" name="section"/>
+                      <!-- Validation -->
+                    <ul class="help-block">
+                        <li *ngIf="form.controls.section.errors?.required && form.controls.section.dirty">This field is required</li>
+                      </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+
+      <button *ngIf="userData.type==='S'" type="submit" class="btn btn-success" [disabled]="!form.valid"><i class="fas fa-user-edit"></i> Update Profile</button>
+
+    </form>
+
+
+    </div>
+  </div>
+</div>
