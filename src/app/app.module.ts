@@ -58,6 +58,7 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 
@@ -92,7 +93,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     TextEditorComponent,
     UsersListComponent,
     NewUserComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

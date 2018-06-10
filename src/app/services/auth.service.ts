@@ -175,6 +175,22 @@ export class AuthService {
       return this.http.delete(this.domain + 'users/deleteUser/' + userId ,this.options).map(res => res.json());
     }
 
+    // Function to compare old password with new
+    comparePasswords(password) {
+      var obj={
+        password: password
+      }
+      this.createAuthenticationHeaders(); //create token before sending to API
+      return this.http.post(this.domain + 'users/comparePasswords', obj, this.options).map(res => res.json());
+    }
+
+
+    // Function to change password
+    changePassword(user) {
+      this.createAuthenticationHeaders(); //create token before sending to API
+      return this.http.put(this.domain + 'users/changePassword', user,this.options).map(res => res.json());
+    }
+
 
   
 

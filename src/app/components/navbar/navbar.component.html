@@ -41,29 +41,34 @@
         <li class="dropdown user-menu">
           <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/images/avatars/face2.jpg" alt="User Avatar" />
-              <span class="hidden-xs">{{username}}</span>
+              <span class="hidden-xs">{{user.username}}</span>
           </a>
           <ul class="dropdown-menu">
             <li class="header">
               <img src="assets/images/avatars/face2.jpg" alt="User Avatar" />
               <div class="user">
                 {{username}}
-                <div class="title">Front-end Developer</div>
+                <div class="title">{{user.major}}</div>
               </div>
             </li>
             <li class="body">
-              <ul>
+              <ul *ngIf="!user.newUser">
                 <li>
                   <a routerLink="/dashboard/profile">
                     <i class="material-icons">account_circle</i> Profile
                   </a>
                 </li>
+                <!-- <li  *ngIf="user.newUser">
+                  <a data-target="#changePassword" data-toggle="modal"  data-backdrop="static" style="cursor: pointer;">
+                    <i class="material-icons">lock</i> Change password
+                  </a>
+                </li> -->
               </ul>
             </li>
             <li class="footer">
               <div class="row clearfix">
                 <div class="col-xs-5">
-                  <button (click)="logout()" class="btn btn-default btn-sm btn-block">Log Out</button>
+                  <button (click)="logout()" class="btn btn-default btn-sm btn-block" [disabled]="user.newUser">Log Out</button>
                 </div>
               </div>
             </li>            
@@ -78,6 +83,14 @@
 </nav>
 
 </header>
+
+
+
+<app-change-password></app-change-password>
+
+
+
+
 
 
 

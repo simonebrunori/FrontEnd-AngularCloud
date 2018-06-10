@@ -12,7 +12,7 @@ declare var $ :any;
 })
 export class NavbarComponent implements OnInit {
 
-  username = "";
+  user = {newUser:false};
 
 
   constructor(private router: Router,
@@ -29,8 +29,14 @@ export class NavbarComponent implements OnInit {
     $('body').addClass('navbar-fixed ls-fixed');
     // Once component loads, get username to display on navbar
     this.authService.getProfile().subscribe(profile => {
-      this.username = profile.user.username; // Set username
+      this.user = profile.user; // Set username
+
+      if(this.user.newUser){
+          $('#changePassword').modal({backdrop: 'static', keyboard: false});
+      }
     });
+
+    
   }
 
 }
