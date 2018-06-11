@@ -38,7 +38,7 @@ export class FolderService {
    getTeacherFolder(){
   
     this.createAuthenticationHeaders();   //create the header for the request
-    return this.http.get(this.domain + 'folders/Tfolders/'+ this.getUsername(), this.options).map(res=>res.json());   
+    return this.http.get(this.domain + 'folders/Tfolders', this.options).map(res=>res.json());   
   }
 
 
@@ -145,6 +145,25 @@ createPdf(file){
   return this.http.post(this.domain + 'pdf' , file, this.options).map(res=>res.json()); 
 }
 
+//Function to create class folder
+newClassFolder(folder){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.post(this.domain + 'folders/newFolderClass' , folder, this.options).map(res=>res.json()); 
+}
+
+//Function to delete class folder
+deleteFolder(folderName){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.delete(this.domain + 'folders/deleteFolder/'+ folderName, this.options).map(res=>res.json()); 
+}
+
+
+//Function to get all student's folders
+getStudentFolder(){
+
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.get(this.domain + 'folders/SFolder', this.options).map(res=>res.json());   
+}
 
 
 

@@ -309,7 +309,9 @@
       <div class="tab-container">
 
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let user of fileUsers">{{user}}</li>
+          <li>{{fileInfos.uploadedBy}}</li>
+          <li  *ngFor="let user of fileUsers">{{user.name}} {{user.surname}}</li>
+          <li></li>
         </ul>
 
       </div>

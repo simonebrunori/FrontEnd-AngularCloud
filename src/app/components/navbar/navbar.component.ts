@@ -12,7 +12,8 @@ declare var $ :any;
 })
 export class NavbarComponent implements OnInit {
 
-  user = {newUser:false};
+  new = false;
+  user = {newUser:false, type:""};
 
 
   constructor(private router: Router,
@@ -31,7 +32,8 @@ export class NavbarComponent implements OnInit {
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user; // Set username
 
-      if(this.user.newUser){
+      if(this.user.newUser && this.user.type!='A'){
+          this.new=true;
           $('#changePassword').modal({backdrop: 'static', keyboard: false});
       }
     });

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { FolderService } from '../../services/folder.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 
@@ -26,7 +27,7 @@ export class UserDetailsComponent implements OnInit {
       year: 0,
       section:""
     },
-    classes:[{year:0,section:"",subject:""}]
+    classes:[]
   };
 
   class=false;
@@ -34,7 +35,7 @@ export class UserDetailsComponent implements OnInit {
   formT;
 
 
-  constructor(private authService: AuthService, private acRoute: ActivatedRoute, private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private authService: AuthService, private acRoute: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, private folderService: FolderService) { 
     this.createForm();
     this.createFormT();
   }
@@ -106,14 +107,27 @@ export class UserDetailsComponent implements OnInit {
 
     this.userData.classes.push(obj);
 
+    //Create folder for class
+    var folder={
+      createdBy:this.userData._id,
+      clas: obj,
+    };
+    this.folderService.newClassFolder(folder).subscribe(data=>{
+      console.log(data.message);
+    })
+
     this.formT.reset();
   }
 
   //Function to delete class from teacher's classes array
   deleteClassT(index){
 
-    this.userData.classes.splice(index, 1); //array splice
+    
+    this.folderService.deleteFolder(this.userData.classes[index].subject+' '+this.userData.classes[index].year+this.userData.classes[index].section).subscribe(data=>{
+      console.log(data.message);
+    })
 
+    this.userData.classes.splice(index, 1); //array splice 
   }
 
 

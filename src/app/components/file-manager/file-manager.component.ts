@@ -18,7 +18,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
 
 
 
-
+  userType;                                                                                                                                                                                        
   folders;
   user;
   files;
@@ -29,7 +29,6 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   canGoBack;
   folderName="";
   form;
-  username;
   parentID;
 
   selectedElements=[];
@@ -70,10 +69,19 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
 
   //Function to get user's folders
   getFolders(){
-    //Call function getTeacherFolder() of FolderService
-    this.folderService.getTeacherFolder().subscribe(data=>{ 
-      this.folders=data.folders;
-    })
+    //Call function getTeacherFolder() of FolderService if user is teacher
+    if(this.userType=='T'){
+      this.folderService.getTeacherFolder().subscribe(data=>{ 
+        this.folders=data.folders;
+      })
+    }else{
+      //Call function getStudentFolder() of FolderService if user is student
+      this.folderService.getStudentFolder().subscribe(data=>{ 
+        this.folders=data.folders;
+        console.log(this.folders);
+      })
+    }
+    
   }
 
 
@@ -103,7 +111,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
    getUsersList(name){
     //Call function getUsersList() of FolderService
     this.folderService.getUsersList(name).subscribe(data=>{ 
-      this.fileUsers=data.users.users;
+      this.fileUsers=data.users;
     })
     
   }
@@ -212,7 +220,6 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     //Create folder object
     const folder= {
       name: this.form.get('fName').value,   //get value from form
-      createdBy: this.username,   //username
       parent: this.parentID,    //parent folder
       path: this.folderPath,    //path  
       parentName: this.getParentFolderName()    //get parent folder name
@@ -315,11 +322,13 @@ delete(){
 
   ngOnInit(){
 
+    this.userType=localStorage.getItem('type');
+
     
       // Get profile username on page load
-      this.authService.getProfile().subscribe(profile => {
-       this.username = profile.user.username; // Used when creating new elements
-      });
+      // this.authService.getProfile().subscribe(profile => {
+      //  this.username = profile.user.username; // Used when creating new elements
+      // });
   }
   
 

@@ -219,8 +219,8 @@
 
       </form>
 
-      <a *ngIf="userData.type==='T'" routerLink="/dashboard/usersList" class="btn btn-default">
-          <i class="fas fa-arrow-left"></i> Back</a>
+      <button *ngIf="userData.type==='T'" routerLink="/dashboard/usersList" class="btn btn-default">
+          <i class="fas fa-arrow-left"></i> Back</button>
 
       <button *ngIf="userData.type==='T'" type="submit" class="btn btn-success" (click)="postTData()">
           <i class="fas fa-edit"></i> Update Profile</button>
