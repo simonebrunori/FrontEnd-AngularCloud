@@ -17,7 +17,9 @@ declare var $ :any;
 export class FileManagerComponent implements AfterViewInit, OnInit {
 
 
-
+  empty=false;
+  fileExt=[];
+  breadCumbPath;
   userType;                                                                                                                                                                                        
   folders;
   user;
@@ -118,6 +120,11 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
 
   //Function to get children folders
   getChildrenFolders(parent){
+    $('#folderContent').waitMe({
+      effect: 'rotation',
+      text: 'Loading...',
+      bg: 'rgba(255,255,255,255)'
+    })
     //Call the service to get all children folders
     this.folderService.getChildrenFolders(parent).subscribe(data=>{
       this.childrenFolders=data.folders;
@@ -132,6 +139,16 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     //Call function getFolderFiles() of FolderService
     this.folderService.getFolderFiles(parent).subscribe(data=>{ 
     this.files=data.files[0].files;
+    if(this.childrenFolders.length==0 && this.files==0){
+      this.empty=true;
+    }else{
+      this.empty=false;
+      this.addFileExtension();
+    }
+    setTimeout(function () {
+      $('#folderContent').waitMe('hide');
+    }, 2000);
+    
     // console.log(data);
     })
 
@@ -153,11 +170,15 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   getFolderPath(id){
     this.folderService.getFolderPath(id).subscribe(data=>{ 
       this.folderPath=data.path.folderPath;
+      this.breadCumbPath = this.folderPath.split('/');
+      this.breadCumbPath.splice(0,1);
+      this.breadCumbPath.splice(this.breadCumbPath.length-1 , 1); //path in breadcumb
       this.checkIfCanGoBack();
     })
   }
 
   goBack(){
+    this.empty=false;
     var s=this.folderPath.split('/');
     this.getFolderChildrenByName(s[s.length-3]);
     
@@ -189,6 +210,9 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
      //Call function getFolderPathByName() of FolderService
      this.folderService.getFolderPathByName(name).subscribe(data=>{ 
       this.folderPath=data.path.folderPath;
+      this.breadCumbPath = this.folderPath.split('/');
+      this.breadCumbPath.splice(0,1);
+      this.breadCumbPath.splice(this.breadCumbPath.length-1 , 1); //path in breadcumb
       this.checkIfCanGoBack();
       });
   }
@@ -298,7 +322,29 @@ delete(){
   
 }
 
-
+addFileExtension(){
+  this.fileExt=[];
+  this.files.forEach(element => {
+    var ext=element.path.split('.');
+    switch (ext[1]){
+      case 'pdf':this.fileExt[element.path]='pdf';break;
+      case 'doc':this.fileExt[element.path]='doc';break;
+      case 'docx':this.fileExt[element.path]='doc';break;
+      case 'zip':this.fileExt[element.path]='zip';break;
+      case 'rar':this.fileExt[element.path]='zip';break;
+      case 'ppt':this.fileExt[element.path]='ppt';break;
+      case 'pptx':this.fileExt[element.path]='ppt';break;
+      case 'png':this.fileExt[element.path]='jpg';break;
+      case 'jpg':this.fileExt[element.path]='jpg';break;
+      case 'mp3':this.fileExt[element.path]='mp3';break;
+      case 'mp4':this.fileExt[element.path]='mp4';break;
+      case 'wav':this.fileExt[element.path]='mp4';break;
+      case 'wmv':this.fileExt[element.path]='mp4';break;
+      default: this.fileExt[element.path]='n';break
+    }
+    console.log(this.fileExt);
+  });
+}
 
 
 
@@ -312,6 +358,8 @@ delete(){
   public handleEvent(files){
     this.files = files;
     console.log(files);
+
+    this.addFileExtension();
   }
 
   ngAfterViewInit() {

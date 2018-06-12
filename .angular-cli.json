@@ -36,6 +36,7 @@
         "assets/css/style.css",
         "assets/plugins/DataTables/media/css/dataTables.bootstrap.css",
         "assets/css/themes/allthemes.css",
+        "assets/plugins/wait-me/src/waitMe.css",
         "styles.css"
       ],
       "scripts": [
@@ -67,6 +68,7 @@
         "assets/plugins/DataTables/extensions/export/buttons.print.min.js",
         "assets/plugins/moment/moment.js",
         "assets/plugins/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js",
+        "assets/plugins/wait-me/src/waitMe.js",
         "assets/js/admin.js",
         "assets/js/pages/forms/form-wizard.js",
         "assets/js/pages/ui/tooltips-popovers.js"

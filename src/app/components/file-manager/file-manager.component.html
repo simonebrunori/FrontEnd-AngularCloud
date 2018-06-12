@@ -54,24 +54,24 @@
           <div class="row clearfix">
 
             <!-- FOLDER -->
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let folder of folders">
-              <!-- <a role="button" (click)="getFolderContent(folder._id,'T')"> -->
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2" *ngFor="let folder of folders">
+             <a role="button" (click)="getFolderContent(folder._id,'T')"> 
                 <div class="file-box" [attr.id]="folder._id+'T'">
-                  <div class="heading">
-                    <!-- <input type="checkbox"/> -->
-                    <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(folder._id)" (ifUnchecked)="removeElementToDel(folder._id)">
-                  </div>
+                  <!-- <div class="heading">
+                     <input type="checkbox"/> 
+                      <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(folder._id)" (ifUnchecked)="removeElementToDel(folder._id)">
+                  </div> -->
                   <div class="body">
                     <div class="icon">
                       <i class="fa fa-folder-open"></i>
                     </div>
                   </div>
                   <div class="footer">
-                    <a class="name" role="button" (click)="getFolderContent(folder._id,'T')">{{folder.name}}</a>
-                    <div class="size">{{folder.createdAt}}</div>
+                    <p class="name" style="margin: 0px;">{{folder.name}}</p>
+                    <div class="size">{{folder.createdAt | date}}</div>
                   </div>
                 </div>
-              <!-- </a> -->
+              </a>
             </div>
 
             <!-- END FOLDER -->
@@ -104,7 +104,10 @@
             <!-- <div class="col-md-2 col-lg-4"></div>
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3"> -->
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7 align-right">
-              <b>Path:</b> {{folderPath}}
+              <b>Path:</b>
+              <ol class="breadcrumb" style="padding: 0;float: right; padding-left: 10px;">
+                  <li *ngFor="let folder of breadCumbPath; let last = last;" [ngClass]="{'active': last}"><a href="javascript:void(0);">{{folder}}</a></li>
+                  </ol>
             </div>
           </div>
           <input type="file" class="js-file-upload hide" multiple>
@@ -119,32 +122,36 @@
 
     <!-- FILES -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default" id="folderContent">
         <div class="panel-heading">
           SELECTED FOLDER'S CONTENT
         </div>
         <div class="panel-body">
 
+            <div class="row clearfix" *ngIf="empty"><p style="text-align: center;">This folder is empty!</p></div>
 
 
-          <div class="row clearfix">
+
+          <div class="row clearfix" *ngIf="!empty">
             <!-- SUBFOLDER -->
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let cFolder of childrenFolders">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2" *ngFor="let cFolder of childrenFolders">
               <!-- <a role="button" (click)="getFolderContent(cFolder._id,'')"> -->
                 <div class="file-box" [attr.id]="cFolder._id">
                   <div class="heading">
                     <!-- <input type="checkbox"/> -->
-                    <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(cFolder._id)" (ifUnchecked)="removeElementToDel(cFolder._id)">
+                    <label><input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(cFolder._id)" (ifUnchecked)="removeElementToDel(cFolder._id)"></label>
                   </div>
+                  <a role="button" (click)="getFolderContent(cFolder._id,'')">
                   <div class="body">
                     <div class="icon">
                       <i class="fa fa-folder-open"></i>
                     </div>
                   </div>
                   <div class="footer">
-                    <a role="button" class="name" (click)="getFolderContent(cFolder._id,'')">{{cFolder.name}}</a>
-                    <div class="size">{{cFolder.createdAt}}</div>
+                    <p class="name" style="margin: 0px;">{{cFolder.name}}</p>
+                    <div class="size">{{cFolder.createdAt | date}} {{cFolder.createdAt | date:'shortTime'}}</div>
                   </div>
+                  </a>
                 </div>
               <!-- </a> -->
             </div>
@@ -152,19 +159,26 @@
             <!-- END SUBFOLDER -->
 
             <!-- FILE -->
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" *ngFor="let file of files; let i=index;">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2" *ngFor="let file of files; let i=index;">
 
               <div class="file-box" [attr.id]="i">
                 <div class="heading">
                   <!-- <input type="checkbox" /> -->
-                  <input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(file._id)" (ifUnchecked)="removeElementToDel(file._id)"
-                  />
+                  <label><input icheck iCheckClass="icheckbox_square-green" type="checkbox" (ifChecked)="addElementToDel(file._id)" (ifUnchecked)="removeElementToDel(file._id)"
+                  /></label>
 
                 </div>
                 <div class="body">
-                  <div class="icon">
-                    <i class="far fa-file-word"></i>
+                  <div class="icon" *ngIf="fileExt[file.path]!='jpg'">
+                    <i class="far fa-file-word" *ngIf="fileExt[file.path]=='doc'"></i>
+                    <i class="far fa-file-pdf" *ngIf="fileExt[file.path]=='pdf'"></i>
+                    <i class="far fa-file-archive" *ngIf="fileExt[file.path]=='zip'"></i>
+                    <i class="far fa-file-powerpoint" *ngIf="fileExt[file.path]=='ppt'"></i>
+                    <i class="far fa-file-audio" *ngIf="fileExt[file.path]=='mp3'"></i>
+                    <i class="far fa-file-film" *ngIf="fileExt[file.path]=='mp4'"></i>
+                    <i class="far fa-file" *ngIf="fileExt[file.path]=='n'"></i>
                   </div>
+                      <img src="/Users/simone/Desktop/angularCloudAPI/uploads/{{file.path}}" alt="img" *ngIf="fileExt[file.path]=='jpg'">
                 </div>
                 <div class="footer">
                   <a href="javascript:void(0);" class="download" style="padding-left:10px; color:#666" (click)="toggleSidebar(file.filename, i)"
@@ -176,7 +190,7 @@
                                             <i class="fa fa-download"></i>
                                         </a>
                   <div class="name js-right-sidebar">{{file.path}}</div>
-                  <div class="size">{{file.uploadedAt}}</div>
+                  <div class="size">{{file.uploadedAt | date}} {{file.uploadeddAt | date:'shortTime'}}</div>
                 </div>
               </div>
             </div>
@@ -209,15 +223,13 @@
           <form [formGroup]="form" (submit)="createNewFolder()">
             <div class="modal-header">
               <h4 class="modal-title" id="defaultModalLabel">CREATE FOLDER</h4>
+              <div class="row clearfix">
+                  <div class="col-sm-12">
+                    <div class="col-888 font-bold">Path: {{folderPath}}</div>
+                  </div>
+                </div>
             </div>
             <div class="modal-body">
-
-              <div class="row clearfix">
-                <div class="col-sm-12">
-                  <div class="col-888 font-bold">Path: {{folderPath}}</div>
-                </div>
-              </div>
-              <br>
 
               <div class="row clearfix">
 
@@ -285,20 +297,15 @@
     <!-- FILE INFO -->
     <div role="tabpanel" class="tab-pane fade in active" id="tab_overview">
       <div class="tab-container">
-        <div class="container">
-          <br>
-          <br>
+          <label>FILE INFOS</label>
+          <ul>
+          <li><strong>Filename: </strong><br><br>{{fileInfos.path}}</li>
+          <li><strong>Uploaded By:  </strong><br><br>{{fileInfos.uploadedBy}}</li>
+          <li><strong>Uploaded At:   </strong><br><br>{{fileInfos.uploadedAt | date}} {{fileInfos.uploadedAt | date:'shortTime'}}</li>
+          <li><strong>Description:  </strong><br><br> {{fileInfos.description}}</li>
+          <li></li>
+          </ul>
 
-          <p><strong>Filename : </strong></p>
-          <p>{{fileInfos.path}}</p>
-          <p><strong>Uploaded By : </strong> </p>
-          <p>{{fileInfos.uploadedBy}}</p>
-          <p><strong>Uploaded At : </strong> </p>
-          <p>{{fileInfos.uploadedAt}}</p>
-          <p><strong>Descriprion : </strong></p>
-          <p>{{fileInfos.description}}</p>
-
-        </div>
       </div>
     </div>
 
