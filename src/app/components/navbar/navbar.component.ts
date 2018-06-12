@@ -13,7 +13,7 @@ declare var $ :any;
 export class NavbarComponent implements OnInit {
 
   new = false;
-  user = {newUser:false, type:""};
+  user = {newUser:false, type:"",username:"", major:""};
 
 
   constructor(private router: Router,

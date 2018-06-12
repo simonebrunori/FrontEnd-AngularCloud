@@ -20,6 +20,9 @@ export class ComposeComponent implements OnInit {
   public selectArrayStudents: Array<Select2OptionData>;
 
 
+  teacher=false;
+  student=false;
+  admin=false;
   subject="";
   users=[];
   classes=[];
@@ -194,6 +197,19 @@ export class ComposeComponent implements OnInit {
     this.authService.getProfile().subscribe((data)=>{
       this.user=data.user.username;
     });
+
+    var type=localStorage.getItem('type');
+
+    //control user type
+    if(type=='A'){
+      this.admin=true;
+    }else{
+      if(type=='S'){
+        this.student=true;
+      }else{
+        this.teacher=true;
+      }
+    }
 
 
     this.getClasses();  //get classes for select2

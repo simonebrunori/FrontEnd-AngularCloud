@@ -23,8 +23,11 @@
       </div>
       <div class="row clearfix">
         <div class="col-sm-7">
-          <div class="from-email">From:
+          <div class="from-email" *ngIf="!sent">From:
             <b>{{mail.writtenBy}}</b>
+          </div>
+          <div class="from-email" *ngIf="sent">To:
+            <b *ngFor="let sendee of sendees; let last=last;">{{sendee}}<p style="display: inline;" *ngIf="!last">, </p></b>
           </div>
         </div>
         

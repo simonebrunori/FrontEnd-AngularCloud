@@ -11,10 +11,18 @@ export class MailComponent implements OnInit {
 
 
   public mail={
-    _id:''
+    _id:'',
+    subject:"",
+    writtenBy:"",
+    writtenAt:"",
+    badge:"",
+    body:"",
+    sendees:[]
   };
   previousUrl;
   disable=false;
+  sent=false;
+  sendees=[];
 
   constructor(private acRoute: ActivatedRoute, private mailService: MailService, private router: Router) { }
 
@@ -23,6 +31,15 @@ export class MailComponent implements OnInit {
   getMail(mailId){
     this.mailService.getMail(mailId).subscribe(data=>{
       this.mail=data.mail;
+      if(this.sent){
+        this.mail.sendees.forEach(element => {
+          this.mailService.getSendee(element.sendee).subscribe(data=>{
+            this.sendees.push(data.sendee[0].username);
+            console.log(this.sendees);
+          })
+        });
+      }
+      
       this.readMail();
     });
   }
@@ -52,7 +69,14 @@ deleteMail(){
   ngOnInit() {
     var mailId = this.acRoute.snapshot.params.mailId; // Get URL paramaters on page load
     this.previousUrl = this.acRoute.snapshot.params.previousUrl; // Get URL paramaters on page load
+    this.sent = this.acRoute.snapshot.params.sent; // Get URL paramaters on page load
+
+    if( this.previousUrl.localeCompare('sent')==0){
+      this.sent=true;
+    }
     this.getMail(mailId);   //get mail content on component load
+
+    
 
     if(this.previousUrl.localeCompare('sent')==0 || this.previousUrl.localeCompare('trash')==0){
       this.disable=true;

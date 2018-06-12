@@ -126,7 +126,7 @@
         <div class="panel-heading">
           SELECTED FOLDER'S CONTENT
         </div>
-        <div class="panel-body">
+        <div class="panel-body" style="min-height:231px ;">
 
             <div class="row clearfix" *ngIf="empty"><p style="text-align: center;">This folder is empty!</p></div>
 
@@ -169,7 +169,7 @@
 
                 </div>
                 <div class="body">
-                  <div class="icon" *ngIf="fileExt[file.path]!='jpg'">
+                  <div class="icon">
                     <i class="far fa-file-word" *ngIf="fileExt[file.path]=='doc'"></i>
                     <i class="far fa-file-pdf" *ngIf="fileExt[file.path]=='pdf'"></i>
                     <i class="far fa-file-archive" *ngIf="fileExt[file.path]=='zip'"></i>
@@ -177,8 +177,9 @@
                     <i class="far fa-file-audio" *ngIf="fileExt[file.path]=='mp3'"></i>
                     <i class="far fa-file-film" *ngIf="fileExt[file.path]=='mp4'"></i>
                     <i class="far fa-file" *ngIf="fileExt[file.path]=='n'"></i>
+                    <i class="far fa-file-image" *ngIf="fileExt[file.path]=='jpg'"></i>
                   </div>
-                      <img src="/Users/simone/Desktop/angularCloudAPI/uploads/{{file.path}}" alt="img" *ngIf="fileExt[file.path]=='jpg'">
+                    
                 </div>
                 <div class="footer">
                   <a href="javascript:void(0);" class="download" style="padding-left:10px; color:#666" (click)="toggleSidebar(file.filename, i)"
@@ -189,7 +190,7 @@
                     data-toggle="tooltip" data-placement="bottom" title="File Download">
                                             <i class="fa fa-download"></i>
                                         </a>
-                  <div class="name js-right-sidebar">{{file.path}}</div>
+                  <div class="name js-right-sidebar" style="width: 80%">{{file.path}}</div>
                   <div class="size">{{file.uploadedAt | date}} {{file.uploadeddAt | date:'shortTime'}}</div>
                 </div>
               </div>

@@ -24,7 +24,12 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
   folders;
   user;
   files;
-  fileInfos="";
+  fileInfos={
+    path:"",
+    uploadedBy:"",
+    uploadedAt:"",
+    description:""
+  };
   fileUsers="";
   childrenFolders="";
   folderPath;
@@ -190,6 +195,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
       //Call function getFolderFileByName() of FolderService
       this.folderService.getFolderFileByName(name).subscribe(data=>{ 
       this.files=data.files[0].files;
+      this.addFileExtension();
       this.getFolderPathByName(name);
       })
 

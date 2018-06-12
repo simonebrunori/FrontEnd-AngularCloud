@@ -190,5 +190,10 @@ export class MailService {
     this.createAuthenticationHeaders();   //create the header for the request
     return this.http.get(this.domain + 'mails/getTotalMailCount' , this.options).map(res=>res.json()); 
   }
+  //Function to get sendee's username
+  getSendee(id){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.get(this.domain + 'folders/getSendeeName/'+id, this.options).map(res=>res.json());   
+}
 
 }

@@ -12,7 +12,7 @@
         </div>
         <div class="panel-body">
             <form class="m-t-15">
-                <div class="form-group p-l-15 p-r-15">
+                <div class="form-group p-l-15 p-r-15" *ngIf="!student">
                     <label for="select2_1">Classes:</label>
                     <select2 id="select2_1" [data]="selectArrayClasses" [options]="options" [width]="'100%'"  (valueChanged)="changedClasses($event)"></select2>
                 </div>

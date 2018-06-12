@@ -39,8 +39,8 @@
                       <tr [ngClass]="{'unread': !mail.read}" *ngFor="let mail of mails">
                           <td><label><input icheck iCheckClass="icheckbox_flat-green" type="checkbox" (ifChecked)="checkOne(mail._id)" (ifUnchecked)="unCheckOne(mail._id)" [disabled]="All"></label></td>
                           <td></td>
-                          <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}">{{mail.writtenBy}}</a></td>
-                          <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}">
+                          <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/communication">{{mail.writtenBy}}</a></td>
+                          <td><a routerLink="/dashboard/mailbox/mail/{{mail._id}}/communication">
                               <span *ngIf="mail.badge==='communication'" class="badge bg-success">Communication</span> 
                               <span *ngIf="mail.badge==='homework'" class="badge bg-warning">Homework</span> 
                               <span *ngIf="mail.badge==='important'" class="badge bg-danger">Important</span> {{mail.subject}}</a></td>

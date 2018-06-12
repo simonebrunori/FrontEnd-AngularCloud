@@ -13,9 +13,15 @@ export class ProfileComponent implements OnInit {
   user={
     subjects:[],
     TODO: false,
-    TE:false
+    TE:false,
+    username:"",
+    email:"",
+    gender:"",
+    birthDtae:"",
+    city:"",
+    about:"",
+    type:""
   };
-  subjects=[];
 
   constructor(private authService: AuthService) { }
 
@@ -41,6 +47,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(data=>{
       this.user=data.user;
+      console.log(this.user.subjects);
     });
   }
 
