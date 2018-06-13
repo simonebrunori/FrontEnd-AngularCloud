@@ -30,6 +30,8 @@ export class InboxComponent implements OnInit {
 
   newMails=0;
 
+  searchString=""
+
   
 
   constructor(private mailService:MailService, private authService: AuthService, private toastr:ToastrService) { }
@@ -58,7 +60,6 @@ export class InboxComponent implements OnInit {
   //Function to add checked element to array
   checkOne(mailId){
     this.checkedMails.push(mailId);
-    console.log(this.checkedMails);
     this.atLeastOneChecked=true;
   }
 
@@ -66,7 +67,6 @@ export class InboxComponent implements OnInit {
   unCheckOne(mailId){
     const index = this.checkedMails.indexOf(mailId);
     this.checkedMails.splice(index, 1);
-    console.log(this.checkedMails);
     if(this.checkedMails.length==0){
       this.atLeastOneChecked=false;
     }
@@ -102,6 +102,7 @@ export class InboxComponent implements OnInit {
 
   //Function to refresh inbox
   refresh(){
+    this.searchString="";
     this.checkedMails=[];
     this.mails=[];
     this.atLeastOneChecked=false;
@@ -110,6 +111,7 @@ export class InboxComponent implements OnInit {
 
   //function to check read emails
   checkReadMails(mails){
+    
     mails.forEach(element => {
         element.sendees.forEach(sendeeElement => {
           if(sendeeElement.sendee.localeCompare(this.userId)==0){
@@ -145,16 +147,28 @@ export class InboxComponent implements OnInit {
   //Function to move to previous page in pagination
   previous(){
     if(this.skip-this.limit>=0){
-      this.skip=this.skip-this.limit;
-      this.refresh();
+      if(this.searchString==""){
+        this.skip=this.skip-this.limit;
+        this.refresh();
+      }else{
+        this.skip=this.skip-this.limit;
+        this.searchMails();
+      }
+      
       
     } 
   }
 
   //Function to move to next page in pagination
   next(){
-    this.skip=this.skip+this.limit;
-    this.refresh();
+    if(this.searchString==""){
+      this.skip=this.skip+this.limit;
+      this.refresh();
+    }else{
+      this.skip=this.skip+this.limit;
+      this.searchMails();
+    }
+    
   }
 
   //Function to get mails count
@@ -162,6 +176,7 @@ getMailsCount(){
   this.mailService.getInboxMailCount().subscribe(data=>{
     this.mailsCount=data.count;
     if(this.mails.length!=0){   //control to disable pagination
+      this.empty=false;
       this.startElement=this.skip+1;
       this.endElement=this.startElement+this.mails.length-1;
       if(this.startElement<this.limit+1){
@@ -181,7 +196,47 @@ getMailsCount(){
   })
 }
 
+//Function to search emails by writer
+searchMails(){
+  this.mails=[];
+  //search if search string is not null
+  if(this.searchString!=""){
+    this.mailService.searchWriter(this.searchString,this.limit,this.skip).subscribe(data=>{
+      this.checkReadMails(data.mails);
+      this.getSearchMailsCount();   //
+    })
+  }else{
+    this.skip=0;
+    //If searchstrin is null get all mails
+    this.getMails();
+  }
+  
+}
 
+//Function to get search mail count for pagination
+getSearchMailsCount(){
+  this.mailService.searchMailCount(this.searchString).subscribe(data=>{
+    this.mailsCount=data.count;
+    if(this.mails.length!=0){   //control to disable pagination
+      this.empty=false;
+      this.startElement=this.skip+1;
+      this.endElement=this.startElement+this.mails.length-1;
+      if(this.startElement<this.limit+1){
+        this.disablePrev=true;
+      }else{
+        this.disablePrev=false;
+      }
+      if(this.endElement==this.mailsCount){
+        this.disableNext=true;
+      }else{
+        this.disableNext=false;
+      }
+    }else{
+      this.disableNext=true;
+      this.empty=true;
+    }
+  })
+}
 
 
 

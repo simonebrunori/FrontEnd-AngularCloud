@@ -17,7 +17,7 @@
 
 
     <!-- SEARCHBAR -->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row clearfix">
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- END SEARCHBAR -->
 
@@ -48,13 +48,13 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          FOLDERS
+          CLASS FOLDERS
         </div>
         <div class="panel-body">
           <div class="row clearfix">
 
             <!-- FOLDER -->
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2" *ngFor="let folder of folders">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2" *ngFor="let folder of folders">
              <a role="button" (click)="getFolderContent(folder._id,'T')"> 
                 <div class="file-box" [attr.id]="folder._id+'T'">
                   <!-- <div class="heading">
@@ -101,12 +101,17 @@
             <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
               <button type="button" class="btn btn-info btn-block" [disabled]="!folderPath" data-toggle="modal" data-target="#folderModal"><i class="fas fa-folder"></i> New Folder</button>
             </div>
+            <div class="col-sm-12 col-xs-12 col-md-2 col-lg-2">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#smallModal">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
             <!-- <div class="col-md-2 col-lg-4"></div>
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3"> -->
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7 align-right">
+              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-5 align-right">
               <b>Path:</b>
               <ol class="breadcrumb" style="padding: 0;float: right; padding-left: 10px;">
-                  <li *ngFor="let folder of breadCumbPath; let last = last;" [ngClass]="{'active': last}"><a href="javascript:void(0);">{{folder}}</a></li>
+                  <li *ngFor="let folder of breadCumbPath; let last = last;" [ngClass]="{'active': last}">{{folder}}</li>
                   </ol>
             </div>
           </div>
@@ -134,7 +139,7 @@
 
           <div class="row clearfix" *ngIf="!empty">
             <!-- SUBFOLDER -->
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2" *ngFor="let cFolder of childrenFolders">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2" *ngFor="let cFolder of childrenFolders">
               <!-- <a role="button" (click)="getFolderContent(cFolder._id,'')"> -->
                 <div class="file-box" [attr.id]="cFolder._id">
                   <div class="heading">
@@ -159,7 +164,7 @@
             <!-- END SUBFOLDER -->
 
             <!-- FILE -->
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2" *ngFor="let file of files; let i=index;">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2" *ngFor="let file of files; let i=index;">
 
               <div class="file-box" [attr.id]="i">
                 <div class="heading">
@@ -190,7 +195,7 @@
                     data-toggle="tooltip" data-placement="bottom" title="File Download">
                                             <i class="fa fa-download"></i>
                                         </a>
-                  <div class="name js-right-sidebar" style="width: 80%">{{file.path}}</div>
+                  <div class="name js-right-sidebar">{{file.path}}</div>
                   <div class="size">{{file.uploadedAt | date}} {{file.uploadeddAt | date:'shortTime'}}</div>
                 </div>
               </div>
@@ -301,7 +306,7 @@
           <label>FILE INFOS</label>
           <ul>
           <li><strong>Filename: </strong><br><br>{{fileInfos.path}}</li>
-          <li><strong>Uploaded By:  </strong><br><br>{{fileInfos.uploadedBy}}</li>
+          <li><strong>Uploaded By:  </strong><br><br><img src="assets/images/avatars/user.png" alt="img" id="profileImg">{{fileInfos.uploadedBy}}</li>
           <li><strong>Uploaded At:   </strong><br><br>{{fileInfos.uploadedAt | date}} {{fileInfos.uploadedAt | date:'shortTime'}}</li>
           <li><strong>Description:  </strong><br><br> {{fileInfos.description}}</li>
           <li></li>
@@ -317,8 +322,11 @@
       <div class="tab-container">
 
         <ul class="list-group">
-          <li>{{fileInfos.uploadedBy}}</li>
-          <li  *ngFor="let user of fileUsers">{{user.name}} {{user.surname}}</li>
+          <li>
+            <img src="assets/images/avatars/user.png" alt="img" id="profileImg">
+            {{fileInfos.uploadedBy}}
+          </li>
+          <li  *ngFor="let user of fileUsers"><img src="assets/images/avatars/user.png" alt="img" id="profileImg">{{user.username}}</li>
           <li></li>
         </ul>
 

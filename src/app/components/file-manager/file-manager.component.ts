@@ -152,7 +152,7 @@ export class FileManagerComponent implements AfterViewInit, OnInit {
     }
     setTimeout(function () {
       $('#folderContent').waitMe('hide');
-    }, 2000);
+    }, 1000);
     
     // console.log(data);
     })
@@ -322,7 +322,7 @@ delete(){
       this.getFolderContent(this.parentID,'');  //reload elements on the screen
     })   
     this.deselectElements();  //deselect checked elements
-    $('#smallModal').modal('toggle');
+    $('#smallModal').modal('hide');
   });
 
   
@@ -364,7 +364,9 @@ addFileExtension(){
   public handleEvent(files){
     this.files = files;
     console.log(files);
-
+    if(this.files.length!=0){
+      this.empty=false;
+    }
     this.addFileExtension();
   }
 

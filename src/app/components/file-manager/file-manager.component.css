@@ -2,3 +2,32 @@ input[type="checkbox"] {
     width: 0;
     height: 0;
 }
+
+@media screen and (max-width:2020px) and (min-width:990px) {
+    .name {
+        width:60%;
+    }
+}
+
+@media screen and (max-width:1300px) and (min-width:1200px) {
+    .name {
+        width:40%;
+    }
+}
+
+@media screen and (min-width:2021px) {
+    .name {
+        width:80%;
+    }
+}
+
+#profileImg{
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        border-radius: 50%;
+        vertical-align: middle !important;
+}

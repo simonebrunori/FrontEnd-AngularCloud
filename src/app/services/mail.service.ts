@@ -193,7 +193,21 @@ export class MailService {
   //Function to get sendee's username
   getSendee(id){
   this.createAuthenticationHeaders();   //create the header for the request
-  return this.http.get(this.domain + 'folders/getSendeeName/'+id, this.options).map(res=>res.json());   
+  return this.http.get(this.domain + 'mails/getSendeeName/'+id, this.options).map(res=>res.json());   
 }
+
+//Function to search writers 
+searchWriter(str,limit,skip){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.get(this.domain + 'mails/searchMail/'+str+'/'+limit+'/'+skip, this.options).map(res=>res.json());   
+}
+
+
+//Function to get searched mails count
+searchMailCount(str){
+  this.createAuthenticationHeaders();   //create the header for the request
+  return this.http.get(this.domain + 'mails/searchMailCount/'+str, this.options).map(res=>res.json());   
+}
+
 
 }
